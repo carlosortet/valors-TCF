@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Guia de Valors de Marca | True Crime Factory</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #2d5a87;
+            --accent-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --pale-blue: #eff6ff;
+            --dark-blue: #0f172a;
+            --navy: #1e293b;
+            
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-subtle: #f1f5f9;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            --success: #059669;
+            --success-light: #d1fae5;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-white);
+        }
+        
+        /* COVER */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(145deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60pt;
+            position: relative;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(59,130,246,0.1) 0%, transparent 100%);
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600pt;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: var(--accent-blue);
+            padding: 6pt 14pt;
+            font-size: 8pt;
+            font-weight: 600;
+            letter-spacing: 2pt;
+            text-transform: uppercase;
+            margin-bottom: 25pt;
+            border-radius: 2pt;
+        }
+        
+        .cover-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 38pt;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 15pt;
+        }
+        
+        .cover-subtitle {
+            font-size: 12pt;
+            font-weight: 400;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 35pt;
+            line-height: 1.7;
+            max-width: 480pt;
+        }
+        
+        .cover-divider {
+            width: 60pt;
+            height: 3pt;
+            background: var(--accent-blue);
+            margin-bottom: 35pt;
+        }
+        
+        .cover-values {
+            display: flex;
+            gap: 12pt;
+            flex-wrap: wrap;
+            margin-bottom: 50pt;
+        }
+        
+        .cover-value-tag {
+            background: rgba(255,255,255,0.1);
+            border: 1pt solid rgba(255,255,255,0.25);
+            padding: 8pt 14pt;
+            font-size: 9pt;
+            font-weight: 500;
+            letter-spacing: 0.5pt;
+            border-radius: 3pt;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .cover-value-tag:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .cover-meta {
+            font-size: 9pt;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .cover-meta strong {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* CONTENT */
+        .content {
+            padding: 35pt 45pt;
+            max-width: 100%;
+        }
+        
+        /* SECTION */
+        .section {
+            margin-bottom: 30pt;
+            page-break-inside: avoid;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12pt;
+            margin-bottom: 18pt;
+            padding-bottom: 10pt;
+            border-bottom: 2pt solid var(--primary-blue);
+        }
+        
+        .section-number {
+            background: var(--primary-blue);
+            color: white;
+            width: 32pt;
+            height: 32pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12pt;
+            font-weight: 700;
+            border-radius: 4pt;
+            flex-shrink: 0;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+        }
+        
+        .section-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        /* TYPOGRAPHY */
+        p {
+            margin-bottom: 12pt;
+            color: var(--text-secondary);
+        }
+        
+        p.lead {
+            font-size: 10.5pt;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+        
+        strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* INFO BOXES */
+        .info-box {
+            background: var(--bg-subtle);
+            border-left: 3pt solid var(--primary-blue);
+            padding: 14pt 18pt;
+            margin-bottom: 18pt;
+        }
+        
+        .info-box.highlight {
+            background: var(--pale-blue);
+            border-left-color: var(--accent-blue);
+        }
+        
+        .info-box.success {
+            background: var(--success-light);
+            border-left-color: var(--success);
+        }
+        
+        .info-box.warning {
+            background: var(--warning-light);
+            border-left-color: var(--warning);
+        }
+        
+        .info-box.critical {
+            background: var(--error-light);
+            border-left-color: var(--error);
+        }
+        
+        .info-box-title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-bottom: 8pt;
+        }
+        
+        .info-box.success .info-box-title { color: var(--success); }
+        .info-box.warning .info-box-title { color: var(--warning); }
+        .info-box.critical .info-box-title { color: var(--error); }
+        
+        .info-box ul {
+            margin: 8pt 0 0 18pt;
+            font-size: 9pt;
+        }
+        
+        .info-box li {
+            margin-bottom: 4pt;
+        }
+        
+        /* TABLES */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-bottom: 18pt;
+        }
+        
+        .data-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10pt 12pt;
+            text-align: left;
+            font-weight: 600;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+        }
+        
+        .data-table td {
+            padding: 10pt 12pt;
+            border-bottom: 1pt solid var(--border-light);
+            vertical-align: top;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+        
+        .data-table tr:hover {
+            background: var(--pale-blue);
+        }
+        
+        /* VALUE CARD */
+        .value-card {
+            background: var(--bg-white);
+            border: 1pt solid var(--border-medium);
+            margin-bottom: 25pt;
+            page-break-inside: avoid;
+        }
+        
+        .value-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 16pt 20pt;
+            display: flex;
+            align-items: center;
+            gap: 16pt;
+        }
+        
+        .value-number-badge {
+            background: rgba(255,255,255,0.2);
+            width: 40pt;
+            height: 40pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18pt;
+            font-weight: 700;
+            border-radius: 4pt;
+            flex-shrink: 0;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+        }
+        
+        .value-title-block {
+            flex: 1;
+        }
+        
+        .value-name {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 15pt;
+            font-weight: 700;
+            margin-bottom: 2pt;
+        }
+        
+        .value-tagline {
+            font-size: 9pt;
+            opacity: 0.9;
+            color: rgba(255,255,255,0.95);
+            font-weight: 400;
+        }
+        
+        .value-content {
+            padding: 20pt;
+        }
+        
+        .value-definition {
+            font-size: 10pt;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin-bottom: 16pt;
+            padding-bottom: 16pt;
+            border-bottom: 1pt solid var(--border-light);
+        }
+        
+        .value-section-label {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--dark-blue);
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            margin-bottom: 10pt;
+            margin-top: 18pt;
+            border-bottom: 1pt solid var(--border-light);
+            padding-bottom: 6pt;
+        }
+        
+        .value-list {
+            margin: 0 0 0 18pt;
+            font-size: 9pt;
+        }
+        
+        .value-list li {
+            margin-bottom: 6pt;
+            color: var(--text-secondary);
+        }
+        
+        /* EXAMPLES GRID */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12pt;
+            margin-top: 16pt;
+        }
+        
+        .example-box {
+            padding: 14pt;
+            border-radius: 4pt;
+        }
+        
+        .example-box.correct {
+            background: var(--success-light);
+            border: 1pt solid #a7f3d0;
+        }
+        
+        .example-box.incorrect {
+            background: var(--bg-subtle);
+            border: 1pt solid var(--border-light);
+        }
+        
+        .example-label {
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-bottom: 10pt;
+            display: flex;
+            align-items: center;
+            gap: 6pt;
+        }
+        
+        .example-box.correct .example-label { color: var(--success); }
+        .example-box.incorrect .example-label { color: var(--text-muted); }
+        
+        .example-item {
+            font-size: 8.5pt;
+            margin-bottom: 8pt;
+            padding-left: 14pt;
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .example-item::before {
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+        
+        .example-box.correct .example-item::before { 
+            content: '+'; 
+            color: var(--success); 
+        }
+        
+        .example-box.incorrect .example-item::before { 
+            content: '-'; 
+            color: var(--text-muted); 
+        }
+        
+        /* APPLICATION BOX */
+        .application-box {
+            background: var(--bg-light);
+            border: 1pt solid var(--border-light);
+            padding: 16pt;
+            margin-top: 16pt;
+        }
+        
+        .application-title {
+            font-size: 9pt;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12pt;
+            display: flex;
+            align-items: center;
+            gap: 10pt;
+        }
+        
+        .application-badge {
+            background: var(--primary-blue);
+            color: white;
+            padding: 3pt 8pt;
+            font-size: 7pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            border-radius: 2pt;
+        }
+        
+        .application-list {
+            font-size: 9pt;
+            margin-left: 18pt;
+        }
+        
+        .application-list li {
+            margin-bottom: 5pt;
+            color: var(--text-secondary);
+        }
+        
+        /* PE REFERENCE */
+        .pe-reference {
+            background: var(--pale-blue);
+            border: 1pt solid var(--light-blue);
+            padding: 12pt 16pt;
+            margin-top: 16pt;
+            font-size: 8.5pt;
+        }
+        
+        .pe-reference-label {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-bottom: 6pt;
+        }
+        
+        .pe-reference p {
+            margin-bottom: 4pt;
+            color: var(--text-secondary);
+            font-size: 8.5pt;
+        }
+        
+        /* CHECKLIST */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .checklist li {
+            padding: 10pt 0 10pt 28pt;
+            border-bottom: 1pt solid var(--border-light);
+            position: relative;
+            font-size: 9pt;
+            color: var(--text-secondary);
+        }
+        
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10pt;
+            width: 14pt;
+            height: 14pt;
+            border: 2pt solid var(--primary-blue);
+            border-radius: 2pt;
+        }
+        
+        /* QUOTE */
+        .quote-block {
+            background: var(--navy);
+            color: white;
+            padding: 24pt 28pt;
+            margin: 20pt 0;
+            position: relative;
+            border-left: 4pt solid var(--accent-blue);
+        }
+        
+        .quote-text {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 13pt;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .quote-source {
+            margin-top: 12pt;
+            font-size: 8pt;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+        }
+        
+        /* DECISION FLOW */
+        .decision-flow-container {
+            background: var(--bg-light);
+            border: 1pt solid var(--border-light);
+            padding: 20pt;
+            margin: 20pt 0;
+        }
+        
+        .decision-flow-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 20pt;
+        }
+        
+        .decision-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10pt;
+            flex-wrap: wrap;
+        }
+        
+        .decision-step {
+            background: var(--bg-white);
+            border: 1pt solid var(--border-medium);
+            padding: 12pt 16pt;
+            text-align: center;
+            font-size: 8.5pt;
+            font-weight: 500;
+            min-width: 100pt;
+        }
+        
+        .decision-step.highlight {
+            border-color: var(--primary-blue);
+            border-width: 2pt;
+            background: var(--pale-blue);
+        }
+        
+        .decision-arrow {
+            font-size: 16pt;
+            color: var(--primary-blue);
+            font-weight: 300;
+        }
+        
+        .decision-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12pt;
+            margin-top: 16pt;
+        }
+        
+        .decision-result {
+            padding: 14pt;
+            text-align: center;
+            font-size: 9pt;
+            font-weight: 600;
+            border-radius: 4pt;
+        }
+        
+        .decision-result.approved {
+            background: var(--success-light);
+            color: var(--success);
+            border: 1pt solid #a7f3d0;
+        }
+        
+        .decision-result.rejected {
+            background: var(--error-light);
+            color: var(--error);
+            border: 1pt solid #fecaca;
+        }
+        
+        /* CASE STUDY */
+        .case-study {
+            background: var(--bg-white);
+            border: 1pt solid var(--border-medium);
+            margin-bottom: 18pt;
+            page-break-inside: avoid;
+        }
+        
+        .case-study-header {
+            background: var(--bg-subtle);
+            padding: 12pt 16pt;
+            border-bottom: 1pt solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10pt;
+        }
+        
+        .case-study-number {
+            background: var(--primary-blue);
+            color: white;
+            width: 24pt;
+            height: 24pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10pt;
+            font-weight: 700;
+            border-radius: 3pt;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+        }
+        
+        .case-study-title {
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .case-study-content {
+            padding: 16pt;
+        }
+        
+        .case-study-situation {
+            font-size: 9pt;
+            color: var(--text-secondary);
+            margin-bottom: 14pt;
+            padding-bottom: 14pt;
+            border-bottom: 1pt solid var(--border-light);
+        }
+        
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14pt;
+        }
+        
+        .case-study-analysis {
+            font-size: 8.5pt;
+        }
+        
+        .case-study-analysis-title {
+            font-size: 8pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-bottom: 8pt;
+        }
+        
+        .case-study-decision {
+            padding: 14pt;
+            border-radius: 4pt;
+        }
+        
+        .case-study-decision.approve {
+            background: var(--success-light);
+        }
+        
+        .case-study-decision.reject {
+            background: var(--error-light);
+        }
+        
+        .case-study-decision.modify {
+            background: var(--warning-light);
+        }
+        
+        .case-study-decision-label {
+            font-size: 9pt;
+            font-weight: 700;
+            margin-bottom: 6pt;
+        }
+        
+        .case-study-decision.approve .case-study-decision-label { color: var(--success); }
+        .case-study-decision.reject .case-study-decision-label { color: var(--error); }
+        .case-study-decision.modify .case-study-decision-label { color: var(--warning); }
+        
+        .case-study-decision p {
+            font-size: 8.5pt;
+            margin: 0;
+        }
+        
+        /* COMPACT VALUES */
+        .compact-value {
+            background: var(--bg-light);
+            border-left: 3pt solid var(--primary-blue);
+            padding: 14pt 18pt;
+            margin-bottom: 14pt;
+        }
+        
+        .compact-value-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 6pt;
+        }
+        
+        .compact-value-definition {
+            font-size: 9pt;
+            color: var(--text-secondary);
+            margin-bottom: 6pt;
+        }
+        
+        .compact-value-practice {
+            font-size: 8.5pt;
+            color: var(--text-secondary);
+        }
+        
+        /* SUMMARY GRID */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8pt;
+            margin: 20pt 0;
+        }
+        
+        .summary-item {
+            background: var(--primary-blue);
+            color: white;
+            padding: 14pt 10pt;
+            text-align: center;
+            border-radius: 4pt;
+        }
+        
+        .summary-item-number {
+            font-size: 16pt;
+            font-weight: 700;
+            opacity: 0.6;
+            margin-bottom: 4pt;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+        }
+        
+        .summary-item-name {
+            font-size: 9pt;
+            font-weight: 600;
+            margin-bottom: 4pt;
+        }
+        
+        .summary-item-desc {
+            font-size: 7pt;
+            opacity: 0.7;
+        }
+        
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 25pt;
+            border-top: 2pt solid var(--primary-blue);
+            margin-top: 30pt;
+        }
+        
+        .footer-logo {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: 2pt;
+            text-transform: uppercase;
+        }
+        
+        .footer-meta {
+            font-size: 8pt;
+            color: var(--text-muted);
+            margin-top: 8pt;
+        }
+        
+        .footer-tagline {
+            font-size: 8pt;
+            color: var(--text-light);
+            margin-top: 10pt;
+            font-style: italic;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* ANIMATIONS & TRANSITIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Scroll-triggered animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Cover parallax effect */
+        .cover {
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+        
+        .cover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(59,130,246,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59,130,246,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .cover-content {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .cover-badge {
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+        
+        .cover-title {
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        
+        .cover-subtitle {
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+        
+        .cover-values {
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+        }
+        
+        .cover-value-tag {
+            transition: all 0.3s ease;
+        }
+        
+        /* Collapsible sections */
+        .section-header {
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .section-header .toggle-icon {
+            margin-left: auto;
+            font-size: 14pt;
+            transition: transform 0.3s ease;
+            color: var(--primary-blue);
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+        }
+        
+        .section-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            max-height: 5000px;
+            opacity: 1;
+        }
+        
+        .section-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        .value-card .value-content {
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            max-height: 5000px;
+            opacity: 1;
+        }
+        
+        .value-card.collapsed .value-content {
+            max-height: 0;
+            opacity: 0;
+            padding: 0;
+        }
+        
+        .value-header {
+            cursor: pointer;
+        }
+        
+        .value-header .toggle-icon {
+            margin-left: auto;
+            font-size: 16pt;
+            transition: transform 0.3s ease;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+        }
+        
+        .value-card.collapsed .value-header .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        /* Section animations */
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .section-header {
+            transition: all 0.3s ease;
+        }
+        
+        .section-number {
+            transition: all 0.3s ease;
+        }
+        
+        .section-header:hover .section-number {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(30,58,95,0.3);
+        }
+        
+        /* Value card interactions */
+        .value-card {
+            transition: all 0.4s ease;
+            transform: translateY(0);
+        }
+        
+        .value-card:hover {
+            box-shadow: 0 8px 30px rgba(30,58,95,0.12);
+            transform: translateY(-3px);
+        }
+        
+        .value-header {
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+        }
+        
+        .value-number-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-number-badge {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        /* Table row interactions */
+        .data-table tbody tr {
+            transition: all 0.2s ease;
+        }
+        
+        .data-table tbody tr:hover {
+            background: var(--pale-blue) !important;
+            transform: scale(1.005);
+        }
+        
+        /* Info box interactions */
+        .info-box {
+            transition: all 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateX(3px);
+            box-shadow: 0 2px 10px rgba(30,58,95,0.08);
+        }
+        
+        /* Example boxes */
+        .example-box {
+            transition: all 0.3s ease;
+        }
+        
+        .example-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .example-item {
+            transition: all 0.2s ease;
+        }
+        
+        .example-box:hover .example-item {
+            transform: translateX(3px);
+        }
+        
+        /* Compact value interactions */
+        .compact-value {
+            transition: all 0.3s ease;
+        }
+        
+        .compact-value:hover {
+            background: var(--pale-blue);
+            border-left-width: 5pt;
+            padding-left: 16pt;
+        }
+        
+        /* Case study interactions */
+        .case-study {
+            transition: all 0.3s ease;
+        }
+        
+        .case-study:hover {
+            box-shadow: 0 6px 20px rgba(30,58,95,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .case-study-number {
+            transition: all 0.3s ease;
+        }
+        
+        .case-study:hover .case-study-number {
+            transform: scale(1.1);
+        }
+        
+        /* Decision flow interactions */
+        .decision-step {
+            transition: all 0.3s ease;
+        }
+        
+        .decision-step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(30,58,95,0.15);
+        }
+        
+        .decision-arrow {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .decision-flow:hover .decision-arrow {
+            transform: translateX(3px);
+        }
+        
+        /* Summary grid interactions */
+        .summary-item {
+            transition: all 0.3s ease;
+        }
+        
+        .summary-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(30,58,95,0.25);
+        }
+        
+        .summary-item-number {
+            transition: all 0.3s ease;
+        }
+        
+        .summary-item:hover .summary-item-number {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        /* Quote block interaction */
+        .quote-block {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .quote-block:hover::before {
+            left: 100%;
+        }
+        
+        .quote-block:hover {
+            border-left-width: 6pt;
+        }
+        
+        /* Checklist interactions */
+        .checklist li {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .checklist li:hover {
+            background: var(--bg-light);
+            padding-left: 32pt;
+        }
+        
+        .checklist li:hover::before {
+            border-color: var(--accent-blue);
+            background: var(--pale-blue);
+        }
+        
+        /* Application box */
+        .application-box {
+            transition: all 0.3s ease;
+        }
+        
+        .application-box:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 15px rgba(30,58,95,0.08);
+        }
+        
+        .application-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .application-box:hover .application-badge {
+            background: var(--accent-blue);
+        }
+        
+        /* PE Reference */
+        .pe-reference {
+            transition: all 0.3s ease;
+        }
+        
+        .pe-reference:hover {
+            background: var(--light-blue);
+            transform: translateX(2px);
+        }
+        
+        /* Footer interaction */
+        .footer {
+            transition: all 0.3s ease;
+        }
+        
+        .footer-logo {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-logo:hover {
+            transform: scale(1.05);
+            color: var(--accent-blue);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus states for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+        
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-after: always; }
+            
+            /* Disable animations for print */
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // Toggle value card sections
+        function toggleValueCard(header) {
+            const card = header.closest('.value-card');
+            const content = card.querySelector('.value-content');
+            const icon = header.querySelector('.toggle-icon');
+            
+            card.classList.toggle('collapsed');
+            
+            if (card.classList.contains('collapsed')) {
+                content.style.maxHeight = '0';
+                content.style.padding = '0 20pt';
+                content.style.opacity = '0';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.padding = '20pt';
+                content.style.opacity = '1';
+            }
+        }
+        
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections and cards
+            document.querySelectorAll('.section, .value-card, .case-study, .compact-value').forEach(el => {
+                el.classList.add('animate-on-scroll');
+                observer.observe(el);
+            });
+            
+            // Parallax effect on scroll
+            let ticking = false;
+            const cover = document.querySelector('.cover');
+            const coverContent = document.querySelector('.cover-content');
+            
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        const scrolled = window.pageYOffset;
+                        if (cover && scrolled < window.innerHeight) {
+                            coverContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                            coverContent.style.opacity = 1 - (scrolled / (window.innerHeight * 0.8));
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            // Staggered animation for summary items
+            document.querySelectorAll('.summary-item').forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                item.style.opacity = '0';
+            });
+            
+            // Interactive checklist
+            document.querySelectorAll('.checklist li').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    if (this.classList.contains('checked')) {
+                        this.style.textDecoration = 'line-through';
+                        this.style.color = 'var(--text-muted)';
+                    } else {
+                        this.style.textDecoration = 'none';
+                        this.style.color = 'var(--text-secondary)';
+                    }
+                });
+            });
+            
+            // Smooth scroll for cover value tags
+            document.querySelectorAll('.cover-value-tag').forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Expand if collapsed
+                        if (targetElement.classList.contains('collapsed')) {
+                            const header = targetElement.querySelector('.value-header');
+                            if (header) toggleValueCard(header);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- COVER -->
+    <div class="cover">
+        <div class="cover-content">
+            <div class="cover-badge">Document Fundacional</div>
+            <h1 class="cover-title">Guia de Valors<br>de Marca</h1>
+            <p class="cover-subtitle">Els principis que defineixen qui som, com actuem i que representa True Crime Factory en cada decisio, contingut i interaccio.</p>
+            <div class="cover-divider"></div>
+            
+            <div class="cover-values">
+                <a href="#integritat" class="cover-value-tag">Integritat</a>
+                <a href="#rigor" class="cover-value-tag">Rigor</a>
+                <a href="#respecte" class="cover-value-tag">Respecte</a>
+                <a href="#credibilitat" class="cover-value-tag">Credibilitat</a>
+                <a href="#excellencia" class="cover-value-tag">Excel·lencia</a>
+            </div>
+            
+            <p class="cover-meta">
+                <strong>True Crime Factory</strong><br>
+                Versio 1.0 — Desembre 2025
+            </p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- PROPOSIT -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">00</div>
+                <h2 class="section-title">Proposit d'Aquesta Guia</h2>
+            </div>
+
+            <p class="lead">Aquesta guia defineix els valors fonamentals que han de guiar totes les decisions, accions i comunicacions de True Crime Factory. Es el filtre obligatori pel qual ha de passar qualsevol iniciativa abans de ser aprovada.</p>
+
+            <div class="quote-block">
+                <p class="quote-text">Si una accio no compleix aquests cinc valors, no es per nosaltres.</p>
+                <p class="quote-source">Principi rector True Crime Factory</p>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">Qui ha d'utilitzar aquesta guia</div>
+                <ul>
+                    <li><strong>Equip creatiu:</strong> Validacio de guions, thumbnails, titols i enfocaments editorials</li>
+                    <li><strong>Equip comercial:</strong> Avaluacio de patrocinadors, col·laboracions i oportunitats de negoci</li>
+                    <li><strong>Equip de produccio:</strong> Decisions sobre tractament de casos i material sensible</li>
+                    <li><strong>Direccio:</strong> Validacio de noves linies de negoci i expansions estrategiques</li>
+                    <li><strong>Col·laboradors externs:</strong> Comprensio de l'ADN de la marca</li>
+                </ul>
+            </div>
+
+            <div class="pe-reference">
+                <div class="pe-reference-label">Referencia Plan Estrategico</div>
+                <p>Aquesta guia desenvolupa els "Valores Troncales" del Plan Estrategico True Crime Factory (PE, linies 18-26): Integridad, Rigor, Respeto, Credibilidad i Excelencia.</p>
+            </div>
+        </div>
+
+        <!-- ARQUITECTURA -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Arquitectura de Valors</h2>
+            </div>
+
+            <p>Els valors s'organitzen en tres nivells jerarquics:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nivell</th>
+                        <th>Tipus</th>
+                        <th>Funcio</th>
+                        <th>Valors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nivell 1</strong></td>
+                        <td>Valors Troncals</td>
+                        <td>Principis irrenunciables. Compliment obligatori.</td>
+                        <td>Integritat, Rigor, Respecte, Credibilitat, Excel·lencia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nivell 2</strong></td>
+                        <td>Valors Operatius</td>
+                        <td>Guien l'execucio diaria i decisions tactiques.</td>
+                        <td>Claredat, Humanitat, Sobrietat, Profunditat, Cura del detall</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nivell 3</strong></td>
+                        <td>Valors d'Expressio</td>
+                        <td>Defineixen com es comunica i percep la marca.</td>
+                        <td>Coherencia, Autenticitat, Narrativitat, Calma, Responsabilitat social</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box critical">
+                <div class="info-box-title">Regla fonamental</div>
+                <p>Els valors de Nivell 1 son de compliment obligatori. Cap decisio comercial, creativa o operativa pot vulnerar-los. Els valors de Nivell 2 i 3 son aspiracionals pero admeten certa flexibilitat tactica.</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALOR 1: INTEGRITAT -->
+        <div class="value-card" id="integritat">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">01</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Integritat</h3>
+                    <p class="value-tagline">Actuar amb coherencia, honestedat i responsabilitat</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">La integritat es el compromis amb la veritat i la transparencia en tot el que fem. Significa dir el que pensem, fer el que diem, i assumir les consequencies de les nostres accions. Es un valor que protegeix la reputacio independentment del format de negoci.</p>
+
+                <div class="value-section-label">Com es manifesta</div>
+                <ul class="value-list">
+                    <li>No manipulem fets ni dades per fer mes atractiu un contingut</li>
+                    <li>Reconeixem errors publiczament quan ens equivoquem</li>
+                    <li>No acceptem patrocinis que comprometin la independencia editorial</li>
+                    <li>Som transparents amb l'audiencia sobre el model de negoci</li>
+                    <li>Complim els compromisos amb col·laboradors i audiencia</li>
+                </ul>
+
+                <div class="examples-grid">
+                    <div class="example-box correct">
+                        <div class="example-label">Aplicacio correcta</div>
+                        <div class="example-item">Publicar rectificacio quan es detecta un error</div>
+                        <div class="example-item">Rebutjar patrocini d'empresa amb practiques dubtoses</div>
+                        <div class="example-item">Indicar clarament "contingut patrocinat"</div>
+                    </div>
+                    <div class="example-box incorrect">
+                        <div class="example-label">A evitar</div>
+                        <div class="example-item">Esborrar video amb errors sense reconeixe'ls</div>
+                        <div class="example-item">Acceptar diners per parlar be d'una marca en un cas</div>
+                        <div class="example-item">Amagar patrocinis com recomanacions genuines</div>
+                    </div>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referencia PE</div>
+                    <p><strong>Linia 22:</strong> "INTEGRIDAD: Compromiso con la verdad y la transparencia"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALOR 2: RIGOR -->
+        <div class="value-card" id="rigor">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">02</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Rigor</h3>
+                    <p class="value-tagline">Fer les coses be, amb precisio i criteri professional</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">El rigor es l'exigencia maxima en la qualitat, la precisio i l'ofici. Significa investigacio profunda, verificacio de fonts, i cura en cada detall. Tot el que porta el nostre nom ha d'estar ben fet. No publiquem fins que estem segurs.</p>
+
+                <div class="value-section-label">Com es manifesta</div>
+                <ul class="value-list">
+                    <li>Cada cas s'investiga a fons abans de produir-lo</li>
+                    <li>Les fonts es verifiquen i contrasten</li>
+                    <li>Les dates, noms i fets es comproven multiples vegades</li>
+                    <li>Els experts consultats son professionals reconeguts</li>
+                    <li>La produccio tecnica compleix estandards professionals</li>
+                </ul>
+
+                <div class="examples-grid">
+                    <div class="example-box correct">
+                        <div class="example-label">Aplicacio correcta</div>
+                        <div class="example-item">Consultar la sentencia judicial original</div>
+                        <div class="example-item">Entrevistar criminoleg per validar hipotesis</div>
+                        <div class="example-item">Revisar audio 3 vegades per eliminar sorolls</div>
+                    </div>
+                    <div class="example-box incorrect">
+                        <div class="example-label">A evitar</div>
+                        <div class="example-item">Copiar informacio sense verificar fonts</div>
+                        <div class="example-item">Publicar video amb dates contradictories</div>
+                        <div class="example-item">Publicar amb audio deficient per arribar a temps</div>
+                    </div>
+                </div>
+
+                <div class="application-box">
+                    <div class="application-title">
+                        <span class="application-badge">Checklist</span>
+                        Abans de publicar qualsevol contingut
+                    </div>
+                    <ul class="checklist">
+                        <li>Tots els fets estan verificats amb minim 2 fonts?</li>
+                        <li>Les dates, noms i llocs son correctes?</li>
+                        <li>Les cites son literals i atribuides correctament?</li>
+                        <li>S'ha consultat documentacio primaria?</li>
+                        <li>La qualitat tecnica compleix els estandards?</li>
+                    </ul>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referencia PE</div>
+                    <p><strong>Linia 23:</strong> "RIGOR: Investigacion profunda y verificacion de fuentes"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALOR 3: RESPECTE -->
+        <div class="value-card" id="respecte">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">03</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Respecte</h3>
+                    <p class="value-tagline">Tractar persones, histories i audiencies amb dignitat</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">El respecte significa tractar les victimes, families, audiencia i l'impacte social del que fem amb la maxima sensibilitat. No hi ha espai per l'explotacio ni el sensacionalisme. Les persones de les nostres histories son persones reals amb families que potser veuran el contingut.</p>
+
+                <div class="value-section-label">Respecte cap a les victimes</div>
+                <ul class="value-list">
+                    <li>Mai mostrar imatges grafiques sense necessitat editorial clara</li>
+                    <li>Evitar descripcions morboses o innecessariament explicites</li>
+                    <li>Donar veu a les victimes, no nomes als perpetradors</li>
+                    <li>Respectar la voluntat de les families</li>
+                </ul>
+
+                <div class="value-section-label">Respecte cap a l'audiencia</div>
+                <ul class="value-list">
+                    <li>Advertir sobre contingut potencialment pertorbador</li>
+                    <li>No manipular emocionalment per generar clicks</li>
+                    <li>Oferir context i perspectiva, no nomes impacte</li>
+                </ul>
+
+                <div class="info-box critical">
+                    <div class="info-box-title">Linia vermella absoluta</div>
+                    <p>Mai produirem contingut que:</p>
+                    <ul>
+                        <li>Glorifiqui o romantitzi als perpetradors</li>
+                        <li>Revictimitzi a les victimes o families</li>
+                        <li>Utilitzi el dolor huma com a entreteniment morbos</li>
+                        <li>Difongui informacio que perjudiqui investigacions en curs</li>
+                    </ul>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referencia PE</div>
+                    <p><strong>Linia 24:</strong> "RESPETO: Dignidad hacia victimas y familias"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALOR 4: CREDIBILITAT -->
+        <div class="value-card" id="credibilitat">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">04</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Credibilitat</h3>
+                    <p class="value-tagline">Generar confianca i mantenir-la amb professionalitat</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">La credibilitat es l'autoritat narrativa i l'expertise professional que ens guanyem episodi a episodi. Es el resultat acumulat d'actuar amb integritat i rigor de forma consistent. Una marca creible es fiable, solida i transparent.</p>
+
+                <div class="value-section-label">Com es construeix</div>
+                <ul class="value-list">
+                    <li><strong>Consistencia:</strong> Mantenir el mateix nivell de qualitat sempre</li>
+                    <li><strong>Fonts:</strong> Citar sempre i ser transparent sobre limitacions</li>
+                    <li><strong>Experts:</strong> Col·laborar amb professionals reconeguts</li>
+                    <li><strong>Autocritica:</strong> Reconeixe errors i corregir-los publiczament</li>
+                </ul>
+
+                <div class="examples-grid">
+                    <div class="example-box correct">
+                        <div class="example-label">Construeix credibilitat</div>
+                        <div class="example-item">"Segons la sentencia del Tribunal Suprem de 2018..."</div>
+                        <div class="example-item">"No hem pogut verificar aquest extrem"</div>
+                        <div class="example-item">Publicar rectificacio quan es detecta error</div>
+                    </div>
+                    <div class="example-box incorrect">
+                        <div class="example-label">Destrueix credibilitat</div>
+                        <div class="example-item">"Segons fonts properes al cas..." (sense especificar)</div>
+                        <div class="example-item">Presentar opinions com a fets establerts</div>
+                        <div class="example-item">Ignorar errors assenyalats per l'audiencia</div>
+                    </div>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referencia PE</div>
+                    <p><strong>Linia 25:</strong> "CREDIBILIDAD: Autoridad narrativa y expertise profesional"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALOR 5: EXCEL·LENCIA -->
+        <div class="value-card" id="excellencia">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">05</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Excel·lencia</h3>
+                    <p class="value-tagline">Buscar sempre la maxima qualitat possible</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">L'excel·lencia es la qualitat audiovisual i editorial sobresortint en tot el que fem. Apostem per fer les coses amb cura, detall i ambiciosament be. Aquest es el nostre estandard en qualsevol format: sigui una serie de 10 episodis, un Short de 60 segons, o un email.</p>
+
+                <div class="value-section-label">Dimensions de l'excel·lencia</div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Dimensio</th>
+                            <th>Que implica</th>
+                            <th>Estandard</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Narrativa</strong></td>
+                            <td>Guions estructurats, ritme adequat, hooks efectius</td>
+                            <td>Retencio superior 50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Visual</strong></td>
+                            <td>Thumbnails professionals, grafics clars</td>
+                            <td>CTR superior 6%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Audio</strong></td>
+                            <td>So net, veu clara, mix equilibrat</td>
+                            <td>Zero queixes d'audio</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Editorial</strong></td>
+                            <td>Investigacio profunda, context ric</td>
+                            <td>100% fets verificables</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box success">
+                    <div class="info-box-title">Test de l'excel·lencia</div>
+                    <p>Abans de publicar qualsevol contingut: "Estaria orgullos de mostrar aixo a un professional del sector?" Si la resposta es no, no esta llest.</p>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referencia PE</div>
+                    <p><strong>Linia 26:</strong> "EXCELENCIA: Calidad audiovisual y editorial sobresaliente"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALORS OPERATIUS -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2 class="section-title">Valors Operatius — Nivell 2</h2>
+            </div>
+
+            <p>Aquests valors guien l'execucio diaria. Son el "com" fem les coses.</p>
+
+            <div class="compact-value">
+                <div class="compact-value-title">6. Claredat</div>
+                <div class="compact-value-definition"><strong>Definicio:</strong> Comunicar amb transparencia i senzillesa, eliminant soroll i confusio.</div>
+                <div class="compact-value-practice"><strong>Practica:</strong> Titols que expliquen el contingut. Narracions sense circumloquis. Estructures logiques.</div>
+            </div>
+
+            <div class="compact-value">
+                <div class="compact-value-title">7. Humanitat</div>
+                <div class="compact-value-definition"><strong>Definicio:</strong> Col·locar les persones al centre: escoltar, comprendre, cuidar la mirada.</div>
+                <div class="compact-value-practice"><strong>Practica:</strong> Victimes amb nom i dignitat. Perpetradors com persones, no "monstres". Audiencia tractada com adults.</div>
+            </div>
+
+            <div class="compact-value">
+                <div class="compact-value-title">8. Sobrietat</div>
+                <div class="compact-value-definition"><strong>Definicio:</strong> Estetica i narrativa ajustada, sense exageracions ni efectismes.</div>
+                <div class="compact-value-practice"><strong>Practica:</strong> Musica dramatica nomes quan es justifica. Narracio calmada. Grafics elegants, no cridaners.</div>
+            </div>
+
+            <div class="compact-value">
+                <div class="compact-value-title">9. Profunditat</div>
+                <div class="compact-value-definition"><strong>Definicio:</strong> Aportar context, sentit i perspectiva. No quedar-se a la superficie.</div>
+                <div class="compact-value-practice"><strong>Practica:</strong> Explicar el "per que", no nomes el "que". Contextualitzar historicament. Oferir analisi.</div>
+            </div>
+
+            <div class="compact-value">
+                <div class="compact-value-title">10. Cura del detall</div>
+                <div class="compact-value-definition"><strong>Definicio:</strong> Cada peca, paraula i decisio es una oportunitat per sumar qualitat.</div>
+                <div class="compact-value-practice"><strong>Practica:</strong> Revisar ortografia. Comprovar timestamps. Verificar links. Subtitols precisos.</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALORS D'EXPRESSIO -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Valors d'Expressio — Nivell 3</h2>
+            </div>
+
+            <p>Defineixen com es comunica i percep la marca.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 18%;">Valor</th>
+                        <th style="width: 40%;">Definicio</th>
+                        <th style="width: 42%;">Aplicacio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>11. Coherencia</strong></td>
+                        <td>Identitat estable en qualsevol plataforma</td>
+                        <td>Mateix to a YouTube i TikTok. Colors i tipografies consistents.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>12. Autenticitat</strong></td>
+                        <td>Construir des d'allo genui i propi</td>
+                        <td>No copiar formats. Estil narratiu propi. Veu unica.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>13. Narrativitat</strong></td>
+                        <td>Donar sentit, construir relats solids</td>
+                        <td>Arc narratiu clar. Plantejament, nus, desenlac.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>14. Calma</strong></td>
+                        <td>Actitud que transmet solidesa i control</td>
+                        <td>No reaccionar impulsivement. Respondre amb serenitat.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>15. Responsabilitat</strong></td>
+                        <td>Assumir l'impacte cultural i emocional</td>
+                        <td>Oferir recursos de suport. No trivialitzar el crim.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box highlight">
+                <div class="info-box-title">Exemple d'aplicacio multiplataforma</div>
+                <p>Un mateix cas en diferents formats:</p>
+                <ul>
+                    <li><strong>YouTube (30 min):</strong> Narrativa completa, profunda. To calm i sobri.</li>
+                    <li><strong>TikTok (60 seg):</strong> Hook impactant pero no sensacionalista. Mateixa estetica.</li>
+                    <li><strong>Newsletter:</strong> Analisi escrit, context addicional, to reflexiu.</li>
+                </ul>
+                <p style="margin-top: 8pt;"><strong>En tots els formats:</strong> Mateixa integritat, rigor i respecte.</p>
+            </div>
+        </div>
+
+        <!-- MATRIU DE DECISIO -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">04</div>
+                <h2 class="section-title">Matriu de Decisio</h2>
+            </div>
+
+            <p>Utilitza aquesta matriu per validar qualsevol decisio contra els valors de marca.</p>
+
+            <div class="decision-flow-container">
+                <div class="decision-flow-title">Flux de Validacio</div>
+                <div class="decision-flow">
+                    <div class="decision-step">Nova iniciativa</div>
+                    <div class="decision-arrow">→</div>
+                    <div class="decision-step highlight">Compleix els<br>5 valors troncals?</div>
+                    <div class="decision-arrow">→</div>
+                    <div class="decision-step">Avaluar viabilitat</div>
+                </div>
+                <div class="decision-results">
+                    <div class="decision-result approved">SI COMPLEIX: Avaluar valors operatius i refinar si cal</div>
+                    <div class="decision-result rejected">NO COMPLEIX: Descartar immediatament. Sense excepcions.</div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Pregunta de validacio</th>
+                        <th>Valor</th>
+                        <th>Si NO...</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Es 100% honest i transparent?</td>
+                        <td>Integritat</td>
+                        <td style="color: var(--error); font-weight: 600;">Descartar</td>
+                    </tr>
+                    <tr>
+                        <td>Esta verificat i es precis?</td>
+                        <td>Rigor</td>
+                        <td style="color: var(--error); font-weight: 600;">Descartar</td>
+                    </tr>
+                    <tr>
+                        <td>Tracta a tothom amb dignitat?</td>
+                        <td>Respecte</td>
+                        <td style="color: var(--error); font-weight: 600;">Descartar</td>
+                    </tr>
+                    <tr>
+                        <td>Reforca la nostra autoritat?</td>
+                        <td>Credibilitat</td>
+                        <td style="color: var(--error); font-weight: 600;">Descartar</td>
+                    </tr>
+                    <tr>
+                        <td>Compleix estandards de qualitat?</td>
+                        <td>Excel·lencia</td>
+                        <td style="color: var(--error); font-weight: 600;">Descartar</td>
+                    </tr>
+                    <tr>
+                        <td>Es clar i facil d'entendre?</td>
+                        <td>Claredat</td>
+                        <td style="color: var(--warning); font-weight: 600;">Refinar</td>
+                    </tr>
+                    <tr>
+                        <td>Aporta profunditat?</td>
+                        <td>Profunditat</td>
+                        <td style="color: var(--warning); font-weight: 600;">Refinar</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box warning">
+                <div class="info-box-title">Regla de veto</div>
+                <p>Qualsevol membre de l'equip pot vetar una decisio si considera que vulnera un valor troncal. El veto ha de ser argumentat, pero la carrega de la prova recau en qui vol tirar endavant, no en qui qüestiona.</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- CASOS PRACTICS -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">05</div>
+                <h2 class="section-title">Casos Practics</h2>
+            </div>
+
+            <p>Exemples de situacions reals i com els valors guien la decisio.</p>
+
+            <div class="case-study">
+                <div class="case-study-header">
+                    <div class="case-study-number">1</div>
+                    <div class="case-study-title">Patrocinador amb conflicte d'interessos</div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-situation">
+                        <strong>Situacio:</strong> Una casa d'apostes ofereix 8.000 EUR per patrocinar un episodi sobre un cas relacionat amb ludopatia.
+                    </div>
+                    <div class="case-study-grid">
+                        <div class="case-study-analysis">
+                            <div class="case-study-analysis-title">Analisi de valors</div>
+                            <ul class="value-list">
+                                <li><strong>Integritat:</strong> Conflicte d'interessos evident</li>
+                                <li><strong>Respecte:</strong> Insensible cap a victimes</li>
+                                <li><strong>Credibilitat:</strong> Perjudicaria la reputacio</li>
+                            </ul>
+                        </div>
+                        <div class="case-study-decision reject">
+                            <div class="case-study-decision-label">Decisio: REBUTJAR</div>
+                            <p>Vulnera 3 valors troncals. No hi ha quantitat de diners que ho justifiqui.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <div class="case-study-header">
+                    <div class="case-study-number">2</div>
+                    <div class="case-study-title">Material exclusiu grafic</div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-situation">
+                        <strong>Situacio:</strong> Un informador ofereix fotos exclusives de l'escena del crim, molt grafiques, que cap altre mitja te.
+                    </div>
+                    <div class="case-study-grid">
+                        <div class="case-study-analysis">
+                            <div class="case-study-analysis-title">Analisi de valors</div>
+                            <ul class="value-list">
+                                <li><strong>Rigor:</strong> Material original, valor documental</li>
+                                <li><strong>Respecte:</strong> Mostrar-les seria revictimitzador</li>
+                                <li><strong>Sobrietat:</strong> Efectisme innecessari</li>
+                            </ul>
+                        </div>
+                        <div class="case-study-decision modify">
+                            <div class="case-study-decision-label">Decisio: UTILITZAR AMB RESTRICCIONS</div>
+                            <p>Adquirir per valor d'arxiu, pero NO publicar. Mencionar que existeixen sense mostrar-les.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <div class="case-study-header">
+                    <div class="case-study-number">3</div>
+                    <div class="case-study-title">Error factual post-publicacio</div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-situation">
+                        <strong>Situacio:</strong> Un espectador assenyala que una data es incorrecta. El video ja te 100.000 visualitzacions.
+                    </div>
+                    <div class="case-study-grid">
+                        <div class="case-study-analysis">
+                            <div class="case-study-analysis-title">Analisi de valors</div>
+                            <ul class="value-list">
+                                <li><strong>Integritat:</strong> Exigeix transparencia</li>
+                                <li><strong>Rigor:</strong> Error compromet qualitat</li>
+                                <li><strong>Credibilitat:</strong> Amagar-ho seria pitjor</li>
+                            </ul>
+                        </div>
+                        <div class="case-study-decision approve">
+                            <div class="case-study-decision-label">Decisio: CORREGIR PUBLICZAMENT</div>
+                            <p>Nota fixada als comentaris. Actualitzar descripcio. Agrair a qui ho ha detectat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <div class="case-study-header">
+                    <div class="case-study-number">4</div>
+                    <div class="case-study-title">Pressio per publicar rapid</div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-situation">
+                        <strong>Situacio:</strong> Un cas es viral avui. Podem publicar en 24h sense verificar tot, o en 1 setmana verificat.
+                    </div>
+                    <div class="case-study-grid">
+                        <div class="case-study-analysis">
+                            <div class="case-study-analysis-title">Analisi de valors</div>
+                            <ul class="value-list">
+                                <li><strong>Rigor:</strong> Verificacio sobre velocitat</li>
+                                <li><strong>Credibilitat:</strong> Error per pressa danyaria marca</li>
+                                <li><strong>Excel·lencia:</strong> No publicar res deficient</li>
+                            </ul>
+                        </div>
+                        <div class="case-study-decision approve">
+                            <div class="case-study-decision-label">Decisio: ESPERAR</div>
+                            <p>Publicar Short indicant que treballem en el cas. Video complet quan estigui llest.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- INTEGRACIO PE -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">06</div>
+                <h2 class="section-title">Integracio amb el Pla Estrategic</h2>
+            </div>
+
+            <p>Els valors son transversals a totes les vies de monetitzacio del Plan Estrategico.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Via de Monetitzacio</th>
+                        <th>Valors Clau</th>
+                        <th>Aplicacio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Via 1: Publicitat</strong></td>
+                        <td>Integritat, Credibilitat</td>
+                        <td>No acceptar anunciants que comprometin l'editorial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Via 2: Patrocinios</strong></td>
+                        <td>Integritat, Respecte</td>
+                        <td>Validar eticament cada patrocinador</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Via 3: Subscripcions</strong></td>
+                        <td>Excel·lencia, Profunditat</td>
+                        <td>Contingut premium amb valor afegit real</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Via 4: Productes</strong></td>
+                        <td>Rigor, Cura del detall</td>
+                        <td>Dossiers ben documentats i dissenyats</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Via 5: Esdeveniments</strong></td>
+                        <td>Humanitat, Respecte</td>
+                        <td>Experiencies amb dignitat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Via 6: IP</strong></td>
+                        <td>Tots</td>
+                        <td>Cedir drets nomes a qui comparteixi valors</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box success">
+                <div class="info-box-title">Principi de coherencia estrategica</div>
+                <p>El Pla Estrategic defineix el "que" i el "quan". Aquesta guia defineix el "com" i el "per que". Cap decisio estrategica pot contraddir els valors. Si hi ha conflicte, els valors sempre guanyen.</p>
+            </div>
+        </div>
+
+        <!-- IMPLEMENTACIO -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">07</div>
+                <h2 class="section-title">Implementacio i Governanca</h2>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Rol</th>
+                        <th>Responsabilitat de Valors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Direccio</strong></td>
+                        <td>Validacio final de decisions estrategiques. Resolucio de conflictes. Actualitzacio anual.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Director Editorial</strong></td>
+                        <td>Validacio de guions i enfocaments. Veto editorial si es vulneren valors.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equip de Produccio</strong></td>
+                        <td>Aplicacio diaria. Alertar de possibles conflictes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equip Comercial</strong></td>
+                        <td>Validacio etica de patrocinadors i partners.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <div class="info-box-title">Onboarding de nous col·laboradors</div>
+                <ul>
+                    <li>Llegir aquesta guia completa abans de comencar</li>
+                    <li>Signar compromis d'adhesio als valors</li>
+                    <li>Sessio de Q&A amb responsable editorial</li>
+                    <li>Feedback especific sobre aplicacio durant primer mes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- RESUM EXECUTIU -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">08</div>
+                <h2 class="section-title">Resum Executiu</h2>
+            </div>
+
+            <div class="quote-block">
+                <p class="quote-text">Aquests valors son el denominador comu que ha d'unificar totes les linies de negoci. Ens serveixen per prendre decisions, avaluar iniciatives i preservar la identitat de la marca.</p>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-item-number">01</div>
+                    <div class="summary-item-name">Integritat</div>
+                    <div class="summary-item-desc">Veritat i transparencia</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-item-number">02</div>
+                    <div class="summary-item-name">Rigor</div>
+                    <div class="summary-item-desc">Precisio i verificacio</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-item-number">03</div>
+                    <div class="summary-item-name">Respecte</div>
+                    <div class="summary-item-desc">Dignitat i sensibilitat</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-item-number">04</div>
+                    <div class="summary-item-name">Credibilitat</div>
+                    <div class="summary-item-desc">Autoritat i confianca</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-item-number">05</div>
+                    <div class="summary-item-name">Excel·lencia</div>
+                    <div class="summary-item-desc">Qualitat sobresortint</div>
+                </div>
+            </div>
+
+            <div class="info-box critical">
+                <div class="info-box-title">La regla final</div>
+                <p style="font-size: 10pt; font-weight: 600;">Si una accio no compleix aquests cinc valors, no es per nosaltres.</p>
+                <p style="margin-top: 8pt;">No hi ha excepcions. No hi ha "aquest cop si". Si vulnera un valor troncal, la resposta es NO.</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-logo">ZoopaNetwork</div>
+            <p class="footer-meta">
+                Guia de Valors de Marca — True Crime Factory<br>
+                Versio 1.0 — Desembre 2025
+            </p>
+            <p class="footer-tagline">
+                Integritat — Rigor — Respecte — Credibilitat — Excel·lencia
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

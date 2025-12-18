@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Orden de Trabajo | Auditoría Técnica - IVO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        @page {
+            size: A4;
+            margin: 1.8cm;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background: #fff;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 16pt;
+            border-bottom: 3pt solid #8b0000;
+            margin-bottom: 20pt;
+        }
+        
+        .header-left {
+            flex: 1;
+        }
+        
+        .header-right {
+            text-align: right;
+        }
+        
+        .doc-type {
+            font-size: 9pt;
+            color: #8b0000;
+            letter-spacing: 2pt;
+            text-transform: uppercase;
+            margin-bottom: 6pt;
+            font-weight: 600;
+        }
+        
+        .doc-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 26pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4pt;
+        }
+        
+        .doc-subtitle {
+            font-size: 11pt;
+            color: #666;
+        }
+        
+        .doc-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16pt;
+            font-weight: 700;
+            color: #8b0000;
+            margin-bottom: 6pt;
+        }
+        
+        .doc-date {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        /* Assignee Box */
+        .assignee-box {
+            background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+            color: white;
+            padding: 20pt;
+            margin-bottom: 20pt;
+            text-align: center;
+            border-radius: 4pt;
+        }
+        
+        .assignee-label {
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 3pt;
+            opacity: 0.8;
+            margin-bottom: 6pt;
+        }
+        
+        .assignee-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 32pt;
+            font-weight: 700;
+        }
+        
+        .assignee-role {
+            font-size: 11pt;
+            opacity: 0.9;
+            margin-top: 4pt;
+        }
+        
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12pt;
+            margin-bottom: 24pt;
+        }
+        
+        .info-box {
+            background: #f8f8f8;
+            border: 1pt solid #e0e0e0;
+            border-left: 3pt solid #8b0000;
+            padding: 12pt;
+        }
+        
+        .info-box h4 {
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            color: #8b0000;
+            margin-bottom: 4pt;
+        }
+        
+        .info-box p {
+            font-size: 11pt;
+            font-weight: 600;
+        }
+        
+        /* Scope Box */
+        .scope-box {
+            background: #fffbeb;
+            border: 2pt solid #f59e0b;
+            padding: 16pt;
+            margin-bottom: 24pt;
+            border-radius: 4pt;
+        }
+        
+        .scope-box h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 14pt;
+            color: #92400e;
+            margin-bottom: 10pt;
+            display: flex;
+            align-items: center;
+            gap: 8pt;
+        }
+        
+        .scope-box p {
+            font-size: 10pt;
+            color: #78350f;
+            line-height: 1.6;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 24pt;
+        }
+        
+        .section-header {
+            background: #1a1a1a;
+            color: white;
+            padding: 12pt 16pt;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-header h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 14pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+        }
+        
+        .section-header .badge {
+            background: #8b0000;
+            padding: 4pt 12pt;
+            font-size: 9pt;
+            font-weight: 600;
+            border-radius: 2pt;
+        }
+        
+        /* Task Table */
+        .task-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+        
+        .task-table th {
+            font-size: 8pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            background: #f5f5f5;
+            padding: 10pt 12pt;
+            text-align: left;
+            color: #666;
+            border-bottom: 1pt solid #ddd;
+        }
+        
+        .task-table td {
+            padding: 10pt 12pt;
+            border-bottom: 1pt solid #eee;
+            vertical-align: top;
+        }
+        
+        .task-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .task-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: #8b0000;
+            font-weight: 500;
+        }
+        
+        .task-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: #8b0000;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .checkbox {
+            width: 14pt;
+            height: 14pt;
+            border: 1.5pt solid #999;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 2pt;
+        }
+        
+        .task-detail {
+            font-size: 8pt;
+            color: #666;
+            margin-top: 4pt;
+            font-style: italic;
+        }
+        
+        /* Checklist Sections */
+        .checklist-section {
+            margin-bottom: 24pt;
+        }
+        
+        .checklist-header {
+            background: #8b0000;
+            color: white;
+            padding: 12pt 16pt;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .checklist-header h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 14pt;
+            font-weight: 600;
+        }
+        
+        .checklist-header .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12pt;
+            opacity: 0.8;
+        }
+        
+        .checklist-intro {
+            background: #f8f5f0;
+            padding: 12pt 16pt;
+            border-left: 3pt solid #8b0000;
+            font-size: 9pt;
+            color: #555;
+            margin-bottom: 0;
+        }
+        
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+        
+        .checklist-table th {
+            font-size: 8pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            background: #f0f0f0;
+            padding: 10pt 12pt;
+            text-align: left;
+            color: #666;
+            border-bottom: 2pt solid #ddd;
+        }
+        
+        .checklist-table td {
+            padding: 10pt 12pt;
+            border-bottom: 1pt solid #eee;
+            vertical-align: top;
+        }
+        
+        .checklist-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .check-item {
+            font-weight: 500;
+        }
+        
+        .check-location {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8pt;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2pt 6pt;
+            border-radius: 2pt;
+        }
+        
+        .check-value {
+            min-width: 120pt;
+            border-bottom: 1pt dotted #999;
+        }
+        
+        .status-ok {
+            color: #16a34a;
+            font-weight: 600;
+        }
+        
+        .status-warning {
+            color: #ea580c;
+            font-weight: 600;
+        }
+        
+        .status-critical {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        
+        /* Category headers in tables */
+        .category-row {
+            background: #e8e8e8 !important;
+        }
+        
+        .category-row td {
+            font-weight: 600;
+            color: #8b0000;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            font-size: 8pt;
+            padding: 8pt 12pt;
+            border-bottom: 2pt solid #8b0000;
+        }
+        
+        /* Notes */
+        .note-box {
+            background: #f0f9ff;
+            border: 1pt solid #0ea5e9;
+            border-left: 3pt solid #0ea5e9;
+            padding: 12pt;
+            margin: 16pt 0;
+            font-size: 9pt;
+        }
+        
+        .note-box h4 {
+            color: #0369a1;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            margin-bottom: 6pt;
+        }
+        
+        .note-box p {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef2f2;
+            border: 1pt solid #f87171;
+            border-left: 3pt solid #dc2626;
+            padding: 12pt;
+            margin: 16pt 0;
+            font-size: 9pt;
+        }
+        
+        .warning-box h4 {
+            color: #dc2626;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            margin-bottom: 6pt;
+        }
+        
+        .warning-box p {
+            color: #7f1d1d;
+        }
+        
+        /* Code/Data blocks */
+        .data-block {
+            background: #1a1a1a;
+            color: #e5e5e5;
+            padding: 16pt;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            margin: 12pt 0;
+            border-radius: 4pt;
+            overflow-x: auto;
+        }
+        
+        .data-block .label {
+            color: #8b0000;
+        }
+        
+        .data-block .value {
+            color: #d4af37;
+        }
+        
+        /* Deliverables */
+        .deliverable-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12pt;
+            border-bottom: 1pt solid #eee;
+            background: white;
+        }
+        
+        .deliverable-item:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .deliverable-check {
+            width: 18pt;
+            height: 18pt;
+            border: 2pt solid #8b0000;
+            margin-right: 12pt;
+            flex-shrink: 0;
+            border-radius: 2pt;
+        }
+        
+        .deliverable-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: #8b0000;
+            width: 30pt;
+            flex-shrink: 0;
+        }
+        
+        .deliverable-content h4 {
+            font-size: 11pt;
+            font-weight: 600;
+            margin-bottom: 2pt;
+        }
+        
+        .deliverable-content p {
+            font-size: 9pt;
+            color: #666;
+        }
+        
+        /* Total Row */
+        .total-row {
+            background: #8b0000 !important;
+            color: white;
+        }
+        
+        .total-row td {
+            border-bottom: none;
+            padding: 14pt 12pt;
+            font-weight: 600;
+        }
+        
+        .total-row .task-time {
+            color: #d4af37;
+            font-size: 14pt;
+        }
+        
+        /* Signatures */
+        .signatures {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40pt;
+            margin-top: 40pt;
+            padding-top: 20pt;
+            border-top: 2pt solid #8b0000;
+        }
+        
+        .signature-box {
+            text-align: center;
+        }
+        
+        .signature-line {
+            border-bottom: 1pt solid #999;
+            height: 50pt;
+            margin-bottom: 8pt;
+        }
+        
+        .signature-label {
+            font-size: 10pt;
+            font-weight: 600;
+        }
+        
+        .signature-role {
+            font-size: 9pt;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30pt;
+            padding-top: 16pt;
+            border-top: 1pt solid #ddd;
+        }
+        
+        .footer-logo {
+            font-size: 12pt;
+            font-weight: 700;
+            letter-spacing: 3pt;
+            color: #8b0000;
+            margin-bottom: 4pt;
+        }
+        
+        .footer p {
+            font-size: 8pt;
+            color: #999;
+        }
+        
+        /* Page breaks */
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* Print styles */
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="doc-type">Orden de Trabajo</div>
+            <h1 class="doc-title">Auditoría Técnica de Canal</h1>
+            <p class="doc-subtitle">@CarlesPortaCrims → True Crime Porta</p>
+        </div>
+        <div class="header-right">
+            <div class="doc-number">#TCF-2025-002</div>
+            <p class="doc-date">Diciembre 2025</p>
+        </div>
+    </header>
+
+    <!-- Assignee -->
+    <div class="assignee-box">
+        <div class="assignee-label">Persona Asignada</div>
+        <div class="assignee-name">IVO</div>
+        <div class="assignee-role">Especialista en Auditoría Técnica YouTube</div>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="info-grid">
+        <div class="info-box">
+            <h4>Cliente</h4>
+            <p>True Crime Factory</p>
+        </div>
+        <div class="info-box">
+            <h4>MCN</h4>
+            <p>Zoopa Network</p>
+        </div>
+        <div class="info-box">
+            <h4>Canal</h4>
+            <p>@CarlesPortaCrims</p>
+        </div>
+    </div>
+
+    <!-- Scope -->
+    <div class="scope-box">
+        <h3>Alcance de Este Encargo</h3>
+        <p>Esta orden de trabajo cubre <strong>ÚNICAMENTE la auditoría técnica</strong> del canal de YouTube. El objetivo es extraer toda la información necesaria del canal y YouTube Studio para generar un informe con Claude AI que incluya el diagnóstico completo y la lista de acciones para optimizar y preparar el canal para su relanzamiento. <strong>No incluye la ejecución de cambios</strong>, solo la recopilación de datos y generación del informe.</p>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- SECCIÓN 1: TAREAS DE AUDITORÍA -->
+    <!-- ============================================== -->
+    
+    <div class="section">
+        <div class="section-header">
+            <h2>Sección 1: Tareas de Auditoría Técnica</h2>
+            <span class="badge">8-10 horas estimadas</span>
+        </div>
+        
+        <table class="task-table">
+            <thead>
+                <tr>
+                    <th width="4%">✓</th>
+                    <th width="7%">ID</th>
+                    <th>Tarea</th>
+                    <th width="10%">Tiempo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Acceso y Configuración Inicial -->
+                <tr class="category-row">
+                    <td colspan="4">Fase 1: Acceso y Configuración Inicial</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">1.1</td>
+                    <td>
+                        Verificar acceso a YouTube Studio del canal
+                        <div class="task-detail">Confirmar permisos de administrador o gestor</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">1.2</td>
+                    <td>
+                        Verificar vinculación con Zoopa Network MCN
+                        <div class="task-detail">Confirmar que el canal está activo dentro de la MCN</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">1.3</td>
+                    <td>
+                        Crear carpeta de trabajo para exportaciones
+                        <div class="task-detail">Estructura: /Auditoria_TrueCrimePorta_[fecha]/</div>
+                    </td>
+                    <td class="task-time">10 min</td>
+                </tr>
+                
+                <!-- Extracción de Datos de Canal -->
+                <tr class="category-row">
+                    <td colspan="4">Fase 2: Extracción de Datos Generales del Canal</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">2.1</td>
+                    <td>
+                        Exportar Analytics completo (últimos 24 meses)
+                        <div class="task-detail">YouTube Studio > Analytics > Modo Avanzado > Exportar</div>
+                    </td>
+                    <td class="task-time">20 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">2.2</td>
+                    <td>
+                        Capturar métricas generales del canal
+                        <div class="task-detail">Suscriptores, visualizaciones totales, watch time total</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">2.3</td>
+                    <td>
+                        Exportar datos de audiencia (demografía)
+                        <div class="task-detail">Edad, género, países, idiomas</div>
+                    </td>
+                    <td class="task-time">20 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">2.4</td>
+                    <td>
+                        Documentar fuentes de tráfico
+                        <div class="task-detail">Búsqueda, sugeridos, externos, directos, playlists</div>
+                    </td>
+                    <td class="task-time">20 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">2.5</td>
+                    <td>
+                        Capturar datos de engagement global
+                        <div class="task-detail">Likes, comentarios, shares, CTR medio</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                
+                <!-- Inventario de Vídeos -->
+                <tr class="category-row">
+                    <td colspan="4">Fase 3: Inventario y Análisis de Vídeos</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">3.1</td>
+                    <td>
+                        Crear spreadsheet con inventario completo de vídeos
+                        <div class="task-detail">URL, título, fecha publicación, duración, estado (público/privado/no listado)</div>
+                    </td>
+                    <td class="task-time">30 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">3.2</td>
+                    <td>
+                        Añadir métricas por vídeo al spreadsheet
+                        <div class="task-detail">Views, likes, comentarios, watch time, retención media, CTR</div>
+                    </td>
+                    <td class="task-time">45 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">3.3</td>
+                    <td>
+                        Extraer gráficos de retención de cada vídeo
+                        <div class="task-detail">Captura de pantalla del gráfico de retención de audiencia</div>
+                    </td>
+                    <td class="task-time">30 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">3.4</td>
+                    <td>
+                        Documentar fuentes de tráfico por vídeo
+                        <div class="task-detail">Top 5 fuentes de cada vídeo</div>
+                    </td>
+                    <td class="task-time">30 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">3.5</td>
+                    <td>
+                        Capturar metadata de cada vídeo
+                        <div class="task-detail">Título, descripción completa, tags, categoría, idioma</div>
+                    </td>
+                    <td class="task-time">30 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">3.6</td>
+                    <td>
+                        Documentar thumbnails actuales
+                        <div class="task-detail">Descargar thumbnails o capturas</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                
+                <!-- Configuración del Canal -->
+                <tr class="category-row">
+                    <td colspan="4">Fase 4: Auditoría de Configuración del Canal</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">4.1</td>
+                    <td>
+                        Capturar configuración actual del canal
+                        <div class="task-detail">Nombre, handle, descripción, enlaces, país</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">4.2</td>
+                    <td>
+                        Documentar branding actual
+                        <div class="task-detail">Avatar, banner, watermark (presencia y calidad)</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">4.3</td>
+                    <td>
+                        Revisar estructura de playlists
+                        <div class="task-detail">Listar playlists existentes y su contenido</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">4.4</td>
+                    <td>
+                        Documentar secciones del canal
+                        <div class="task-detail">Configuración actual de la página del canal</div>
+                    </td>
+                    <td class="task-time">10 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">4.5</td>
+                    <td>
+                        Revisar configuración de end screens y cards
+                        <div class="task-detail">Estado actual en cada vídeo</div>
+                    </td>
+                    <td class="task-time">20 min</td>
+                </tr>
+                
+                <!-- Monetización y MCN -->
+                <tr class="category-row">
+                    <td colspan="4">Fase 5: Monetización y Estado MCN</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">5.1</td>
+                    <td>
+                        Verificar estado de monetización
+                        <div class="task-detail">YPP activo, tipos de anuncios habilitados</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">5.2</td>
+                    <td>
+                        Documentar estado de monetización por vídeo
+                        <div class="task-detail">Verificar icono verde/amarillo/rojo en cada vídeo</div>
+                    </td>
+                    <td class="task-time">20 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">5.3</td>
+                    <td>
+                        Capturar datos de ingresos (si disponibles)
+                        <div class="task-detail">RPM, CPM, ingresos estimados históricos</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">5.4</td>
+                    <td>
+                        Verificar configuración MCN Zoopa
+                        <div class="task-detail">Confirmar vinculación activa, condiciones visibles</div>
+                    </td>
+                    <td class="task-time">15 min</td>
+                </tr>
+                
+                <!-- Compilación -->
+                <tr class="category-row">
+                    <td colspan="4">Fase 6: Compilación y Preparación para Claude</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">6.1</td>
+                    <td>
+                        Organizar todos los archivos exportados
+                        <div class="task-detail">Nomenclatura consistente, carpetas ordenadas</div>
+                    </td>
+                    <td class="task-time">20 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">6.2</td>
+                    <td>
+                        Crear documento resumen de la auditoría
+                        <div class="task-detail">Formato estructurado para input a Claude</div>
+                    </td>
+                    <td class="task-time">45 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">6.3</td>
+                    <td>
+                        Generar informe con Claude AI
+                        <div class="task-detail">Input de datos + prompt para obtener análisis y recomendaciones</div>
+                    </td>
+                    <td class="task-time">60 min</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="task-id">6.4</td>
+                    <td>
+                        Revisar y validar informe generado
+                        <div class="task-detail">Verificar coherencia y completitud</div>
+                    </td>
+                    <td class="task-time">30 min</td>
+                </tr>
+                
+                <!-- Total -->
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right; text-transform: uppercase; letter-spacing: 1pt;">
+                        Total Horas Estimadas
+                    </td>
+                    <td class="task-time">~9h 30min</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================== -->
+    <!-- SECCIÓN 2: CHECKLIST DE COMPROBACIONES DEL CANAL -->
+    <!-- ============================================== -->
+    
+    <div class="checklist-section">
+        <div class="checklist-header">
+            <h2>Sección 2: Checklist de Estado del Canal</h2>
+            <span class="section-num">SEC-02</span>
+        </div>
+        <p class="checklist-intro">
+            <strong>Importante:</strong> Completar TODAS las verificaciones antes de iniciar cualquier cambio. Este checklist documenta el estado actual del canal y detecta posibles problemas que podrían afectar el relanzamiento. El canal ya está dentro de Zoopa Network MCN.
+        </p>
+        
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th width="4%">✓</th>
+                    <th width="30%">Verificación</th>
+                    <th width="25%">Ubicación</th>
+                    <th width="20%">Estado/Valor</th>
+                    <th width="21%">Notas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Estado de la Cuenta -->
+                <tr class="category-row">
+                    <td colspan="5">Estado de la Cuenta y Restricciones</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Strikes de Copyright activos</td>
+                    <td><span class="check-location">Studio > Canal > Estado</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Strikes de Comunidad activos</td>
+                    <td><span class="check-location">Studio > Canal > Estado</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Advertencias activas</td>
+                    <td><span class="check-location">Studio > Canal > Estado</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Restricciones de funcionalidades</td>
+                    <td><span class="check-location">Studio > Canal > Estado</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Canal verificado (check azul)</td>
+                    <td><span class="check-location">Página del canal</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Verificación por teléfono completada</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Monetización -->
+                <tr class="category-row">
+                    <td colspan="5">Monetización y Partner Program</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">YouTube Partner Program activo</td>
+                    <td><span class="check-location">Studio > Monetización</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">AdSense vinculado correctamente</td>
+                    <td><span class="check-location">Studio > Monetización</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Tipos de anuncios habilitados</td>
+                    <td><span class="check-location">Studio > Monetización</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Super Chat/Super Thanks habilitados</td>
+                    <td><span class="check-location">Studio > Monetización</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Membresías del canal habilitadas</td>
+                    <td><span class="check-location">Studio > Monetización</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Merchandising habilitado</td>
+                    <td><span class="check-location">Studio > Monetización</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                
+                <!-- MCN Zoopa Network -->
+                <tr class="category-row">
+                    <td colspan="5">MCN Zoopa Network</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Canal vinculado a Zoopa Network</td>
+                    <td><span class="check-location">Studio > Configuración > Canal</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Tipo de contrato MCN</td>
+                    <td><span class="check-location">Panel MCN / Contrato</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Fecha de vinculación MCN</td>
+                    <td><span class="check-location">Panel MCN</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Servicios MCN activos</td>
+                    <td><span class="check-location">Panel MCN</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Content ID disponible vía MCN</td>
+                    <td><span class="check-location">Panel MCN</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Funcionalidades del Canal -->
+                <tr class="category-row">
+                    <td colspan="5">Funcionalidades del Canal</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Vídeos largos habilitados (+15 min)</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Livestreaming habilitado</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Thumbnails personalizados habilitados</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Enlaces externos en descripciones</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Pestaña Comunidad activa</td>
+                    <td><span class="check-location">Página del canal</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Shorts habilitados</td>
+                    <td><span class="check-location">Studio > Contenido</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Notificaciones y Comunicación -->
+                <tr class="category-row">
+                    <td colspan="5">Notificaciones y Configuración de Comunicación</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Email de notificaciones configurado</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Notificaciones de comentarios activas</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Notificaciones de suscriptores activas</td>
+                    <td><span class="check-location">Studio > Configuración</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Filtros de comentarios configurados</td>
+                    <td><span class="check-location">Studio > Configuración > Comunidad</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Lista de palabras bloqueadas</td>
+                    <td><span class="check-location">Studio > Configuración > Comunidad</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Moderadores asignados</td>
+                    <td><span class="check-location">Studio > Configuración > Comunidad</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Permisos y Accesos -->
+                <tr class="category-row">
+                    <td colspan="5">Permisos y Accesos</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Usuarios con acceso al canal</td>
+                    <td><span class="check-location">Studio > Configuración > Permisos</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Roles asignados correctamente</td>
+                    <td><span class="check-location">Studio > Configuración > Permisos</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Brand Account configurado</td>
+                    <td><span class="check-location">Configuración cuenta Google</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">2FA activado en cuenta</td>
+                    <td><span class="check-location">Configuración cuenta Google</span></td>
+                    <td class="check-value"></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="warning-box">
+        <h4>Acciones Inmediatas si se Detectan Problemas</h4>
+        <p><strong>Strikes activos:</strong> Notificar inmediatamente a Zoopa Network. No proceder con cambios hasta resolución.<br>
+        <strong>Monetización suspendida:</strong> Documentar motivo y escalar a MCN.<br>
+        <strong>Restricciones de funcionalidades:</strong> Listar restricciones y evaluar impacto en relanzamiento.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================== -->
+    <!-- SECCIÓN 3: INFORMACIÓN PARA CLAUDE -->
+    <!-- ============================================== -->
+    
+    <div class="checklist-section">
+        <div class="checklist-header">
+            <h2>Sección 3: Datos a Extraer para Informe con Claude</h2>
+            <span class="section-num">SEC-03</span>
+        </div>
+        <p class="checklist-intro">
+            <strong>Objetivo:</strong> Recopilar toda esta información de forma estructurada para introducirla en Claude y obtener un informe de diagnóstico completo con lista de acciones prioritarias para optimizar el canal antes del relanzamiento.
+        </p>
+        
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th width="4%">✓</th>
+                    <th width="35%">Dato a Extraer</th>
+                    <th width="30%">Formato Requerido</th>
+                    <th width="31%">Notas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datos del Canal -->
+                <tr class="category-row">
+                    <td colspan="4">A. Datos Identificativos del Canal</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">URL del canal y handle actual</td>
+                    <td>Texto</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Nombre actual del canal</td>
+                    <td>Texto</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Fecha de creación del canal</td>
+                    <td>DD/MM/AAAA</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Descripción actual del canal (completa)</td>
+                    <td>Texto completo</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">País/región configurado</td>
+                    <td>Texto</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Enlaces externos configurados</td>
+                    <td>Lista URLs</td>
+                    <td></td>
+                </tr>
+                
+                <!-- Métricas Generales -->
+                <tr class="category-row">
+                    <td colspan="4">B. Métricas Generales del Canal</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Número total de suscriptores</td>
+                    <td>Número</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Visualizaciones totales del canal</td>
+                    <td>Número</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Watch time total (horas)</td>
+                    <td>Número</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Número total de vídeos publicados</td>
+                    <td>Número</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Fecha del último vídeo publicado</td>
+                    <td>DD/MM/AAAA</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Frecuencia de publicación histórica</td>
+                    <td>Vídeos/mes promedio</td>
+                    <td></td>
+                </tr>
+                
+                <!-- Demografía -->
+                <tr class="category-row">
+                    <td colspan="4">C. Demografía de la Audiencia</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Distribución por género (%)</td>
+                    <td>% Hombres / % Mujeres</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Distribución por edad (%)</td>
+                    <td>% por rango (13-17, 18-24, 25-34, 35-44, 45-54, 55-64, 65+)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Top 5 países por visualizaciones</td>
+                    <td>País: % del total</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Idiomas principales de la audiencia</td>
+                    <td>Idioma: %</td>
+                    <td></td>
+                </tr>
+                
+                <!-- Fuentes de Tráfico -->
+                <tr class="category-row">
+                    <td colspan="4">D. Fuentes de Tráfico</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">% Búsqueda de YouTube</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">% Vídeos sugeridos</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">% Página de inicio de YouTube</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">% Fuentes externas</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">% Tráfico directo o desconocido</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Keywords principales de búsqueda</td>
+                    <td>Lista top 10 keywords</td>
+                    <td></td>
+                </tr>
+                
+                <!-- Engagement -->
+                <tr class="category-row">
+                    <td colspan="4">E. Métricas de Engagement</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">CTR medio del canal (%)</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Duración media de visualización</td>
+                    <td>Minutos:Segundos</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">% Retención media</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Ratio likes/views medio</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Ratio comentarios/views medio</td>
+                    <td>Porcentaje</td>
+                    <td></td>
+                </tr>
+                
+                <!-- Por Vídeo -->
+                <tr class="category-row">
+                    <td colspan="4">F. Datos por Vídeo (spreadsheet separado)</td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">URL de cada vídeo</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Título de cada vídeo</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Fecha de publicación</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Duración del vídeo</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Visualizaciones</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Watch time (horas)</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Likes / Dislikes</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Comentarios</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">CTR del vídeo (%)</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Retención media (%)</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Descripción completa</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Tags utilizados</td>
+                    <td>Columna en spreadsheet</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">Estado monetización</td>
+                    <td>Verde/Amarillo/Rojo</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">¿Tiene end screen?</td>
+                    <td>Sí/No</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="checkbox"></span></td>
+                    <td class="check-item">¿Tiene cards?</td>
+                    <td>Sí/No</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note-box">
+        <h4>Formato de Entrega para Claude</h4>
+        <p>Toda esta información debe compilarse en un documento estructurado (markdown o texto plano) que pueda introducirse directamente en Claude. El documento debe incluir:</p>
+        <ul style="margin-top: 8pt; margin-left: 16pt; font-size: 9pt; color: #0c4a6e;">
+            <li>Resumen ejecutivo del estado actual</li>
+            <li>Todos los datos de las secciones A-E en formato estructurado</li>
+            <li>Link al spreadsheet de vídeos o datos pegados directamente</li>
+            <li>Resultados del checklist de estado del canal (Sección 2)</li>
+            <li>Contexto sobre el objetivo del relanzamiento como "True Crime Porta"</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ============================================== -->
+    <!-- ENTREGABLES -->
+    <!-- ============================================== -->
+    
+    <div class="section">
+        <div class="section-header">
+            <h2>Entregables del Encargo</h2>
+            <span class="badge">4 documentos</span>
+        </div>
+        
+        <div class="deliverable-item">
+            <div class="deliverable-check"></div>
+            <div class="deliverable-number">01</div>
+            <div class="deliverable-content">
+                <h4>Spreadsheet de Inventario de Vídeos</h4>
+                <p>Excel/Google Sheets con todos los vídeos y sus métricas detalladas según Sección 3F</p>
+            </div>
+        </div>
+        
+        <div class="deliverable-item">
+            <div class="deliverable-check"></div>
+            <div class="deliverable-number">02</div>
+            <div class="deliverable-content">
+                <h4>Checklist de Estado del Canal (completado)</h4>
+                <p>Sección 2 de este documento cumplimentada con todos los valores y estados</p>
+            </div>
+        </div>
+        
+        <div class="deliverable-item">
+            <div class="deliverable-check"></div>
+            <div class="deliverable-number">03</div>
+            <div class="deliverable-content">
+                <h4>Documento de Datos para Claude</h4>
+                <p>Compilación estructurada de toda la información según Sección 3 en formato markdown/texto</p>
+            </div>
+        </div>
+        
+        <div class="deliverable-item">
+            <div class="deliverable-check"></div>
+            <div class="deliverable-number">04</div>
+            <div class="deliverable-content">
+                <h4>Informe de Auditoría + Plan de Acción (generado con Claude)</h4>
+                <p>Diagnóstico completo del canal con lista priorizada de acciones de optimización para el relanzamiento</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data block example for Claude input -->
+    <div class="data-block">
+        <span class="label"># ESTRUCTURA SUGERIDA PARA INPUT A CLAUDE</span><br><br>
+        <span class="value">## 1. CONTEXTO DEL PROYECTO</span><br>
+        Canal: @CarlesPortaCrims<br>
+        Objetivo: Relanzamiento como "True Crime Porta"<br>
+        MCN: Zoopa Network<br><br>
+        <span class="value">## 2. ESTADO ACTUAL DEL CANAL</span><br>
+        [Pegar datos de Sección 2 - Checklist]<br><br>
+        <span class="value">## 3. MÉTRICAS GENERALES</span><br>
+        [Pegar datos de Secciones A-E]<br><br>
+        <span class="value">## 4. ANÁLISIS POR VÍDEO</span><br>
+        [Pegar tabla o datos del spreadsheet]<br><br>
+        <span class="value">## 5. SOLICITUD</span><br>
+        Generar informe de diagnóstico con:<br>
+        - Análisis de fortalezas y debilidades<br>
+        - Oportunidades de optimización<br>
+        - Lista priorizada de acciones<br>
+        - Recomendaciones para el relanzamiento
+    </div>
+
+    <!-- Signatures -->
+    <div class="signatures">
+        <div class="signature-box">
+            <div class="signature-line"></div>
+            <div class="signature-label">True Crime Factory</div>
+            <p class="signature-role">Cliente</p>
+        </div>
+        <div class="signature-box">
+            <div class="signature-line"></div>
+            <div class="signature-label">IVO - Zoopa Network</div>
+            <p class="signature-role">Responsable Auditoría Técnica</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-logo">ZOOPA NETWORK</div>
+        <p>Professional YouTube MCN Services</p>
+        <p style="margin-top: 8pt;">© 2025 Zoopa Network. Tots els drets reservats.</p>
+    </div>
+
+</body>
+</html>

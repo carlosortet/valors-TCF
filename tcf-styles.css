@@ -1,0 +1,840 @@
+/**
+ * TRUE CRIME FACTORY - Sistema de Diseño CSS
+ * Canal YouTube Carles Porta
+ * Versión: 1.0
+ * Basado en: Estética visual de "Crims" (TV3)
+ */
+
+/* ==========================================================================
+   CSS VARIABLES - TOKENS DE DISEÑO
+   ========================================================================== */
+
+:root {
+  /* Fondos */
+  --tcf-bg-primary: #0A0A0A;
+  --tcf-bg-secondary: #1A1A1A;
+  --tcf-bg-elevated: #2D2D2D;
+  --tcf-bg-overlay: rgba(10, 10, 10, 0.85);
+
+  /* Textos */
+  --tcf-text-primary: #F5F5F0;
+  --tcf-text-secondary: #9A9A9A;
+  --tcf-text-muted: #6B6B6B;
+
+  /* Acentos */
+  --tcf-accent-red: #8B0000;
+  --tcf-accent-red-hover: #A50000;
+  --tcf-accent-red-light: rgba(139, 0, 0, 0.15);
+  --tcf-accent-gold: #B8860B;
+  --tcf-accent-blue: #1E3A5F;
+
+  /* Bordes */
+  --tcf-border-subtle: rgba(255, 255, 255, 0.08);
+  --tcf-border-visible: rgba(255, 255, 255, 0.15);
+  --tcf-border-strong: rgba(255, 255, 255, 0.25);
+
+  /* Sombras */
+  --tcf-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --tcf-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --tcf-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --tcf-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.8);
+
+  /* Tipografía - Escala */
+  --tcf-text-xs: 0.75rem;
+  --tcf-text-sm: 0.875rem;
+  --tcf-text-base: 1rem;
+  --tcf-text-lg: 1.125rem;
+  --tcf-text-xl: 1.25rem;
+  --tcf-text-2xl: 1.5rem;
+  --tcf-text-3xl: 1.875rem;
+  --tcf-text-4xl: 2.25rem;
+  --tcf-text-5xl: 3rem;
+  --tcf-text-6xl: 3.75rem;
+
+  /* Espaciado */
+  --tcf-space-1: 0.25rem;
+  --tcf-space-2: 0.5rem;
+  --tcf-space-3: 0.75rem;
+  --tcf-space-4: 1rem;
+  --tcf-space-5: 1.25rem;
+  --tcf-space-6: 1.5rem;
+  --tcf-space-8: 2rem;
+  --tcf-space-10: 2.5rem;
+  --tcf-space-12: 3rem;
+  --tcf-space-16: 4rem;
+  --tcf-space-20: 5rem;
+  --tcf-space-24: 6rem;
+
+  /* Layout */
+  --tcf-container-max: 1200px;
+  --tcf-container-narrow: 800px;
+  --tcf-container-padding: 1rem;
+
+  /* Transiciones */
+  --tcf-transition-fast: 150ms ease;
+  --tcf-transition-base: 300ms ease;
+  --tcf-transition-slow: 500ms ease;
+
+  /* Border radius */
+  --tcf-radius-sm: 2px;
+  --tcf-radius-md: 4px;
+  --tcf-radius-lg: 8px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --tcf-container-padding: 2rem;
+    --tcf-text-5xl: 3.5rem;
+    --tcf-text-6xl: 4.5rem;
+  }
+}
+
+/* ==========================================================================
+   RESET Y BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: var(--tcf-text-base);
+  line-height: 1.6;
+  color: var(--tcf-text-primary);
+  background-color: var(--tcf-bg-primary);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--tcf-text-primary);
+  text-decoration: none;
+  transition: color var(--tcf-transition-fast);
+}
+
+a:hover {
+  color: var(--tcf-accent-gold);
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA
+   ========================================================================== */
+
+/* Títulos principales - Oswald */
+.tcf-title-hero {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-size: var(--tcf-text-5xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  color: var(--tcf-text-primary);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .tcf-title-hero {
+    font-size: var(--tcf-text-6xl);
+  }
+}
+
+/* Títulos de sección - Playfair */
+.tcf-title-section {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: var(--tcf-text-3xl);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  color: var(--tcf-text-primary);
+  margin: 0 0 var(--tcf-space-6);
+}
+
+/* Títulos de card */
+.tcf-title-card {
+  font-family: 'Oswald', sans-serif;
+  font-size: var(--tcf-text-xl);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  color: var(--tcf-text-primary);
+  margin: 0;
+}
+
+/* Subtítulos */
+.tcf-subtitle {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--tcf-text-lg);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--tcf-text-secondary);
+  margin: 0;
+}
+
+/* Labels / Etiquetas */
+.tcf-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: var(--tcf-text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--tcf-accent-gold);
+}
+
+/* Texto de cuerpo */
+.tcf-body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--tcf-text-base);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--tcf-text-primary);
+}
+
+/* Prosa / Artículos */
+.tcf-prose {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--tcf-text-lg);
+  line-height: 1.8;
+  color: var(--tcf-text-primary);
+}
+
+.tcf-prose p {
+  margin: 0 0 var(--tcf-space-6);
+}
+
+.tcf-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Monospace / Datos */
+.tcf-mono {
+  font-family: 'Source Code Pro', Courier, monospace;
+  font-size: var(--tcf-text-sm);
+}
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+
+.tcf-container {
+  width: 100%;
+  max-width: var(--tcf-container-max);
+  margin: 0 auto;
+  padding: 0 var(--tcf-container-padding);
+}
+
+.tcf-container--narrow {
+  max-width: var(--tcf-container-narrow);
+}
+
+.tcf-section {
+  padding: var(--tcf-space-16) 0;
+}
+
+.tcf-section--sm {
+  padding: var(--tcf-space-8) 0;
+}
+
+.tcf-section--lg {
+  padding: var(--tcf-space-24) 0;
+}
+
+/* Grid */
+.tcf-grid {
+  display: grid;
+  gap: var(--tcf-space-6);
+}
+
+.tcf-grid--2 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.tcf-grid--3 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .tcf-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tcf-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .tcf-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.tcf-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--tcf-space-16) 0;
+  overflow: hidden;
+}
+
+.tcf-hero--full {
+  min-height: 100vh;
+}
+
+.tcf-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.tcf-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tcf-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.tcf-hero-content .tcf-label {
+  margin-bottom: var(--tcf-space-3);
+  display: block;
+}
+
+.tcf-hero-content .tcf-title-hero {
+  margin-bottom: var(--tcf-space-4);
+}
+
+.tcf-hero-content .tcf-subtitle {
+  max-width: 600px;
+  margin-bottom: var(--tcf-space-6);
+}
+
+.tcf-hero-meta {
+  display: flex;
+  gap: var(--tcf-space-3);
+  font-family: 'Source Code Pro', monospace;
+  font-size: var(--tcf-text-sm);
+  color: var(--tcf-text-muted);
+}
+
+/* ==========================================================================
+   GRADIENTES Y OVERLAYS
+   ========================================================================== */
+
+.tcf-gradient-dark {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    var(--tcf-bg-primary) 100%
+  );
+}
+
+.tcf-gradient-dramatic {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--tcf-accent-red-light) 0%,
+    transparent 40%,
+    var(--tcf-bg-primary) 100%
+  );
+}
+
+.tcf-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   FILTROS DE IMAGEN
+   ========================================================================== */
+
+.tcf-filter-documentary {
+  filter: grayscale(40%) contrast(1.1) brightness(0.95);
+}
+
+.tcf-filter-archive {
+  filter: sepia(25%) grayscale(20%) contrast(1.05);
+}
+
+.tcf-filter-evidence {
+  filter: grayscale(100%) contrast(1.3) brightness(1.1);
+}
+
+.tcf-filter-reveal {
+  filter: grayscale(100%);
+  transition: filter var(--tcf-transition-slow);
+}
+
+.tcf-filter-reveal:hover {
+  filter: grayscale(0%);
+}
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+
+.tcf-card {
+  background: var(--tcf-bg-secondary);
+  border: 1px solid var(--tcf-border-subtle);
+  border-radius: var(--tcf-radius-md);
+  overflow: hidden;
+  transition: all var(--tcf-transition-base);
+}
+
+.tcf-card:hover {
+  border-color: var(--tcf-accent-red);
+  box-shadow: var(--tcf-shadow-lg);
+  transform: translateY(-4px);
+}
+
+.tcf-card-image {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.tcf-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--tcf-transition-slow);
+}
+
+.tcf-card:hover .tcf-card-image img {
+  transform: scale(1.05);
+}
+
+.tcf-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.9) 0%,
+    transparent 60%
+  );
+}
+
+.tcf-card-duration {
+  position: absolute;
+  bottom: var(--tcf-space-2);
+  right: var(--tcf-space-2);
+  background: rgba(0, 0, 0, 0.85);
+  padding: var(--tcf-space-1) var(--tcf-space-2);
+  font-family: 'Source Code Pro', monospace;
+  font-size: var(--tcf-text-xs);
+  color: var(--tcf-text-primary);
+  border-radius: var(--tcf-radius-sm);
+}
+
+.tcf-card-content {
+  padding: var(--tcf-space-5);
+}
+
+.tcf-card-content .tcf-label {
+  margin-bottom: var(--tcf-space-2);
+  display: block;
+}
+
+.tcf-card-content .tcf-title-card {
+  margin-bottom: var(--tcf-space-3);
+}
+
+.tcf-card-excerpt {
+  font-size: var(--tcf-text-sm);
+  color: var(--tcf-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--tcf-space-4);
+}
+
+.tcf-card-meta {
+  display: flex;
+  gap: var(--tcf-space-4);
+  font-size: var(--tcf-text-xs);
+  color: var(--tcf-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   INTERTÍTULOS
+   ========================================================================== */
+
+.tcf-intertitle {
+  display: flex;
+  align-items: center;
+  gap: var(--tcf-space-6);
+  padding: var(--tcf-space-8) 0;
+  border-top: 1px solid var(--tcf-border-visible);
+  border-bottom: 1px solid var(--tcf-border-visible);
+  margin: var(--tcf-space-12) 0;
+}
+
+.tcf-intertitle-number {
+  font-family: 'Oswald', sans-serif;
+  font-size: var(--tcf-text-4xl);
+  font-weight: 700;
+  color: var(--tcf-accent-red);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.tcf-intertitle-text {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--tcf-text-2xl);
+  font-style: italic;
+  color: var(--tcf-text-primary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   TESTIMONIOS / CITAS
+   ========================================================================== */
+
+.tcf-testimony {
+  position: relative;
+  background: var(--tcf-bg-elevated);
+  border-left: 4px solid var(--tcf-accent-red);
+  padding: var(--tcf-space-6) var(--tcf-space-8);
+  margin: var(--tcf-space-8) 0;
+}
+
+.tcf-testimony::before {
+  content: '"';
+  position: absolute;
+  top: var(--tcf-space-2);
+  left: var(--tcf-space-4);
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: var(--tcf-accent-red);
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.tcf-testimony-source {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--tcf-space-4);
+}
+
+.tcf-testimony-source time {
+  font-family: 'Source Code Pro', monospace;
+  font-size: var(--tcf-text-sm);
+  color: var(--tcf-text-muted);
+}
+
+.tcf-testimony-text {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--tcf-text-xl);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--tcf-text-primary);
+  margin: 0;
+}
+
+.tcf-testimony-cite {
+  display: block;
+  margin-top: var(--tcf-space-4);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--tcf-text-sm);
+  font-style: normal;
+  color: var(--tcf-text-secondary);
+}
+
+/* Cita simple */
+.tcf-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--tcf-text-xl);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--tcf-text-primary);
+  border-left: 3px solid var(--tcf-accent-red);
+  padding-left: var(--tcf-space-6);
+  margin: var(--tcf-space-6) 0;
+}
+
+/* ==========================================================================
+   TIMELINE
+   ========================================================================== */
+
+.tcf-timeline {
+  position: relative;
+  padding-left: var(--tcf-space-8);
+}
+
+.tcf-timeline::before {
+  content: '';
+  position: absolute;
+  left: var(--tcf-space-2);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--tcf-border-visible);
+}
+
+.tcf-timeline-item {
+  position: relative;
+  padding-bottom: var(--tcf-space-8);
+}
+
+.tcf-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.tcf-timeline-marker {
+  position: absolute;
+  left: calc(-1 * var(--tcf-space-8) + var(--tcf-space-2) - 5px);
+  top: var(--tcf-space-1);
+  width: 12px;
+  height: 12px;
+  background: var(--tcf-bg-secondary);
+  border: 2px solid var(--tcf-text-muted);
+  border-radius: 50%;
+}
+
+.tcf-timeline-item--active .tcf-timeline-marker {
+  background: var(--tcf-accent-red);
+  border-color: var(--tcf-accent-red);
+  box-shadow: 0 0 0 4px var(--tcf-accent-red-light);
+}
+
+.tcf-timeline-date {
+  display: block;
+  font-family: 'Source Code Pro', monospace;
+  font-size: var(--tcf-text-sm);
+  color: var(--tcf-accent-gold);
+  margin-bottom: var(--tcf-space-1);
+}
+
+.tcf-timeline-event {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--tcf-text-base);
+  color: var(--tcf-text-primary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+
+.tcf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tcf-space-2);
+  padding: var(--tcf-space-3) var(--tcf-space-6);
+  font-family: 'Oswald', sans-serif;
+  font-size: var(--tcf-text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  border-radius: var(--tcf-radius-sm);
+  cursor: pointer;
+  transition: all var(--tcf-transition-fast);
+}
+
+.tcf-btn--primary {
+  background: var(--tcf-accent-red);
+  color: var(--tcf-text-primary);
+}
+
+.tcf-btn--primary:hover {
+  background: var(--tcf-accent-red-hover);
+  color: var(--tcf-text-primary);
+}
+
+.tcf-btn--outline {
+  background: transparent;
+  color: var(--tcf-text-primary);
+  border: 1px solid var(--tcf-border-strong);
+}
+
+.tcf-btn--outline:hover {
+  background: var(--tcf-bg-elevated);
+  border-color: var(--tcf-accent-red);
+  color: var(--tcf-text-primary);
+}
+
+.tcf-btn--lg {
+  padding: var(--tcf-space-4) var(--tcf-space-8);
+  font-size: var(--tcf-text-base);
+}
+
+/* ==========================================================================
+   FORMULARIOS
+   ========================================================================== */
+
+.tcf-input {
+  width: 100%;
+  padding: var(--tcf-space-3) var(--tcf-space-4);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--tcf-text-base);
+  color: var(--tcf-text-primary);
+  background: var(--tcf-bg-elevated);
+  border: 1px solid var(--tcf-border-visible);
+  border-radius: var(--tcf-radius-sm);
+  transition: border-color var(--tcf-transition-fast);
+}
+
+.tcf-input:focus {
+  outline: none;
+  border-color: var(--tcf-accent-red);
+}
+
+.tcf-input::placeholder {
+  color: var(--tcf-text-muted);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.tcf-footer {
+  padding: var(--tcf-space-12) 0;
+  border-top: 1px solid var(--tcf-border-subtle);
+  text-align: center;
+}
+
+.tcf-footer-brand {
+  font-family: 'Oswald', sans-serif;
+  font-size: var(--tcf-text-lg);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--tcf-text-primary);
+  margin: 0 0 var(--tcf-space-2);
+}
+
+.tcf-footer-tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--tcf-text-sm);
+  font-style: italic;
+  color: var(--tcf-text-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   ANIMACIONES
+   ========================================================================== */
+
+@keyframes tcf-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tcf-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes tcf-reveal-line {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.tcf-animate-in {
+  animation: tcf-fade-in 0.6s ease-out forwards;
+}
+
+.tcf-animate-pulse {
+  animation: tcf-pulse 2s ease-in-out infinite;
+}
+
+/* Staggered animation */
+.tcf-animate-stagger > * {
+  opacity: 0;
+  animation: tcf-fade-in 0.5s ease-out forwards;
+}
+
+.tcf-animate-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.tcf-animate-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.tcf-animate-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.tcf-animate-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.tcf-animate-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.tcf-animate-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* ==========================================================================
+   UTILIDADES
+   ========================================================================== */
+
+.tcf-text-center { text-align: center; }
+.tcf-text-right { text-align: right; }
+
+.tcf-mt-4 { margin-top: var(--tcf-space-4); }
+.tcf-mt-8 { margin-top: var(--tcf-space-8); }
+.tcf-mt-12 { margin-top: var(--tcf-space-12); }
+
+.tcf-mb-4 { margin-bottom: var(--tcf-space-4); }
+.tcf-mb-8 { margin-bottom: var(--tcf-space-8); }
+.tcf-mb-12 { margin-bottom: var(--tcf-space-12); }
+
+.tcf-py-8 { padding-top: var(--tcf-space-8); padding-bottom: var(--tcf-space-8); }
+.tcf-py-12 { padding-top: var(--tcf-space-12); padding-bottom: var(--tcf-space-12); }
+
+.tcf-hidden { display: none; }
+
+@media (min-width: 768px) {
+  .tcf-md-hidden { display: none; }
+  .tcf-md-block { display: block; }
+}
+
+/* ==========================================================================
+   CONTENIDO SENSIBLE
+   ========================================================================== */
+
+.tcf-sensitive-warning {
+  display: flex;
+  align-items: center;
+  gap: var(--tcf-space-3);
+  padding: var(--tcf-space-4);
+  background: var(--tcf-accent-red-light);
+  border: 1px solid var(--tcf-accent-red);
+  border-radius: var(--tcf-radius-md);
+  margin: var(--tcf-space-6) 0;
+}
+
+.tcf-sensitive-warning svg {
+  flex-shrink: 0;
+  color: var(--tcf-accent-red);
+}
+
+.tcf-sensitive-warning p {
+  font-size: var(--tcf-text-sm);
+  color: var(--tcf-text-primary);
+  margin: 0;
+}

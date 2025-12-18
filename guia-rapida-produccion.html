@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Rápida de Producción | True Crime Factory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;500&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --tcf-bg-primary: #0A0A0A;
+      --tcf-bg-secondary: #1A1A1A;
+      --tcf-bg-elevated: #2D2D2D;
+      --tcf-text-primary: #F5F5F0;
+      --tcf-text-secondary: #9A9A9A;
+      --tcf-text-muted: #6B6B6B;
+      --tcf-accent-red: #8B0000;
+      --tcf-accent-red-light: rgba(139, 0, 0, 0.15);
+      --tcf-accent-gold: #B8860B;
+      --tcf-border-subtle: rgba(255, 255, 255, 0.08);
+      --tcf-border-visible: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ==========================================================================
+       RESET Y BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--tcf-text-primary);
+      background-color: var(--tcf-bg-primary);
+    }
+
+    /* ==========================================================================
+       LAYOUT
+       ========================================================================== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    @media print {
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+    }
+
+    /* ==========================================================================
+       HEADER
+       ========================================================================== */
+    .header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--tcf-border-visible);
+      margin-bottom: 2rem;
+    }
+
+    .header-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--tcf-accent-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .header-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--tcf-text-primary);
+      margin: 0 0 0.5rem;
+    }
+
+    .header-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-style: italic;
+      color: var(--tcf-text-secondary);
+      margin: 0;
+    }
+
+    /* ==========================================================================
+       SECTIONS
+       ========================================================================== */
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--tcf-accent-red);
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--tcf-accent-red);
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       APERTURA BOX
+       ========================================================================== */
+    .apertura-box {
+      background: var(--tcf-bg-elevated);
+      border-left: 4px solid var(--tcf-accent-gold);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .apertura-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--tcf-text-primary);
+      margin: 0 0 1rem;
+    }
+
+    .apertura-note {
+      font-size: 0.875rem;
+      color: var(--tcf-text-secondary);
+      margin: 0;
+    }
+
+    .apertura-note strong {
+      color: var(--tcf-accent-gold);
+    }
+
+    /* ==========================================================================
+       TABLES
+       ========================================================================== */
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    th {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: left;
+      color: var(--tcf-text-muted);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--tcf-border-visible);
+      background: var(--tcf-bg-secondary);
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--tcf-border-subtle);
+      vertical-align: top;
+    }
+
+    tr:hover td {
+      background: var(--tcf-bg-secondary);
+    }
+
+    code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.8125rem;
+      background: var(--tcf-bg-elevated);
+      padding: 0.125rem 0.375rem;
+      border-radius: 2px;
+      color: var(--tcf-accent-gold);
+    }
+
+    /* ==========================================================================
+       VALORES TRONCALES
+       ========================================================================== */
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .valor-item {
+      background: var(--tcf-bg-secondary);
+      border: 1px solid var(--tcf-border-subtle);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .valor-item:hover {
+      border-color: var(--tcf-accent-red);
+    }
+
+    .valor-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--tcf-text-primary);
+      margin: 0 0 0.25rem;
+    }
+
+    .valor-desc {
+      font-size: 0.75rem;
+      color: var(--tcf-text-secondary);
+      margin: 0;
+    }
+
+    /* ==========================================================================
+       TECNICAS
+       ========================================================================== */
+    .tecnicas-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 600px) {
+      .tecnicas-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tecnica-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: var(--tcf-bg-secondary);
+      padding: 0.875rem 1rem;
+      border-left: 3px solid var(--tcf-accent-red);
+    }
+
+    .tecnica-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--tcf-accent-red);
+      line-height: 1;
+    }
+
+    .tecnica-content strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      color: var(--tcf-text-primary);
+      margin-bottom: 0.125rem;
+    }
+
+    .tecnica-content span {
+      font-size: 0.8125rem;
+      color: var(--tcf-text-secondary);
+    }
+
+    /* ==========================================================================
+       CHECKLIST
+       ========================================================================== */
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      color: var(--tcf-text-primary);
+      padding: 0.5rem 0;
+    }
+
+    .checklist-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--tcf-border-visible);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       PIPELINE
+       ========================================================================== */
+    .pipeline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.25rem;
+      background: var(--tcf-bg-secondary);
+      border: 1px solid var(--tcf-border-subtle);
+    }
+
+    .pipeline-step {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.75rem;
+      color: var(--tcf-text-primary);
+      background: var(--tcf-bg-elevated);
+      padding: 0.375rem 0.625rem;
+      border-radius: 2px;
+    }
+
+    .pipeline-step-owner {
+      font-size: 0.625rem;
+      color: var(--tcf-accent-gold);
+      text-transform: uppercase;
+    }
+
+    .pipeline-arrow {
+      color: var(--tcf-text-muted);
+      font-size: 0.875rem;
+    }
+
+    .pipeline-note {
+      width: 100%;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--tcf-border-subtle);
+      font-size: 0.8125rem;
+      color: var(--tcf-text-secondary);
+    }
+
+    /* ==========================================================================
+       FORMATOS
+       ========================================================================== */
+    .formatos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 700px) {
+      .formatos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .formato-card {
+      background: var(--tcf-bg-secondary);
+      border: 1px solid var(--tcf-border-subtle);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .formato-card:hover {
+      border-color: var(--tcf-accent-red);
+    }
+
+    .formato-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--tcf-text-primary);
+      margin: 0 0 0.25rem;
+    }
+
+    .formato-duration {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.8125rem;
+      color: var(--tcf-accent-gold);
+      margin: 0 0 0.5rem;
+    }
+
+    .formato-desc {
+      font-size: 0.75rem;
+      color: var(--tcf-text-secondary);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--tcf-border-visible);
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--tcf-text-primary);
+      margin: 0 0 0.25rem;
+    }
+
+    .footer-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.8125rem;
+      font-style: italic;
+      color: var(--tcf-text-muted);
+      margin: 0;
+    }
+
+    .footer-version {
+      font-size: 0.6875rem;
+      color: var(--tcf-text-muted);
+      margin-top: 0.75rem;
+    }
+
+    /* ==========================================================================
+       PRINT STYLES
+       ========================================================================== */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+
+      .header, .section, .footer {
+        break-inside: avoid;
+      }
+
+      .valor-item, .formato-card, .tecnica-item {
+        border: 1px solid #ccc;
+      }
+
+      code {
+        background: #f0f0f0;
+        color: #333;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <p class="header-label">Documento de Referencia para Equipo</p>
+      <h1 class="header-title">Guía Rápida de Producción</h1>
+      <p class="header-subtitle">Canal YouTube Carles Porta</p>
+    </header>
+
+    <!-- Apertura Obligatoria -->
+    <section class="section">
+      <h2 class="section-title">Apertura Obligatoria</h2>
+      <div class="apertura-box">
+        <p class="apertura-quote">"Hola, soy Carles Porta, gracias por acompañarnos."</p>
+        <p class="apertura-note">
+          Seguida de <strong>HOOK</strong> en 30 segundos:
+          Fecha + Acción detonante + Revelación parcial + Detalle sensorial
+        </p>
+      </div>
+    </section>
+
+    <!-- Estructura del Guión -->
+    <section class="section">
+      <h2 class="section-title">Estructura del Guión</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Elemento</th>
+              <th>Formato</th>
+              <th>Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Narración</td>
+              <td><code>[Nº] OFF</code></td>
+              <td><code>3 OFF</code> seguido del texto</td>
+            </tr>
+            <tr>
+              <td>Hablante</td>
+              <td><strong>Negrita</strong></td>
+              <td><code>**Operador:** ¿En qué puedo ayudarle?</code></td>
+            </tr>
+            <tr>
+              <td>Indicación visual</td>
+              <td>(paréntesis)</td>
+              <td><code>(vemos el coche patrulla llegando)</code></td>
+            </tr>
+            <tr>
+              <td>Sonido/Técnico</td>
+              <td>MAYÚSCULAS</td>
+              <td><code>SONIDO DE LLAMADA</code></td>
+            </tr>
+            <tr>
+              <td>Contenido sensible</td>
+              <td>CUIDADO</td>
+              <td><code>CUIDADO este es uno de los grandes retos</code></td>
+            </tr>
+            <tr>
+              <td>Material archivo</td>
+              <td>[corchetes]</td>
+              <td><code>[material archivo]</code></td>
+            </tr>
+            <tr>
+              <td>Timecode</td>
+              <td>(00:00)</td>
+              <td><code>(24:10) **Con mi pie izquierdo...**</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Identificación de Personajes -->
+    <section class="section">
+      <h2 class="section-title">Identificación de Personajes</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Formato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Conocido</td>
+              <td>Nombre / Apellido</td>
+            </tr>
+            <tr>
+              <td>Funcionario anónimo</td>
+              <td><code>Poli 1</code>, <code>Operador</code></td>
+            </tr>
+            <tr>
+              <td>Con rango</td>
+              <td><code>Poli 2 (sargento)</code></td>
+            </tr>
+            <tr>
+              <td>Víctima</td>
+              <td>Descripción respetuosa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Técnicas de Tensión -->
+    <section class="section">
+      <h2 class="section-title">Técnicas de Tensión</h2>
+      <ul class="tecnicas-list">
+        <li class="tecnica-item">
+          <span class="tecnica-num">1</span>
+          <div class="tecnica-content">
+            <strong>Ralentizar</strong>
+            <span>Más detalle en momentos críticos</span>
+          </div>
+        </li>
+        <li class="tecnica-item">
+          <span class="tecnica-num">2</span>
+          <div class="tecnica-content">
+            <strong>Silencios</strong>
+            <span>"El silencio advierte a los policías..."</span>
+          </div>
+        </li>
+        <li class="tecnica-item">
+          <span class="tecnica-num">3</span>
+          <div class="tecnica-content">
+            <strong>Dosificar</strong>
+            <span>Revelar información progresivamente</span>
+          </div>
+        </li>
+        <li class="tecnica-item">
+          <span class="tecnica-num">4</span>
+          <div class="tecnica-content">
+            <strong>Sensorial</strong>
+            <span>Detalles táctiles, visuales, auditivos</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 5 Valores Troncales -->
+    <section class="section">
+      <h2 class="section-title">5 Valores Troncales</h2>
+      <div class="valores-grid">
+        <div class="valor-item">
+          <p class="valor-name">Integridad</p>
+          <p class="valor-desc">Transparencia sobre fuentes</p>
+        </div>
+        <div class="valor-item">
+          <p class="valor-name">Rigor</p>
+          <p class="valor-desc">Verificación de datos</p>
+        </div>
+        <div class="valor-item">
+          <p class="valor-name">Respeto</p>
+          <p class="valor-desc">Dignidad hacia víctimas</p>
+        </div>
+        <div class="valor-item">
+          <p class="valor-name">Credibilidad</p>
+          <p class="valor-desc">Citas de fuentes oficiales</p>
+        </div>
+        <div class="valor-item">
+          <p class="valor-name">Excelencia</p>
+          <p class="valor-desc">Calidad narrativa</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="section">
+      <h2 class="section-title">Checklist Antes de Entregar</h2>
+      <ul class="checklist">
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Saludo institucional incluido
+        </li>
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Hook en primeros 30 segundos
+        </li>
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Bloques OFF numerados
+        </li>
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Fuentes identificadas
+        </li>
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Indicaciones visuales en cada bloque
+        </li>
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Momentos sensibles marcados
+        </li>
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Jerga contextualizada
+        </li>
+        <li class="checklist-item">
+          <span class="checklist-box"></span>
+          Datos verificados
+        </li>
+      </ul>
+    </section>
+
+    <!-- Formatos de Salida -->
+    <section class="section">
+      <h2 class="section-title">Formatos de Salida</h2>
+      <div class="formatos-grid">
+        <div class="formato-card">
+          <p class="formato-name">Largo</p>
+          <p class="formato-duration">20-45 min</p>
+          <p class="formato-desc">Estructura completa, declaraciones judiciales</p>
+        </div>
+        <div class="formato-card">
+          <p class="formato-name">Medio</p>
+          <p class="formato-duration">10-20 min</p>
+          <p class="formato-desc">Un arco narrativo, condensado</p>
+        </div>
+        <div class="formato-card">
+          <p class="formato-name">Short</p>
+          <p class="formato-duration">< 60 seg</p>
+          <p class="formato-desc">Subtítulos quemados, hook en 3 seg, CTA final</p>
+        </div>
+        <div class="formato-card">
+          <p class="formato-name">Podcast</p>
+          <p class="formato-duration">Variable</p>
+          <p class="formato-desc">Sin visuales, descripciones verbales añadidas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline -->
+    <section class="section">
+      <h2 class="section-title">Pipeline</h2>
+      <div class="pipeline">
+        <div class="pipeline-step">
+          Investigación
+          <span class="pipeline-step-owner">(TCF)</span>
+        </div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step">
+          Guión
+          <span class="pipeline-step-owner">(TCF)</span>
+        </div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step">
+          Revisión YouTube
+          <span class="pipeline-step-owner">(Zoopa)</span>
+        </div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step">
+          Producción
+        </div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step">
+          Final Cut
+          <span class="pipeline-step-owner">(TCF)</span>
+        </div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step">
+          Publicación
+        </div>
+        <p class="pipeline-note">Máximo 3 rondas de revisión por episodio</p>
+      </div>
+    </section>
+
+    <!-- Contactos y Responsabilidades -->
+    <section class="section">
+      <h2 class="section-title">Responsabilidades</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Área</th>
+              <th>Responsable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Investigación y guión</td>
+              <td>TCF</td>
+            </tr>
+            <tr>
+              <td>Adaptación YouTube/SEO</td>
+              <td>Zoopa</td>
+            </tr>
+            <tr>
+              <td>Producción IA/Visual</td>
+              <td>Zoopa</td>
+            </tr>
+            <tr>
+              <td>Aprobación editorial</td>
+              <td>Carles Porta / TCF</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-brand">True Crime Factory</p>
+      <p class="footer-tagline">Llum a la foscor</p>
+      <p class="footer-version">Zoopa Network | v1.0 Diciembre 2025</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

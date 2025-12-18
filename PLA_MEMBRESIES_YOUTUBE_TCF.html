@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Pla de Membresies YouTube | True Crime Factory</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        
+        :root {
+            --primary-dark: #0d0d0d;
+            --secondary-dark: #1a1a1a;
+            --accent-red: #8b0000;
+            --gold: #d4af37;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+            --bg-cream: #faf8f5;
+            --bg-light: #f5f3f0;
+            --border-light: #e5e2dd;
+            --success: #16a34a;
+            --warning: #ea580c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 10pt;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: white;
+        }
+        
+        /* Cover */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a0a0a 50%, var(--secondary-dark) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60pt;
+            position: relative;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: var(--accent-red);
+            padding: 8pt 20pt;
+            font-size: 9pt;
+            font-weight: 600;
+            letter-spacing: 3pt;
+            text-transform: uppercase;
+            margin-bottom: 30pt;
+        }
+        
+        .cover-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 38pt;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 15pt;
+            text-transform: uppercase;
+            letter-spacing: 2pt;
+        }
+        
+        .cover-title span {
+            color: var(--gold);
+        }
+        
+        .cover-subtitle {
+            font-size: 12pt;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40pt;
+        }
+        
+        .cover-divider {
+            width: 80pt;
+            height: 3pt;
+            background: var(--gold);
+            margin: 0 auto 40pt;
+        }
+        
+        .cover-meta {
+            font-size: 10pt;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .cover-meta strong {
+            color: var(--gold);
+        }
+        
+        /* Content */
+        .content {
+            padding: 40pt;
+            max-width: 800pt;
+            margin: 0 auto;
+        }
+        
+        /* Section Headers */
+        .section {
+            margin-bottom: 35pt;
+            page-break-inside: avoid;
+        }
+        
+        .section-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 48pt;
+            font-weight: 800;
+            color: var(--accent-red);
+            opacity: 0.15;
+            line-height: 1;
+            margin-bottom: -25pt;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15pt;
+            margin-bottom: 20pt;
+            padding-bottom: 12pt;
+            border-bottom: 2pt solid var(--accent-red);
+        }
+        
+        .section-icon {
+            width: 40pt;
+            height: 40pt;
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16pt;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: var(--bg-cream);
+            border-left: 4pt solid var(--gold);
+            padding: 15pt 20pt;
+            margin-bottom: 20pt;
+            font-size: 10pt;
+        }
+        
+        .info-box.red {
+            border-left-color: var(--accent-red);
+            background: #fef2f2;
+        }
+        
+        .info-box.green {
+            border-left-color: var(--success);
+            background: #f0fdf4;
+        }
+        
+        .info-box h4 {
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--accent-red);
+            margin-bottom: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+        }
+        
+        /* Stage Box */
+        .stage-box {
+            background: white;
+            border: 1pt solid var(--border-light);
+            margin-bottom: 20pt;
+            overflow: hidden;
+        }
+        
+        .stage-header {
+            background: var(--primary-dark);
+            color: white;
+            padding: 12pt 15pt;
+            display: flex;
+            align-items: center;
+            gap: 12pt;
+        }
+        
+        .stage-header.gold {
+            background: linear-gradient(135deg, var(--gold) 0%, #b8962e 100%);
+            color: var(--primary-dark);
+        }
+        
+        .stage-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 24pt;
+            font-weight: 800;
+            opacity: 0.5;
+        }
+        
+        .stage-title {
+            font-size: 11pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+        }
+        
+        .stage-content {
+            padding: 20pt;
+        }
+        
+        .stage-content p {
+            margin-bottom: 12pt;
+            font-size: 9pt;
+            color: var(--text-secondary);
+        }
+        
+        .stage-content ul {
+            margin-bottom: 12pt;
+            padding-left: 20pt;
+            font-size: 9pt;
+        }
+        
+        .stage-content li {
+            margin-bottom: 6pt;
+        }
+        
+        .deliverable {
+            background: var(--bg-light);
+            padding: 12pt 15pt;
+            margin-top: 15pt;
+            border-left: 3pt solid var(--accent-red);
+        }
+        
+        .deliverable-label {
+            font-size: 8pt;
+            font-weight: 600;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            margin-bottom: 5pt;
+        }
+        
+        .deliverable-text {
+            font-size: 9pt;
+            font-weight: 500;
+        }
+        
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-bottom: 20pt;
+        }
+        
+        .data-table th {
+            background: var(--primary-dark);
+            color: white;
+            padding: 10pt 12pt;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            font-size: 8pt;
+        }
+        
+        .data-table td {
+            padding: 10pt 12pt;
+            border-bottom: 1pt solid var(--border-light);
+            vertical-align: top;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+        
+        .data-table .highlight {
+            background: var(--bg-cream);
+            font-weight: 600;
+        }
+        
+        /* Tier Cards */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15pt;
+            margin-bottom: 20pt;
+        }
+        
+        .tier-card {
+            border: 2pt solid var(--border-light);
+            overflow: hidden;
+        }
+        
+        .tier-card.recommended {
+            border-color: var(--gold);
+        }
+        
+        .tier-header {
+            background: var(--bg-light);
+            padding: 15pt;
+            text-align: center;
+            border-bottom: 1pt solid var(--border-light);
+        }
+        
+        .tier-card.recommended .tier-header {
+            background: var(--gold);
+            color: var(--primary-dark);
+        }
+        
+        .tier-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 14pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+        }
+        
+        .tier-price {
+            font-size: 28pt;
+            font-weight: 800;
+            color: var(--accent-red);
+            margin: 10pt 0;
+        }
+        
+        .tier-card.recommended .tier-price {
+            color: var(--primary-dark);
+        }
+        
+        .tier-price span {
+            font-size: 12pt;
+            font-weight: 400;
+        }
+        
+        .tier-body {
+            padding: 15pt;
+        }
+        
+        .tier-body ul {
+            list-style: none;
+            font-size: 9pt;
+        }
+        
+        .tier-body li {
+            padding: 8pt 0;
+            padding-left: 20pt;
+            position: relative;
+            border-bottom: 1pt solid var(--bg-light);
+        }
+        
+        .tier-body li:last-child {
+            border-bottom: none;
+        }
+        
+        .tier-body li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30pt;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8pt;
+            top: 0;
+            bottom: 0;
+            width: 2pt;
+            background: var(--border-light);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20pt;
+            padding-left: 25pt;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26pt;
+            top: 5pt;
+            width: 14pt;
+            height: 14pt;
+            background: var(--accent-red);
+            border-radius: 50%;
+        }
+        
+        .timeline-item.gold::before {
+            background: var(--gold);
+        }
+        
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            color: var(--accent-red);
+            font-weight: 600;
+            margin-bottom: 5pt;
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            font-size: 10pt;
+            margin-bottom: 5pt;
+        }
+        
+        .timeline-desc {
+            font-size: 9pt;
+            color: var(--text-secondary);
+        }
+        
+        /* Financial */
+        .financial-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15pt;
+            margin-bottom: 20pt;
+        }
+        
+        .financial-card {
+            background: var(--bg-light);
+            padding: 20pt;
+            text-align: center;
+            border-top: 4pt solid var(--accent-red);
+        }
+        
+        .financial-card.gold {
+            border-top-color: var(--gold);
+        }
+        
+        .financial-value {
+            font-family: 'Crimson Pro', serif;
+            font-size: 28pt;
+            font-weight: 800;
+            color: var(--accent-red);
+            margin-bottom: 5pt;
+        }
+        
+        .financial-card.gold .financial-value {
+            color: var(--gold);
+        }
+        
+        .financial-label {
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            color: var(--text-muted);
+        }
+        
+        /* KPI Table */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 10pt;
+            padding: 10pt 0;
+            border-bottom: 1pt solid var(--border-light);
+            font-size: 9pt;
+        }
+        
+        .kpi-row.header {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 8pt;
+            color: var(--text-muted);
+            letter-spacing: 0.5pt;
+        }
+        
+        .kpi-row .value {
+            font-family: 'JetBrains Mono', monospace;
+            text-align: right;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30pt;
+            border-top: 2pt solid var(--accent-red);
+            margin-top: 40pt;
+        }
+        
+        .footer-logo {
+            font-family: 'Crimson Pro', serif;
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--accent-red);
+            letter-spacing: 3pt;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER -->
+    <div class="cover">
+        <div class="cover-content">
+            <div class="cover-badge">Document Monografic</div>
+            <h1 class="cover-title">Pla de <span>Membresies</span><br>YouTube</h1>
+            <p class="cover-subtitle">Estrategia d'activacio, valor i monetitzacio recurrent</p>
+            <div class="cover-divider"></div>
+            <p class="cover-meta">
+                <strong>True Crime Factory</strong> | Zoopa Network MCN<br>
+                Desembre 2025 | v1.0
+            </p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- CONTEXT -->
+        <div class="section">
+            <div class="section-number">00</div>
+            <div class="section-header">
+                <div class="section-icon">C</div>
+                <h2 class="section-title">Context i Alineacio Estrategica</h2>
+            </div>
+
+            <div class="info-box">
+                <h4>Rol de les Membresies al Pla Estrategic TCF</h4>
+                <p>Les membresies de YouTube formen part de la <strong>Via 3: Ingressos per Subscripcio</strong> del model de negoci True Crime Factory. Segons el Pla Estrategic (PE 3.2), YouTube Members es configura a <strong>4.99 EUR/mes</strong> amb l'objectiu de generar ingressos recurrents i reforcar la comunitat premium.</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Document</th>
+                        <th>Referencia</th>
+                        <th>Contingut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pla Estrategic TCF</strong></td>
+                        <td>PE 3.2, Linia 472</td>
+                        <td>YouTube Members: 4.99 EUR/mes dins ecosistema subscripcio</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Respostes TCF-Zoopa</strong></td>
+                        <td>R 11.1, Linia 670</td>
+                        <td>Revenue split: 70% creador, 30% YouTube</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Proposta Enhanced</strong></td>
+                        <td>Linies 610, 617</td>
+                        <td>Projeccio: 500-1.000 EUR (any 1) → 1.500-3.000 EUR (any 2)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preparacio Canal</strong></td>
+                        <td>Linia 30</td>
+                        <td>Configurar 3 tiers amb benefits escalats</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box green">
+                <h4>Conclusio</h4>
+                <p>Les membresies <strong>estan confirmades</strong> com a part del pla. Aquest document desenvolupa l'estrategia operativa completa per activar-les amb exit, alineada amb els valors de rigor, respecte i excel·lencia de TCF.</p>
+            </div>
+        </div>
+
+        <!-- PROJECCIO FINANCERA -->
+        <div class="section">
+            <div class="section-number">01</div>
+            <div class="section-header">
+                <div class="section-icon">F</div>
+                <h2 class="section-title">Projeccio Financera Quantificada</h2>
+            </div>
+
+            <p style="margin-bottom: 20pt; color: var(--text-secondary);">Basant-nos en les dades dels documents estrategics i benchmarks del sector true crime:</p>
+
+            <div class="financial-grid">
+                <div class="financial-card">
+                    <div class="financial-value">4.99</div>
+                    <div class="financial-label">EUR / Mes (Tier 1)</div>
+                </div>
+                <div class="financial-card gold">
+                    <div class="financial-value">9.99</div>
+                    <div class="financial-label">EUR / Mes (Tier 2)</div>
+                </div>
+                <div class="financial-card">
+                    <div class="financial-value">70%</div>
+                    <div class="financial-label">Revenue Share</div>
+                </div>
+                <div class="financial-card gold">
+                    <div class="financial-value">5%</div>
+                    <div class="financial-label">Churn Objectiu</div>
+                </div>
+            </div>
+
+            <!-- ESCENARI BASE -->
+            <p style="font-size: 9pt; color: var(--text-muted); font-weight: 600; margin-bottom: 10pt; text-transform: uppercase; letter-spacing: 1pt;">Escenari Base (Conservador) - 25-35K subs fi Any 1</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Escenari</th>
+                        <th>Membres Tier 1</th>
+                        <th>Membres Tier 2</th>
+                        <th>Ingressos Bruts/Mes</th>
+                        <th>Net (70%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Any 1 - Base Pessimista</strong></td>
+                        <td>225</td>
+                        <td>75</td>
+                        <td>1.874 EUR</td>
+                        <td>1.312 EUR</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Any 1 - Base Esperat</strong></td>
+                        <td>300</td>
+                        <td>100</td>
+                        <td>2.494 EUR</td>
+                        <td>1.746 EUR</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Any 1 - Base Optimista</strong></td>
+                        <td>340</td>
+                        <td>110</td>
+                        <td>2.796 EUR</td>
+                        <td>1.957 EUR</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ESCENARI OBJECTIU -->
+            <div style="margin-top: 20pt; padding: 15pt; border: 2pt solid var(--gold); background: rgba(212,175,55,0.05);">
+                <p style="font-size: 9pt; color: var(--gold); font-weight: 600; margin-bottom: 10pt; text-transform: uppercase; letter-spacing: 1pt;">Escenari Objectiu (Alineat amb Pla Estrategic) - 50-70K subs fi Any 1</p>
+                <table class="data-table" style="margin-bottom: 0;">
+                    <thead>
+                        <tr>
+                            <th>Escenari</th>
+                            <th>Membres Tier 1</th>
+                            <th>Membres Tier 2</th>
+                            <th>Ingressos Bruts/Mes</th>
+                            <th>Net (70%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Any 1 - Objectiu Prudent</strong></td>
+                            <td>375</td>
+                            <td>125</td>
+                            <td>3.121 EUR</td>
+                            <td>2.185 EUR</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>Any 1 - Objectiu Esperat (PE 3.6)</strong></td>
+                            <td>490</td>
+                            <td>160</td>
+                            <td>4.044 EUR</td>
+                            <td>2.831 EUR</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Any 1 - Objectiu Ambicio</strong></td>
+                            <td>600</td>
+                            <td>200</td>
+                            <td>4.992 EUR</td>
+                            <td>3.494 EUR</td>
+                        </tr>
+                        <tr style="background: var(--bg-cream);">
+                            <td><strong>Any 2 - Objectiu (PE 4.4)</strong></td>
+                            <td>1.500</td>
+                            <td>500</td>
+                            <td>12.480 EUR</td>
+                            <td>8.736 EUR</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box" style="margin-top: 20pt;">
+                <h4>Hipotesis de Calcul</h4>
+                <ul style="margin: 0; padding-left: 20pt; font-size: 9pt;">
+                    <li><strong>Ratio conversio:</strong> 1-1.5% dels subscriptors del canal (benchmark sector true crime)</li>
+                    <li><strong>Distribucio tiers:</strong> 75% Tier 1 / 25% Tier 2 (piramide tipica)</li>
+                    <li><strong>Churn mensual:</strong> 5% (objectiu amb bon contingut exclusiu)</li>
+                    <li><strong>Base subscriptors Escenari Base:</strong> Any 1: 25-35K</li>
+                    <li><strong>Base subscriptors Escenari Objectiu:</strong> Any 1: 50-70K (PE 3.6), Any 2: 200K (PE 4.4)</li>
+                </ul>
+            </div>
+
+            <div class="info-box green">
+                <h4>Referencia Pla Estrategic</h4>
+                <p style="font-size: 9pt;">L'Escenari Objectiu esta alineat amb:</p>
+                <ul style="margin: 5pt 0 0 20pt; font-size: 9pt;">
+                    <li><strong>PE 3.4:</strong> "Suscripciones: €1.000-2.000/mes" (Mes 9-12) → Objectiu Esperat: ~1.400 EUR/mes (Jul-Des promig)</li>
+                    <li><strong>PE 3.6:</strong> "500+ suscriptores premium recurrentes" → Objectiu Esperat: 650 membres</li>
+                    <li><strong>PE 4.4:</strong> "2.000+ suscriptores premium, €12.000/mes" (Mes 24) → Objectiu Any 2: 2.000 membres, 8.736 EUR net</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ETAPA 1 -->
+        <div class="section">
+            <div class="section-number">02</div>
+            <div class="section-header">
+                <div class="section-icon">1</div>
+                <h2 class="section-title">Etapa 1: Definicio d'Objectius</h2>
+            </div>
+
+            <div class="stage-box">
+                <div class="stage-header">
+                    <span class="stage-number">01</span>
+                    <span class="stage-title">Rol Estrategic de les Membresies</span>
+                </div>
+                <div class="stage-content">
+                    <p>Abans d'oferir res, cal definir el proposit de les membresies dins l'ecosistema del negoci True Crime Factory.</p>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Pregunta Clau</th>
+                                <th>Resposta TCF</th>
+                                <th>Implicacio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Han de generar ingres recurrent?</td>
+                                <td><strong>SI</strong> - Via 3 del model</td>
+                                <td>Prioritzar valor tangible i sostenible</td>
+                            </tr>
+                            <tr>
+                                <td>Han de reforcar la comunitat?</td>
+                                <td><strong>SI</strong> - Core de la marca</td>
+                                <td>Incloure elements d'interaccio i exclusivitat</td>
+                            </tr>
+                            <tr>
+                                <td>Acces anticipat o continguts exclusius?</td>
+                                <td><strong>AMBDOS</strong></td>
+                                <td>2 tiers amb proposta diferenciada</td>
+                            </tr>
+                            <tr>
+                                <td>Complement a Substack/Spotify?</td>
+                                <td><strong>SI</strong> - Ecosistema integrat</td>
+                                <td>Evitar duplicitats, crear sinergies</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="deliverable">
+                        <div class="deliverable-label">Entregable Etapa 1</div>
+                        <div class="deliverable-text">Document intern "Rol Estrategic Membresies TCF" amb objectius, metriques d'exit i alineacio amb valors de marca.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box red">
+                <h4>Principi Fonamental</h4>
+                <p>Les membresies de TCF han de reflectir els valors de <strong>rigor, respecte i excel·lencia</strong>. Mai oferir contingut sensacionalista o que exploti el dolor de les victimes com a ganxo comercial. El valor afegit ha de ser <strong>profunditat, acces i comunitat</strong>, no morbo.</p>
+            </div>
+        </div>
+
+        <!-- ETAPA 2 -->
+        <div class="section">
+            <div class="section-number">03</div>
+            <div class="section-header">
+                <div class="section-icon">2</div>
+                <h2 class="section-title">Etapa 2: Disseny de Nivells</h2>
+            </div>
+
+            <p style="margin-bottom: 20pt; color: var(--text-secondary);">Proposta de 2 nivells (no mes de 2-3) per maximitzar conversio i minimitzar complexitat operativa:</p>
+
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <div class="tier-name">Investigador</div>
+                        <div class="tier-price">4.99<span> EUR/mes</span></div>
+                    </div>
+                    <div class="tier-body">
+                        <ul>
+                            <li>Acces anticipat 48h a nous episodis</li>
+                            <li>Badge exclusiu al xat i comentaris</li>
+                            <li>Emojis personalitzats de la comunitat</li>
+                            <li>Acces a Community Posts exclusius</li>
+                            <li>Mencio als credits de cada episodi</li>
+                            <li>Descompte 10% a esdeveniments</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tier-card recommended">
+                    <div class="tier-header">
+                        <div class="tier-name">Criminoleg</div>
+                        <div class="tier-price">9.99<span> EUR/mes</span></div>
+                    </div>
+                    <div class="tier-body">
+                        <ul>
+                            <li><strong>Tot del nivell Investigador +</strong></li>
+                            <li>1 video exclusiu mensual (analisi profund)</li>
+                            <li>Directe privat mensual Q&A amb Carles</li>
+                            <li>Versions esteses "Director's Cut"</li>
+                            <li>Dossiers PDF amb material addicional</li>
+                            <li>Acces a making-of del proces</li>
+                            <li>Vot en decisions editorials</li>
+                            <li>Descompte 25% a esdeveniments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Matriu de Viabilitat</h4>
+                <table class="data-table" style="margin-bottom: 0;">
+                    <thead>
+                        <tr>
+                            <th>Benefici</th>
+                            <th>Valor Percebut</th>
+                            <th>Esforc Produccio</th>
+                            <th>Sostenibilitat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Acces anticipat 48h</td>
+                            <td>Alt</td>
+                            <td>Zero (automatitzable)</td>
+                            <td>Molt alta</td>
+                        </tr>
+                        <tr>
+                            <td>Video exclusiu mensual</td>
+                            <td>Molt alt</td>
+                            <td>Mitja (1 dia/mes)</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Directe Q&A mensual</td>
+                            <td>Molt alt</td>
+                            <td>Baixa (1-2h/mes)</td>
+                            <td>Molt alta</td>
+                        </tr>
+                        <tr>
+                            <td>Dossiers PDF</td>
+                            <td>Alt</td>
+                            <td>Mitja (reaprofitable)</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Making-of</td>
+                            <td>Mitja-Alta</td>
+                            <td>Baixa (material existent)</td>
+                            <td>Molt alta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="deliverable">
+                <div class="deliverable-label">Entregable Etapa 2</div>
+                <div class="deliverable-text">Matriu de valor definitiva amb nivells, beneficis, viabilitat i esforc mensual estimat.</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ETAPA 3 -->
+        <div class="section">
+            <div class="section-number">04</div>
+            <div class="section-header">
+                <div class="section-icon">3</div>
+                <h2 class="section-title">Etapa 3: Continguts Especifics</h2>
+            </div>
+
+            <div class="stage-box">
+                <div class="stage-header gold">
+                    <span class="stage-number">03</span>
+                    <span class="stage-title">Calendari d'Entregables Mensuals</span>
+                </div>
+                <div class="stage-content">
+                    <p><strong>Principi clau:</strong> No confondre contingut existent amb contingut de valor afegit. Els membres han de rebre algo que NO poden obtenir de cap altra manera.</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Setmana</th>
+                                <th>Contingut Tier 1</th>
+                                <th>Contingut Tier 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Setmana 1</strong></td>
+                                <td>Community Post exclusiu amb avanc del mes</td>
+                                <td>+ Dossier PDF del cas anterior</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Setmana 2</strong></td>
+                                <td>Acces anticipat 48h a nou episodi</td>
+                                <td>+ Versio estesa "Director's Cut"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Setmana 3</strong></td>
+                                <td>Behind-scenes del proces (fotos/text)</td>
+                                <td>+ Video exclusiu d'analisi profund</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Setmana 4</strong></td>
+                                <td>Poll: vota el proper cas</td>
+                                <td>+ Directe privat Q&A amb Carles Porta</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Tipus de Continguts Recomanats per True Crime</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15pt; margin-top: 10pt;">
+                    <div>
+                        <strong style="color: var(--accent-red);">Alta Viabilitat:</strong>
+                        <ul style="font-size: 9pt; padding-left: 15pt; margin-top: 5pt;">
+                            <li>Explicacio narrativa del proces creatiu</li>
+                            <li>Material descartat (no sensible)</li>
+                            <li>Entrevistes exteses amb experts</li>
+                            <li>Cronologies interactives</li>
+                            <li>Mapes de localitzacions</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong style="color: var(--accent-red);">Requereix Cura:</strong>
+                        <ul style="font-size: 9pt; padding-left: 15pt; margin-top: 5pt;">
+                            <li>Analisi forense (validar amb experts)</li>
+                            <li>Teories alternatives (rigor)</li>
+                            <li>Contingut sobre victimes (respecte)</li>
+                            <li>Material d'investigacio activa (legal)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deliverable">
+                <div class="deliverable-label">Entregable Etapa 3</div>
+                <div class="deliverable-text">Calendari editorial de membresies amb 12 mesos planificats i carrega de treball estimada per setmana.</div>
+            </div>
+        </div>
+
+        <!-- ETAPA 4 -->
+        <div class="section">
+            <div class="section-number">05</div>
+            <div class="section-header">
+                <div class="section-icon">4</div>
+                <h2 class="section-title">Etapa 4: Preparacio Tecnica</h2>
+            </div>
+
+            <p style="margin-bottom: 20pt; color: var(--text-secondary);">Activar membresies no es nomes fer clic: cal tenir el sistema preparat abans del llancament.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Especificacions</th>
+                        <th>Responsable</th>
+                        <th>Temps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Video presentacio membresies</strong></td>
+                        <td>2-3 minuts, to personal de Carles, explica valor</td>
+                        <td>TCF + Zoopa</td>
+                        <td>1 dia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Miniatura membresies</strong></td>
+                        <td>Disseny premium, coherent amb branding canal</td>
+                        <td>Zoopa</td>
+                        <td>2h</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Textos de cada tier</strong></td>
+                        <td>Descripcions clares, beneficis en bullets</td>
+                        <td>TCF</td>
+                        <td>2h</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emojis personalitzats (x5)</strong></td>
+                        <td>PNG 48x48, tematica true crime elegant</td>
+                        <td>Zoopa</td>
+                        <td>3h</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Badges per nivell (x2)</strong></td>
+                        <td>PNG distintius, Investigador i Criminoleg</td>
+                        <td>Zoopa</td>
+                        <td>2h</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Primer contingut exclusiu</strong></td>
+                        <td>Video o directe preparat per dia 1</td>
+                        <td>TCF</td>
+                        <td>1 dia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Guia interna de moderacio</strong></td>
+                        <td>Protocols per gestionar comunitat membres</td>
+                        <td>Zoopa</td>
+                        <td>3h</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="deliverable">
+                <div class="deliverable-label">Entregable Etapa 4</div>
+                <div class="deliverable-text">Setup complet de membresies a YouTube Studio, llest per activar amb un clic.</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ETAPA 5 -->
+        <div class="section">
+            <div class="section-number">06</div>
+            <div class="section-header">
+                <div class="section-icon">5</div>
+                <h2 class="section-title">Etapa 5: Activacio Coordinada</h2>
+            </div>
+
+            <p style="margin-bottom: 20pt; color: var(--text-secondary);">Llancament amb pla de comunicacio multicanal, breu i contundent. <strong>Important:</strong> presentar com una opcio, mai com una obligacio.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">DIA -7</div>
+                    <div class="timeline-title">Teaser a Community Tab</div>
+                    <div class="timeline-desc">"Aviat podreu formar part d'algo especial..." Post enigmatic sense revelar detalls.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">DIA -3</div>
+                    <div class="timeline-title">Anunci a Newsletter</div>
+                    <div class="timeline-desc">Email a subscriptors Substack explicant que arriben les membresies amb beneficis exclusius.</div>
+                </div>
+                <div class="timeline-item gold">
+                    <div class="timeline-date">DIA 0</div>
+                    <div class="timeline-title">Llancament Oficial</div>
+                    <div class="timeline-desc">Video curt (2-3 min) de Carles explicant que inclou + activacio a YouTube Studio + post a totes les xarxes.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">DIA +1</div>
+                    <div class="timeline-title">Primer Contingut Exclusiu</div>
+                    <div class="timeline-desc">Publicar immediatament algo de valor per als primers membres (video, directe, o dossier).</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">DIA +3</div>
+                    <div class="timeline-title">Shorts/Reels Recordatori</div>
+                    <div class="timeline-desc">Pindoles curtes a TikTok, IG i YouTube Shorts mostrant que s'estan perdent els no-membres.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">DIA +7</div>
+                    <div class="timeline-title">Primer Directe Privat</div>
+                    <div class="timeline-desc">Q&A exclusiu amb membres Tier 2. Genera FOMO sa per als altres.</div>
+                </div>
+            </div>
+
+            <div class="deliverable">
+                <div class="deliverable-label">Entregable Etapa 5</div>
+                <div class="deliverable-text">Guio de llancament amb textos, imatges i calendari de publicacions coordinat.</div>
+            </div>
+        </div>
+
+        <!-- ETAPA 6 -->
+        <div class="section">
+            <div class="section-number">07</div>
+            <div class="section-header">
+                <div class="section-icon">6</div>
+                <h2 class="section-title">Etapa 6: Valor Intensiu (30 Dies)</h2>
+            </div>
+
+            <div class="info-box red">
+                <h4>Critica</h4>
+                <p>Els primers 30 dies defineixen el futur de les membresies. Si els membres no perceben valor real immediatament, el churn sera alt i la reputacio es ressentira. <strong>Cal sobre-entregar en aquest periode.</strong></p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Setmana</th>
+                        <th>Accio</th>
+                        <th>Objectiu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Setmana 1</strong></td>
+                        <td>2 videos exclusius de qualitat + benvinguda personalitzada</td>
+                        <td>Demostrar valor immediat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Setmana 2</strong></td>
+                        <td>Directe privat de 45-60 min</td>
+                        <td>Crear connexio personal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Setmana 3</strong></td>
+                        <td>Dossier PDF premium + making-of</td>
+                        <td>Mostrar profunditat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Setmana 4</strong></td>
+                        <td>Enquesta de feedback + video d'agra iment</td>
+                        <td>Escoltar i fidelitzar</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: var(--bg-light); padding: 20pt; margin-top: 20pt;">
+                <h4 style="font-size: 10pt; color: var(--accent-red); margin-bottom: 15pt;">KPIs a Monitoritzar (Primers 30 Dies)</h4>
+                <div class="kpi-row header">
+                    <div>Metrica</div>
+                    <div class="value">Objectiu</div>
+                    <div class="value">Alerta</div>
+                    <div class="value">Critic</div>
+                </div>
+                <div class="kpi-row">
+                    <div>Retencio membres Tier 1</div>
+                    <div class="value">&gt;90%</div>
+                    <div class="value">80-90%</div>
+                    <div class="value">&lt;80%</div>
+                </div>
+                <div class="kpi-row">
+                    <div>Retencio membres Tier 2</div>
+                    <div class="value">&gt;95%</div>
+                    <div class="value">85-95%</div>
+                    <div class="value">&lt;85%</div>
+                </div>
+                <div class="kpi-row">
+                    <div>Assistencia directes privats</div>
+                    <div class="value">&gt;40%</div>
+                    <div class="value">25-40%</div>
+                    <div class="value">&lt;25%</div>
+                </div>
+                <div class="kpi-row">
+                    <div>NPS membres (enquesta)</div>
+                    <div class="value">&gt;50</div>
+                    <div class="value">30-50</div>
+                    <div class="value">&lt;30</div>
+                </div>
+            </div>
+
+            <div class="deliverable">
+                <div class="deliverable-label">Entregable Etapa 6</div>
+                <div class="deliverable-text">Primer informe d'impacte: retencio, feedback qualitatiu i percepcio de valor.</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- ETAPA 7 -->
+        <div class="section">
+            <div class="section-number">08</div>
+            <div class="section-header">
+                <div class="section-icon">7</div>
+                <h2 class="section-title">Etapa 7: Optimitzacio i Estabilitzacio</h2>
+            </div>
+
+            <p style="margin-bottom: 20pt; color: var(--text-secondary);">Amb les dades reals dels primers 30-60 dies, s'ajusta l'oferta per maximitzar valor i sostenibilitat.</p>
+
+            <div class="stage-box">
+                <div class="stage-header">
+                    <span class="stage-number">07</span>
+                    <span class="stage-title">Decisions Basades en Dades</span>
+                </div>
+                <div class="stage-content">
+                    <table class="data-table" style="margin-bottom: 0;">
+                        <thead>
+                            <tr>
+                                <th>Pregunta</th>
+                                <th>Font de Dades</th>
+                                <th>Accio si Positiu</th>
+                                <th>Accio si Negatiu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Quins continguts tenen mes valor?</td>
+                                <td>Views exclusius, comentaris, enquestes</td>
+                                <td>Reforcar i replicar format</td>
+                                <td>Reduir frequencia o eliminar</td>
+                            </tr>
+                            <tr>
+                                <td>Directes privats funcionen?</td>
+                                <td>Assistencia, duracio, feedback</td>
+                                <td>Mantenir mensual</td>
+                                <td>Passar a trimestral o substituir</td>
+                            </tr>
+                            <tr>
+                                <td>El Tier 2 justifica el preu?</td>
+                                <td>Ratio Tier1/Tier2, churn per tier</td>
+                                <td>Mantenir estructura</td>
+                                <td>Ajustar preu o beneficis</td>
+                            </tr>
+                            <tr>
+                                <td>La carrega es sostenible?</td>
+                                <td>Hores dedicades, qualitat output</td>
+                                <td>Mantenir ritme</td>
+                                <td>Automatitzar o simplificar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="deliverable">
+                <div class="deliverable-label">Entregable Etapa 7</div>
+                <div class="deliverable-text">Versio 2.0 del sistema de membresies amb ajustos validats per dades reals.</div>
+            </div>
+        </div>
+
+        <!-- ETAPA 8 -->
+        <div class="section">
+            <div class="section-number">09</div>
+            <div class="section-header">
+                <div class="section-icon">8</div>
+                <h2 class="section-title">Etapa 8: Integracio Ecosistema Global</h2>
+            </div>
+
+            <p style="margin-bottom: 20pt; color: var(--text-secondary);">Les membresies no han de viure aillades. Cal integrar-les amb tot l'ecosistema TCF per crear un <strong>passaport premium</strong> dins l'univers narratiu.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Plataforma</th>
+                        <th>Integracio amb Membresies</th>
+                        <th>Benefici Creuat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Substack</strong></td>
+                        <td>Acces a newsletter premium per membres Tier 2</td>
+                        <td>Redueix subscripcions duplicades, mes valor percebut</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spotify</strong></td>
+                        <td>Audios exclusius anunciats als membres</td>
+                        <td>Cross-promotion, mes escoltes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Esdeveniments</strong></td>
+                        <td>Descomptes (10-25%) + acces prioritari</td>
+                        <td>Conversio presencial, fidelitzacio</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Web TCF</strong></td>
+                        <td>Area privada amb tot el contingut exclusiu</td>
+                        <td>Hub central, menys dependencia YouTube</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Drops/Dossiers</strong></td>
+                        <td>Acces anticipat o descompte exclusiu</td>
+                        <td>Monetitzacio addicional, escassetat</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box green">
+                <h4>Visio Final</h4>
+                <p>La membresia es converteix en un <strong>passaport premium</strong> que dona acces transversal a tot l'univers True Crime Factory: videos, audios, textos, esdeveniments i productes. Un unic pagament, multiples beneficis coordinats.</p>
+            </div>
+
+            <div class="deliverable">
+                <div class="deliverable-label">Entregable Etapa 8</div>
+                <div class="deliverable-text">Mapa d'integracio transversal de beneficis amb fluxos entre plataformes.</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- CALENDARI 2026 DETALLAT -->
+        <div class="section">
+            <div class="section-number">10</div>
+            <div class="section-header">
+                <div class="section-icon">26</div>
+                <h2 class="section-title">Desglos Calendari 2026</h2>
+            </div>
+
+            <div class="info-box">
+                <h4>Context del Llancament del Canal</h4>
+                <p>Segons la proposta TCF-Zoopa (RESPOSTES R 5.3), el canal seguira aquest calendari:</p>
+                <ul style="margin: 10pt 0 0 20pt; font-size: 9pt;">
+                    <li><strong>Desembre 2025 - Gener 2026:</strong> Auditoria, setup, produccio pilots</li>
+                    <li><strong>Febrer 2026:</strong> Soft launch (5-6 capitols sense promocio massiva)</li>
+                    <li><strong>Marc-Abril 2026:</strong> Hard launch (paid media + sincronitzacio Crims-TV3)</li>
+                </ul>
+                <p style="margin-top: 10pt;"><strong>Les membresies NO s'activen fins tenir minim 10K-15K subscriptors</strong>, estimat per Q3 2026.</p>
+            </div>
+
+            <!-- NOTA ESCENARIS -->
+            <div class="info-box red">
+                <h4>Dos Escenaris de Projeccio</h4>
+                <p>Aquest document presenta <strong>dos escenaris diferenciats</strong> per a les projeccions de subscriptors i membres:</p>
+                <ul style="margin: 10pt 0 0 20pt; font-size: 9pt;">
+                    <li><strong>ESCENARI BASE (Conservador):</strong> Projeccio prudent amb creixement organic moderat. Fi 2026: 25.000-35.000 subscriptors.</li>
+                    <li><strong>ESCENARI OBJECTIU (Alineat amb Pla Estrategic):</strong> Projeccio alineada amb els objectius del <em>Plan Estrategico True Crime Factory</em> (PE Fase 3: 50.000-100.000 subs). Aquest es l'escenari al qual aspirem i pel qual treballem.</li>
+                </ul>
+                <p style="margin-top: 10pt;">L'<strong>Escenari Objectiu</strong> esta directament extret del Pla Estrategic TCF (Fases 2-3, Mesos 5-18) i representa el compromis de creixement acordat amb True Crime Factory.</p>
+            </div>
+
+            <!-- TIMELINE VISUAL 2026 -->
+            <div style="background: var(--primary-dark); color: white; padding: 25pt; margin-bottom: 20pt;">
+                <h4 style="color: var(--gold); text-align: center; margin-bottom: 20pt; text-transform: uppercase; letter-spacing: 2pt;">Roadmap Membresies 2026</h4>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10pt; text-align: center; font-size: 8pt;">
+                    <!-- Q1 -->
+                    <div style="background: rgba(255,255,255,0.1); padding: 15pt;">
+                        <div style="color: var(--gold); font-weight: 600; margin-bottom: 10pt;">Q1 2026</div>
+                        <div style="font-size: 7pt; opacity: 0.7;">GEN - FEB - MAR</div>
+                        <div style="margin-top: 10pt; padding: 8pt; background: rgba(139,0,0,0.5);">SOFT LAUNCH CANAL</div>
+                        <div style="margin-top: 5pt; font-size: 7pt;">Membresies: NO</div>
+                    </div>
+                    <!-- Q2 -->
+                    <div style="background: rgba(255,255,255,0.1); padding: 15pt;">
+                        <div style="color: var(--gold); font-weight: 600; margin-bottom: 10pt;">Q2 2026</div>
+                        <div style="font-size: 7pt; opacity: 0.7;">ABR - MAI - JUN</div>
+                        <div style="margin-top: 10pt; padding: 8pt; background: rgba(139,0,0,0.8);">HARD LAUNCH</div>
+                        <div style="margin-top: 5pt; font-size: 7pt;">Membresies: PREPARACIO</div>
+                    </div>
+                    <!-- Q3 -->
+                    <div style="background: rgba(212,175,55,0.3); padding: 15pt; border: 2pt solid var(--gold);">
+                        <div style="color: var(--gold); font-weight: 600; margin-bottom: 10pt;">Q3 2026</div>
+                        <div style="font-size: 7pt; opacity: 0.7;">JUL - AGO - SET</div>
+                        <div style="margin-top: 10pt; padding: 8pt; background: var(--gold); color: var(--primary-dark); font-weight: 600;">ACTIVACIO MEMBRESIES</div>
+                        <div style="margin-top: 5pt; font-size: 7pt;">Objectiu: 10-15K subs</div>
+                    </div>
+                    <!-- Q4 -->
+                    <div style="background: rgba(255,255,255,0.1); padding: 15pt;">
+                        <div style="color: var(--gold); font-weight: 600; margin-bottom: 10pt;">Q4 2026</div>
+                        <div style="font-size: 7pt; opacity: 0.7;">OCT - NOV - DES</div>
+                        <div style="margin-top: 10pt; padding: 8pt; background: rgba(22,163,74,0.5);">CONSOLIDACIO</div>
+                        <div style="margin-top: 5pt; font-size: 7pt;">Membresies: OPTIMITZACIO</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAULA ESCENARI BASE -->
+            <h4 style="color: var(--text-muted); font-size: 10pt; margin-bottom: 10pt; text-transform: uppercase; letter-spacing: 1pt;">Escenari Base (Conservador)</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Mes</th>
+                        <th>Fase Canal</th>
+                        <th>Accio Membresies</th>
+                        <th>Subs Estimats</th>
+                        <th>Membres Estimats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gener 2026</strong></td>
+                        <td>Pre-llancament</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Febrer 2026</strong></td>
+                        <td>Soft launch</td>
+                        <td>-</td>
+                        <td>1.000-2.000</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marc 2026</strong></td>
+                        <td>Hard launch</td>
+                        <td>Etapa 1: Definir objectius</td>
+                        <td>3.000-5.000</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Abril 2026</strong></td>
+                        <td>Creixement actiu</td>
+                        <td>Etapa 2: Dissenyar nivells</td>
+                        <td>5.000-8.000</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maig 2026</strong></td>
+                        <td>Creixement actiu</td>
+                        <td>Etapa 3: Planificar continguts</td>
+                        <td>7.000-10.000</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Juny 2026</strong></td>
+                        <td>Consolidacio inicial</td>
+                        <td>Etapa 4: Setup tecnic complet</td>
+                        <td>10.000-12.000</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>Juliol 2026</strong></td>
+                        <td>Consolidacio</td>
+                        <td>Etapa 5: ACTIVACIO MEMBRESIES</td>
+                        <td>12.000-15.000</td>
+                        <td>100-150</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agost 2026</strong></td>
+                        <td>Estabilitzacio</td>
+                        <td>Etapa 6: Valor intensiu (30 dies)</td>
+                        <td>14.000-18.000</td>
+                        <td>150-200</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Setembre 2026</strong></td>
+                        <td>Creixement sostingut</td>
+                        <td>Etapa 6: Fi valor intensiu</td>
+                        <td>16.000-22.000</td>
+                        <td>180-250</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Octubre 2026</strong></td>
+                        <td>Creixement sostingut</td>
+                        <td>Etapa 7: Optimitzacio</td>
+                        <td>18.000-25.000</td>
+                        <td>200-300</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Novembre 2026</strong></td>
+                        <td>Escalada</td>
+                        <td>Etapa 8: Integracio ecosistema</td>
+                        <td>22.000-30.000</td>
+                        <td>250-350</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>Desembre 2026</strong></td>
+                        <td>Fi Any 1</td>
+                        <td>Membresies consolidades</td>
+                        <td>25.000-35.000</td>
+                        <td>300-450</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- TAULA ESCENARI OBJECTIU -->
+            <div style="margin-top: 25pt; padding: 15pt; border: 2pt solid var(--gold); background: rgba(212,175,55,0.05);">
+                <h4 style="color: var(--gold); font-size: 10pt; margin-bottom: 10pt; text-transform: uppercase; letter-spacing: 1pt;">Escenari Objectiu (Alineat amb Pla Estrategic TCF)</h4>
+                <p style="font-size: 8pt; color: var(--text-secondary); margin-bottom: 15pt;"><strong>Font:</strong> Plan Estrategico True Crime Factory, Fases 2-3 (PE 2.4, KPIs). Aquest es l'escenari compromis amb TCF.</p>
+                <table class="data-table" style="margin-bottom: 0;">
+                    <thead>
+                        <tr>
+                            <th>Mes</th>
+                            <th>Fase Canal</th>
+                            <th>Subs Objectiu (PE)</th>
+                            <th>Membres Estimats (1-2%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Febrer 2026</strong></td>
+                            <td>Soft launch</td>
+                            <td>2.000-3.000</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maig 2026</strong> (Mes 5)</td>
+                            <td>Creixement actiu</td>
+                            <td>5.000 (PE 2.4)</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Juliol 2026</strong></td>
+                            <td>ACTIVACIO MEMBRESIES</td>
+                            <td>15.000 (PE 2.4)</td>
+                            <td>150-300</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Agost 2026</strong> (Mes 8)</td>
+                            <td>Consolidacio</td>
+                            <td>15.000-20.000</td>
+                            <td>200-400</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Octubre 2026</strong></td>
+                            <td>Escalada</td>
+                            <td>30.000-40.000</td>
+                            <td>350-500</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>Desembre 2026</strong> (Mes 12)</td>
+                            <td>Fi Any 1</td>
+                            <td><strong>50.000-70.000</strong></td>
+                            <td><strong>500-800</strong></td>
+                        </tr>
+                        <tr style="background: var(--bg-cream);">
+                            <td><strong>Juny 2027</strong> (Mes 18)</td>
+                            <td>Escalat Fase 3</td>
+                            <td><strong>100.000</strong> (PE 3.6)</td>
+                            <td><strong>1.000-1.500</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box green" style="margin-top: 20pt;">
+                <h4>Referencies del Pla Estrategic</h4>
+                <ul style="font-size: 9pt; margin: 0; padding-left: 20pt;">
+                    <li><strong>PE 2.4:</strong> "Objetivo Mes 5: 5.000 subs | Objetivo Mes 8: 15.000 subs"</li>
+                    <li><strong>PE 3.6:</strong> "50.000-100.000 suscriptores YouTube" (Fi Fase 3, Mes 18)</li>
+                    <li><strong>PE 3.2:</strong> "500+ suscriptores premium recurrentes" (Entregable Fase 3)</li>
+                    <li><strong>PE 4.4:</strong> "200.000+ suscriptores, 2.000+ suscriptores premium" (Mes 24)</li>
+                </ul>
+            </div>
+
+            <!-- PROJECCIO INGRESSOS - ESCENARI BASE -->
+            <div style="background: var(--bg-light); padding: 20pt; margin-top: 20pt;">
+                <h4 style="font-size: 11pt; color: var(--text-muted); margin-bottom: 5pt;">Projeccio Ingressos Membresies 2026</h4>
+                <p style="font-size: 9pt; color: var(--text-muted); margin-bottom: 15pt; font-weight: 600;">ESCENARI BASE (Conservador) - 25K-35K subs fi 2026</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15pt; margin-bottom: 15pt;">
+                    <div style="background: white; padding: 15pt; text-align: center; border-top: 3pt solid var(--text-muted);">
+                        <div style="font-size: 8pt; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1pt;">Pessimista</div>
+                        <div style="font-family: 'Crimson Pro', serif; font-size: 24pt; font-weight: 800; color: var(--text-secondary); margin: 10pt 0;">2.100 EUR</div>
+                        <div style="font-size: 8pt; color: var(--text-muted);">Total Jul-Des 2026</div>
+                        <div style="font-size: 8pt; margin-top: 5pt;">~350 EUR/mes | 300 membres</div>
+                    </div>
+                    <div style="background: white; padding: 15pt; text-align: center; border-top: 3pt solid var(--text-secondary);">
+                        <div style="font-size: 8pt; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1pt;">Base Esperat</div>
+                        <div style="font-family: 'Crimson Pro', serif; font-size: 24pt; font-weight: 800; color: var(--text-secondary); margin: 10pt 0;">3.200 EUR</div>
+                        <div style="font-size: 8pt; color: var(--text-muted);">Total Jul-Des 2026</div>
+                        <div style="font-size: 8pt; margin-top: 5pt;">~530 EUR/mes | 400 membres</div>
+                    </div>
+                    <div style="background: white; padding: 15pt; text-align: center; border-top: 3pt solid var(--text-secondary);">
+                        <div style="font-size: 8pt; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1pt;">Base Optimista</div>
+                        <div style="font-family: 'Crimson Pro', serif; font-size: 24pt; font-weight: 800; color: var(--text-secondary); margin: 10pt 0;">4.500 EUR</div>
+                        <div style="font-size: 8pt; color: var(--text-muted);">Total Jul-Des 2026</div>
+                        <div style="font-size: 8pt; margin-top: 5pt;">~750 EUR/mes | 450 membres</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECCIO INGRESSOS - ESCENARI OBJECTIU -->
+            <div style="background: rgba(212,175,55,0.1); padding: 20pt; margin-top: 15pt; border: 2pt solid var(--gold);">
+                <h4 style="font-size: 11pt; color: var(--gold); margin-bottom: 5pt;">Projeccio Ingressos Membresies 2026</h4>
+                <p style="font-size: 9pt; color: var(--text-secondary); margin-bottom: 15pt; font-weight: 600;">ESCENARI OBJECTIU (Alineat amb Pla Estrategic) - 50K-70K subs fi 2026</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15pt; margin-bottom: 15pt;">
+                    <div style="background: white; padding: 15pt; text-align: center; border-top: 3pt solid var(--gold);">
+                        <div style="font-size: 8pt; color: var(--gold); text-transform: uppercase; letter-spacing: 1pt;">Objectiu Prudent</div>
+                        <div style="font-family: 'Crimson Pro', serif; font-size: 24pt; font-weight: 800; color: var(--gold); margin: 10pt 0;">4.200 EUR</div>
+                        <div style="font-size: 8pt; color: var(--text-muted);">Total Jul-Des 2026</div>
+                        <div style="font-size: 8pt; margin-top: 5pt;">~700 EUR/mes | 500 membres</div>
+                    </div>
+                    <div style="background: white; padding: 15pt; text-align: center; border-top: 3pt solid var(--gold);">
+                        <div style="font-size: 8pt; color: var(--gold); text-transform: uppercase; letter-spacing: 1pt;">Objectiu Esperat</div>
+                        <div style="font-family: 'Crimson Pro', serif; font-size: 24pt; font-weight: 800; color: var(--gold); margin: 10pt 0;">5.900 EUR</div>
+                        <div style="font-size: 8pt; color: var(--text-muted);">Total Jul-Des 2026</div>
+                        <div style="font-size: 8pt; margin-top: 5pt;">~980 EUR/mes | 650 membres</div>
+                    </div>
+                    <div style="background: white; padding: 15pt; text-align: center; border-top: 3pt solid var(--success);">
+                        <div style="font-size: 8pt; color: var(--success); text-transform: uppercase; letter-spacing: 1pt;">Objectiu Ambicio</div>
+                        <div style="font-family: 'Crimson Pro', serif; font-size: 24pt; font-weight: 800; color: var(--success); margin: 10pt 0;">8.400 EUR</div>
+                        <div style="font-size: 8pt; color: var(--text-muted);">Total Jul-Des 2026</div>
+                        <div style="font-size: 8pt; margin-top: 5pt;">~1.400 EUR/mes | 800 membres</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 8pt; color: var(--text-secondary); font-style: italic; margin-bottom: 10pt;">
+                    * Calcul basat en: 70% revenue share YouTube, distribucio 75% Tier 1 (4.99EUR) / 25% Tier 2 (9.99EUR), ratio conversio 1-1.5%
+                </div>
+
+                <div style="background: white; padding: 12pt; border-left: 3pt solid var(--gold);">
+                    <p style="font-size: 9pt; margin: 0;"><strong>Referencia Pla Estrategic (PE 3.4):</strong> "Suscripciones: €1.000-2.000/mes" (Mesos 9-12). L'Escenari Objectiu Esperat (~980 EUR/mes) esta alineat amb aquesta projeccio.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- DESGLOS TRIMESTRAL DETALLAT -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">Q</div>
+                <h2 class="section-title">Desglos per Trimestres 2026</h2>
+            </div>
+
+            <!-- Q1 -->
+            <div class="stage-box" style="margin-bottom: 20pt;">
+                <div class="stage-header" style="background: #6b7280;">
+                    <span class="stage-number">Q1</span>
+                    <span class="stage-title">Gener - Marc 2026: Pre-Llancament i Soft Launch</span>
+                </div>
+                <div class="stage-content">
+                    <p><strong>Focus:</strong> Llancament del canal, NO membresies.</p>
+                    <table class="data-table" style="margin-bottom: 0;">
+                        <thead>
+                            <tr>
+                                <th>Accio</th>
+                                <th>Timing</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Publicacio primers 5-6 capitols pilot</td>
+                                <td>Febrer</td>
+                                <td>Testejar format, thumbnails, engagement</td>
+                            </tr>
+                            <tr>
+                                <td>Monitoritzacio metriques inicials</td>
+                                <td>Feb-Mar</td>
+                                <td>CTR, retencio, comentaris</td>
+                            </tr>
+                            <tr>
+                                <td>Hard launch amb paid media</td>
+                                <td>Marc</td>
+                                <td>Sincronitzacio amb Crims-TV3</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-red);">Membresies: Definir objectius (Etapa 1)</td>
+                                <td>Marc</td>
+                                <td>Document intern, NO activacio publica</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="stage-box" style="margin-bottom: 20pt;">
+                <div class="stage-header" style="background: var(--accent-red);">
+                    <span class="stage-number">Q2</span>
+                    <span class="stage-title">Abril - Juny 2026: Creixement i Preparacio</span>
+                </div>
+                <div class="stage-content">
+                    <p><strong>Focus:</strong> Creixer en subscriptors, preparar membresies en background.</p>
+                    <table class="data-table" style="margin-bottom: 0;">
+                        <thead>
+                            <tr>
+                                <th>Accio</th>
+                                <th>Timing</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Publicacio regular (1-2 capitols/setmana)</td>
+                                <td>Ongoing</td>
+                                <td>Mantenir ritme i qualitat</td>
+                            </tr>
+                            <tr>
+                                <td>Campanyes paid media continuades</td>
+                                <td>Ongoing</td>
+                                <td>Objectiu: 10K subs a finals Q2</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-red);">Membresies: Disseny nivells (Etapa 2)</td>
+                                <td>Abril</td>
+                                <td>Matriu de valor, preus, beneficis</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-red);">Membresies: Planificar continguts (Etapa 3)</td>
+                                <td>Maig</td>
+                                <td>Calendari 12 mesos</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-red);">Membresies: Setup tecnic (Etapa 4)</td>
+                                <td>Juny</td>
+                                <td>Tot llest per activar</td>
+                            </tr>
+                            <tr>
+                                <td>Teaser membresies a Community Tab</td>
+                                <td>Finals Juny</td>
+                                <td>"Algo especial arriba aviat..."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="stage-box" style="margin-bottom: 20pt;">
+                <div class="stage-header gold">
+                    <span class="stage-number">Q3</span>
+                    <span class="stage-title">Juliol - Setembre 2026: Activacio i Valor Intensiu</span>
+                </div>
+                <div class="stage-content">
+                    <p><strong>Focus:</strong> ACTIVACIO MEMBRESIES + demostracio de valor.</p>
+                    <table class="data-table" style="margin-bottom: 0;">
+                        <thead>
+                            <tr>
+                                <th>Accio</th>
+                                <th>Timing</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight">
+                                <td style="font-weight: 600;">ACTIVACIO MEMBRESIES (Etapa 5)</td>
+                                <td>1a setmana Juliol</td>
+                                <td>Video Carles + llancament coordinat</td>
+                            </tr>
+                            <tr>
+                                <td>Primer contingut exclusiu</td>
+                                <td>Juliol setmana 1</td>
+                                <td>Video o directe premium</td>
+                            </tr>
+                            <tr>
+                                <td>Valor intensiu - 2-3 videos exclusius</td>
+                                <td>Juliol</td>
+                                <td>Sobre-entregar per fidelitzar</td>
+                            </tr>
+                            <tr>
+                                <td>Primer directe privat Q&A</td>
+                                <td>Finals Juliol</td>
+                                <td>Tier 2 exclusiu</td>
+                            </tr>
+                            <tr>
+                                <td>Enquesta feedback membres</td>
+                                <td>Agost</td>
+                                <td>Recollir percepcio valor</td>
+                            </tr>
+                            <tr>
+                                <td>Informe impacte primers 30 dies</td>
+                                <td>Agost</td>
+                                <td>Retencio, NPS, engagement</td>
+                            </tr>
+                            <tr>
+                                <td>Segon directe privat Q&A</td>
+                                <td>Finals Agost</td>
+                                <td>Mantenir ritme mensual</td>
+                            </tr>
+                            <tr>
+                                <td>Avaluacio i ajustos inicials</td>
+                                <td>Setembre</td>
+                                <td>Que funciona, que no</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="info-box red" style="margin-top: 15pt; margin-bottom: 0;">
+                        <h4>Periode Critic</h4>
+                        <p>Els 90 primers dies (Jul-Set) son decisius. Si no es demostra valor, el churn sera alt. Prioritzar qualitat sobre quantitat.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="stage-box">
+                <div class="stage-header" style="background: var(--success);">
+                    <span class="stage-number">Q4</span>
+                    <span class="stage-title">Octubre - Desembre 2026: Optimitzacio i Integracio</span>
+                </div>
+                <div class="stage-content">
+                    <p><strong>Focus:</strong> Consolidar, optimitzar i integrar amb ecosistema.</p>
+                    <table class="data-table" style="margin-bottom: 0;">
+                        <thead>
+                            <tr>
+                                <th>Accio</th>
+                                <th>Timing</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--accent-red);">Membresies: Versio 2.0 (Etapa 7)</td>
+                                <td>Octubre</td>
+                                <td>Ajustos basats en dades reals</td>
+                            </tr>
+                            <tr>
+                                <td>Decidir: mantenir, ajustar o eliminar beneficis</td>
+                                <td>Octubre</td>
+                                <td>Basant-se en feedback i metriques</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-red);">Membresies: Integracio ecosistema (Etapa 8)</td>
+                                <td>Novembre</td>
+                                <td>Substack, Spotify, esdeveniments</td>
+                            </tr>
+                            <tr>
+                                <td>Campanya especial fi d'any</td>
+                                <td>Desembre</td>
+                                <td>Promocio membresies + contingut especial</td>
+                            </tr>
+                            <tr>
+                                <td>Informe anual membresies</td>
+                                <td>Finals Desembre</td>
+                                <td>Resultats, aprenentatges, pla 2027</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRONOGRAMA GENERIC ORIGINAL (SIMPLIFICAT) -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">R</div>
+                <h2 class="section-title">Resum Cronograma 8 Etapes</h2>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data 2026</th>
+                        <th>Etapa</th>
+                        <th>Entregables</th>
+                        <th>Responsable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Marc 2026</strong></td>
+                        <td>Etapa 1: Definicio objectius</td>
+                        <td>Document rol estrategic</td>
+                        <td>TCF + Zoopa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Abril 2026</strong></td>
+                        <td>Etapa 2: Disseny nivells</td>
+                        <td>Matriu de valor</td>
+                        <td>Zoopa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maig 2026</strong></td>
+                        <td>Etapa 3: Continguts</td>
+                        <td>Calendari 12 mesos</td>
+                        <td>TCF</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Juny 2026</strong></td>
+                        <td>Etapa 4: Setup tecnic</td>
+                        <td>Membresies llestes</td>
+                        <td>Zoopa</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>Juliol 2026</strong></td>
+                        <td>Etapa 5: LLANCAMENT</td>
+                        <td>Activacio publica</td>
+                        <td>TCF + Zoopa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jul-Set 2026</strong></td>
+                        <td>Etapa 6: Valor intensiu</td>
+                        <td>Informe impacte</td>
+                        <td>TCF + Zoopa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Octubre 2026</strong></td>
+                        <td>Etapa 7: Optimitzacio</td>
+                        <td>Versio 2.0</td>
+                        <td>Zoopa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov-Des 2026</strong></td>
+                        <td>Etapa 8: Integracio</td>
+                        <td>Mapa ecosistema</td>
+                        <td>TCF + Zoopa</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <h4>Prerequisit Clau</h4>
+                <p>Les membresies s'activen a <strong>Juliol 2026</strong>, quan el canal tindra estimadament <strong>12.000-15.000 subscriptors</strong> i un ritme de publicacio estable (4+ mesos d'activitat). Activar-les abans seria prematur i podria generar percepcio de fracas.</p>
+            </div>
+        </div>
+
+        <!-- CHECKLIST ALINEACIO -->
+        <div class="section">
+            <div class="section-header" style="border-bottom-color: var(--gold);">
+                <div class="section-icon" style="background: var(--gold); color: var(--primary-dark);">A</div>
+                <h2 class="section-title">Alineacio amb Documents TCF</h2>
+            </div>
+
+            <div class="info-box" style="margin-bottom: 20pt;">
+                <h4>Nota sobre Escenaris</h4>
+                <p>L'<strong>Escenari Objectiu</strong> d'aquest document esta directament extret i alineat amb el <em>Plan Estrategico True Crime Factory</em> i les <em>Respostes TCF-Zoopa</em>. L'Escenari Base es una projeccio conservadora per gestio de riscos.</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Pla Membresies</th>
+                        <th>Pla Estrategic TCF</th>
+                        <th>Estat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Preu Tier 1</td>
+                        <td>4.99 EUR</td>
+                        <td>PE 3.2: 4.99 EUR</td>
+                        <td style="color: var(--success); font-weight: 600;">IDENTIC</td>
+                    </tr>
+                    <tr>
+                        <td>Preu Tier 2</td>
+                        <td>9.99 EUR</td>
+                        <td>No especificat</td>
+                        <td style="color: var(--warning); font-weight: 600;">NOU (RECOMANAT)</td>
+                    </tr>
+                    <tr>
+                        <td>Revenue Share</td>
+                        <td>70% creador</td>
+                        <td>R 11.1: 70%</td>
+                        <td style="color: var(--success); font-weight: 600;">IDENTIC</td>
+                    </tr>
+                    <tr>
+                        <td>Subscriptors Fi Any 1</td>
+                        <td>Base: 25-35K | <strong>Objectiu: 50-70K</strong></td>
+                        <td>PE 3.6: 50.000-100.000</td>
+                        <td style="color: var(--success); font-weight: 600;">OBJECTIU ALINEAT</td>
+                    </tr>
+                    <tr>
+                        <td>Membres Premium Fi Any 1</td>
+                        <td>Base: 300-450 | <strong>Objectiu: 500-800</strong></td>
+                        <td>PE 3.6: 500+ premium</td>
+                        <td style="color: var(--success); font-weight: 600;">OBJECTIU ALINEAT</td>
+                    </tr>
+                    <tr>
+                        <td>Ingressos Membresies Any 1</td>
+                        <td>Base: ~530 EUR/mes | <strong>Objectiu: ~980 EUR/mes</strong></td>
+                        <td>PE 3.4: 1.000-2.000 EUR/mes</td>
+                        <td style="color: var(--success); font-weight: 600;">OBJECTIU ALINEAT</td>
+                    </tr>
+                    <tr>
+                        <td>Subscriptors Mes 18</td>
+                        <td><strong>Objectiu: 100.000</strong></td>
+                        <td>PE 3.6: 50.000-100.000</td>
+                        <td style="color: var(--success); font-weight: 600;">IDENTIC</td>
+                    </tr>
+                    <tr>
+                        <td>Integracio Substack</td>
+                        <td>Membres Tier 2</td>
+                        <td>PE: Ecosistema integrat</td>
+                        <td style="color: var(--success); font-weight: 600;">ALINEAT</td>
+                    </tr>
+                    <tr>
+                        <td>Valors etics</td>
+                        <td>Rigor, respecte, excel·lencia</td>
+                        <td>5 valors troncals</td>
+                        <td style="color: var(--success); font-weight: 600;">ALINEAT</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box green" style="margin-top: 20pt;">
+                <h4>Conclusio d'Alineacio</h4>
+                <p>L'<strong>Escenari Objectiu</strong> d'aquest Pla de Membresies esta <strong>100% alineat</strong> amb les projeccions del Plan Estrategico True Crime Factory. Les xifres de subscriptors (50-70K any 1, 100K mes 18), membres premium (500+ any 1), i ingressos (~1.000 EUR/mes) coincideixen amb els KPIs establerts als documents estrategics.</p>
+                <p style="margin-top: 10pt;">L'Escenari Base proporciona un <strong>floor de seguretat</strong> per a planificacio financera, pero l'equip treballa per assolir l'Escenari Objectiu.</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-logo">TRUE CRIME FACTORY</div>
+            <p style="font-size: 9pt; color: var(--text-muted); margin-top: 10pt;">
+                Pla de Membresies YouTube | v1.0 | Desembre 2025
+            </p>
+            <p style="font-size: 8pt; color: var(--text-muted); margin-top: 10pt;">
+                Document alineat amb PLAN_ESTRATEGICO_TRUE_CRIME_FACTORY.md i RESPOSTES_PREGUNTES_TCF_ZOOPA_CA.md
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

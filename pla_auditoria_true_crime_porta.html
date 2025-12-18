@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pla d'Auditoria i Transformació | True Crime Porta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600&family=Special+Elite&display=swap');
+        
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --accent-red: #8b0000;
+            --accent-red-light: #c41e3a;
+            --text-light: #e5e5e5;
+            --text-muted: #888;
+            --border-color: #333;
+            --highlight: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(ellipse at top, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-blend-mode: overlay;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid var(--accent-red);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .header::before {
+            content: "CONFIDENCIAL";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: 'Special Elite', cursive;
+            font-size: 12px;
+            color: var(--accent-red);
+            letter-spacing: 3px;
+            transform: rotate(5deg);
+            border: 1px solid var(--accent-red);
+            padding: 5px 15px;
+        }
+        
+        .logo-zoopa {
+            font-family: 'Oswald', sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        
+        .project-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-red-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .project-subtitle {
+            font-family: 'Special Elite', cursive;
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+        
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .meta-info strong {
+            color: var(--highlight);
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: var(--secondary-dark);
+            border-left: 3px solid var(--accent-red);
+            position: relative;
+        }
+        
+        .section::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 60px;
+            font-weight: 700;
+            color: rgba(139, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section-title .icon {
+            margin-right: 15px;
+            color: var(--accent-red);
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        th {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--accent-red);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        tr:hover {
+            background: rgba(139, 0, 0, 0.1);
+        }
+        
+        /* Status badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .badge-mantenir {
+            background: #1a472a;
+            color: #4ade80;
+        }
+        
+        .badge-privatitzar {
+            background: #4a1a1a;
+            color: #f87171;
+        }
+        
+        .badge-revisar {
+            background: #4a3f1a;
+            color: #fbbf24;
+        }
+        
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border: 1px solid var(--accent-red);
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .highlight-box h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--highlight);
+            margin-bottom: 15px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-red);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            border: 3px solid var(--primary-dark);
+        }
+        
+        .timeline-day {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            color: var(--accent-red-light);
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            letter-spacing: 6px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+        
+        .footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        /* Lists */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+        }
+        
+        /* Score visualization */
+        .score-bar {
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-red) 0%, var(--highlight) 100%);
+        }
+        
+        /* Two columns */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .column h4 {
+            margin-bottom: 10px;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .header::before {
+                border-color: #333;
+                color: #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-zoopa">ZOOPA NETWORK MCN</div>
+            <h1 class="project-title">Pla d'Auditoria i Transformació</h1>
+            <p class="project-subtitle">Canal YouTube @CarlesPortaCrims</p>
+            <div class="meta-info">
+                <span><strong>Client:</strong> True Crime Factory</span>
+                <span><strong>Durada:</strong> 1 setmana (20h)</span>
+                <span><strong>Versio:</strong> 1.0</span>
+                <span><strong>Data:</strong> Desembre 2025</span>
+            </div>
+        </header>
+
+        <!-- RESUM EXECUTIU -->
+        <section class="section" data-number="01">
+            <h2 class="section-title"><span class="icon">&#9673;</span> Resum Executiu</h2>
+            
+            <div class="highlight-box">
+                <h4>Objectiu del Projecte</h4>
+                <p>Auditar i preparar el canal YouTube existent @CarlesPortaCrims per a la seva transformacio en el nou ecosistema True Crime, conservant els 24.000 subscriptors actuals i optimitzant el contingut existent per al rellancament.</p>
+            </div>
+            
+            <table>
+                <tr>
+                    <th>Metrica Actual</th>
+                    <th>Valor</th>
+                    <th>Implicacio</th>
+                </tr>
+                <tr>
+                    <td>Subscriptors</td>
+                    <td><strong>24.000</strong></td>
+                    <td>Asset valuos a conservar</td>
+                </tr>
+                <tr>
+                    <td>Videos publicats</td>
+                    <td><strong>8</strong></td>
+                    <td>Volum insuficient per algoritme</td>
+                </tr>
+                <tr>
+                    <td>Frequencia upload</td>
+                    <td><strong>192 dies</strong> (mitjana)</td>
+                    <td>Canal considerat inactiu</td>
+                </tr>
+                <tr>
+                    <td>Views totals</td>
+                    <td><strong>871.2K</strong></td>
+                    <td>Base solida demostrada</td>
+                </tr>
+                <tr>
+                    <td>Engagement rate</td>
+                    <td><strong>0-2%</strong></td>
+                    <td>Per sota del benchmark del ninxol</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- CRITERIS DE DECISIO -->
+        <section class="section" data-number="02">
+            <h2 class="section-title"><span class="icon">&#9673;</span> Criteris de Decisio per Contingut</h2>
+            
+            <p style="margin-bottom: 25px;">Cada video existent sera avaluat segons una matriu de 5 factors ponderats per determinar si es mante, es privatitza o requereix revisio manual.</p>
+            
+            <table>
+                <tr>
+                    <th>Criteri</th>
+                    <th>Pes</th>
+                    <th>Llindar Mantenir</th>
+                    <th>Llindar Privatitzar</th>
+                </tr>
+                <tr>
+                    <td>Views totals</td>
+                    <td>30%</td>
+                    <td>&gt;5.000 views</td>
+                    <td>&lt;1.000 views</td>
+                </tr>
+                <tr>
+                    <td>Engagement rate</td>
+                    <td>25%</td>
+                    <td>&gt;2%</td>
+                    <td>&lt;1%</td>
+                </tr>
+                <tr>
+                    <td>Average View Duration</td>
+                    <td>20%</td>
+                    <td>&gt;40% del video</td>
+                    <td>&lt;25% del video</td>
+                </tr>
+                <tr>
+                    <td>Rellevancia futura</td>
+                    <td>15%</td>
+                    <td>True Crime + estil Porta</td>
+                    <td>Contingut promocional</td>
+                </tr>
+                <tr>
+                    <td>CTR (Click-Through Rate)</td>
+                    <td>10%</td>
+                    <td>&gt;4%</td>
+                    <td>&lt;2%</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box">
+                <h4>Sistema de Puntuacio</h4>
+                <table>
+                    <tr>
+                        <td><span class="badge badge-mantenir">70-100 pts</span></td>
+                        <td><strong>MANTENIR + ACTUALITZAR</strong> — Nou thumbnail, titol i descripcio amb nova marca</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-revisar">40-69 pts</span></td>
+                        <td><strong>REVISAR</strong> — Decisio manual segons context especific</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-privatitzar">0-39 pts</span></td>
+                        <td><strong>PRIVATITZAR</strong> — Amagar (no eliminar) del canal public</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <h3 style="font-family: 'Oswald', sans-serif; margin-top: 30px; margin-bottom: 15px;">Criteris Qualitatius (Override Manual)</h3>
+            
+            <div class="two-columns">
+                <div class="column">
+                    <h4 style="color: #4ade80;">&#10003; MANTENIR obligatoriament si:</h4>
+                    <ul>
+                        <li>Es el video amb mes views del canal</li>
+                        <li>Te alt valor SEO (rankeja be)</li>
+                        <li>Rep trafic de cerca constant</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h4 style="color: #f87171;">&#10007; PRIVATITZAR obligatoriament si:</h4>
+                    <ul>
+                        <li>Contingut promocional TV3/Crims</li>
+                        <li>Contingut datat no representatiu</li>
+                        <li>Comentaris majoritariament negatius</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONSIDERACIONS NAMING -->
+        <section class="section" data-number="03">
+            <h2 class="section-title"><span class="icon">&#9673;</span> Consideracions per al Naming</h2>
+            
+            <p style="margin-bottom: 25px; color: var(--text-muted); font-style: italic;">Nota: La decisio final del naming correspon a l'equip estrategic. Aquest apartat recull factors a tenir en compte.</p>
+            
+            <table>
+                <tr>
+                    <th>Opcio</th>
+                    <th>Pros</th>
+                    <th>Contres</th>
+                    <th>SEO</th>
+                </tr>
+                <tr>
+                    <td><strong>True Crime Porta</strong></td>
+                    <td>Combina marca personal + ninxol</td>
+                    <td>Pot limitar futur sense Carles</td>
+                    <td style="color: #4ade80;">&#9679; Alt</td>
+                </tr>
+                <tr>
+                    <td><strong>Carles Porta</strong></td>
+                    <td>Marca personal forta</td>
+                    <td>No indica contingut</td>
+                    <td style="color: #fbbf24;">&#9679; Mitja</td>
+                </tr>
+                <tr>
+                    <td><strong>True Crime Factory</strong></td>
+                    <td>Marca empresa, escalable</td>
+                    <td>Perd connexio personal</td>
+                    <td style="color: #fbbf24;">&#9679; Mitja</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box">
+                <h4>Factors Critics a Verificar</h4>
+                <ul>
+                    <li><strong>Disponibilitat multiplataforma:</strong> YouTube handle, TikTok, Instagram, domini web</li>
+                    <li><strong>Conflictes legals:</strong> Verificar que no hi ha conflictes amb marca "Crims" de TV3</li>
+                    <li><strong>Escalabilitat:</strong> Permet canals secundaris o spin-offs futurs?</li>
+                    <li><strong>Coherencia ecosistema:</strong> Ha de funcionar a YouTube, Spotify, TikTok, Newsletter, Web</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CRONOGRAMA -->
+        <section class="section" data-number="04">
+            <h2 class="section-title"><span class="icon">&#9673;</span> Cronograma Setmanal</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-day">DIA 1 — Dilluns | AUDITORIA</div>
+                    <p><strong>4 hores</strong> — Exportacio de dades, inventari dels 8 videos, aplicacio matriu de decisio, analisi SEO</p>
+                    <p style="color: var(--highlight); margin-top: 10px;">&#128196; Entregable: Informe d'auditoria amb recomanacio per video</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day">DIA 2 — Dimarts | DECISIONS</div>
+                    <p><strong>4 hores</strong> — Finalitzacio classificacio, planificacio actualitzacions, brief per disseny, checklist configuracio</p>
+                    <p style="color: var(--highlight); margin-top: 10px;">&#128196; Entregable: Document de decisions + Brief disseny</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day">DIA 3 — Dimecres | EXECUCIO</div>
+                    <p><strong>4 hores</strong> — Privatitzacio de videos, neteja comentaris, actualitzacio titols/descripcions, reorganitzacio playlists</p>
+                    <p style="color: var(--highlight); margin-top: 10px;">&#128196; Entregable: Canal amb contingut net i optimitzat</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day">DIA 4 — Dijous | CONFIGURACIO</div>
+                    <p><strong>4 hores</strong> — Configuracio tecnica canal, integracio MCN, Content ID, monetitzacio, seccions destacades</p>
+                    <p style="color: var(--highlight); margin-top: 10px;">&#128196; Entregable: Canal tecnicament configurat</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-day">DIA 5 — Divendres | VERIFICACIO</div>
+                    <p><strong>4 hores</strong> — QA complet, documentacio final, checklist publicacio, handover equip</p>
+                    <p style="color: var(--highlight); margin-top: 10px;">&#128196; Entregable: Informe final + Documentacio completa</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENTREGABLES -->
+        <section class="section" data-number="05">
+            <h2 class="section-title"><span class="icon">&#9673;</span> Entregables Finals</h2>
+            
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Document</th>
+                    <th>Descripcio</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Informe d'Auditoria Inicial</strong></td>
+                    <td>Metriques de cada video, puntuacio segons matriu, recomanacio mantenir/privatitzar</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Document de Decisions</strong></td>
+                    <td>Llista videos privatitzats/mantinguts amb justificacio, nova estructura playlists</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Brief per Equip de Disseny</strong></td>
+                    <td>Mides requerides (avatar, banner, thumbnails), requisits tecnics, deadline</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>Checklist de Configuracio</strong></td>
+                    <td>Tasques completades i pendents, dependencies identificades</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Guia de Publicacio</strong></td>
+                    <td>Template descripcions, checklist pre/post publicacio, bones practiques SEO</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>Informe Final</strong></td>
+                    <td>Estat abans/despres, KPIs base, recomanacions fase llancament</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- RISCOS -->
+        <section class="section" data-number="06">
+            <h2 class="section-title"><span class="icon">&#9673;</span> Riscos i Mitigacio</h2>
+            
+            <table>
+                <tr>
+                    <th>Risc</th>
+                    <th>Probabilitat</th>
+                    <th>Mitigacio</th>
+                </tr>
+                <tr>
+                    <td>Perdua de subscriptors pel canvi</td>
+                    <td><span class="badge badge-revisar">Mitjana</span></td>
+                    <td>Comunicacio clara, video d'anunci, post de comunitat</td>
+                </tr>
+                <tr>
+                    <td>Confusio de l'audiencia actual</td>
+                    <td><span class="badge badge-revisar">Mitjana</span></td>
+                    <td>Transicio neta (no gradual), missatge clar</td>
+                </tr>
+                <tr>
+                    <td>Impacte SEO negatiu</td>
+                    <td><span class="badge badge-mantenir">Baixa</span></td>
+                    <td>Mantenir keywords rellevants, actualitzar metadades</td>
+                </tr>
+                <tr>
+                    <td>Retards en assets/naming</td>
+                    <td><span class="badge badge-revisar">Mitjana</span></td>
+                    <td>Pla de contingencia: completar feina independent primer</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- DEPENDENCIES -->
+        <section class="section" data-number="07">
+            <h2 class="section-title"><span class="icon">&#9673;</span> Dependencies amb Altres Equips</h2>
+            
+            <table>
+                <tr>
+                    <th>Tasca</th>
+                    <th>Depen de</th>
+                    <th>Quan es necessita</th>
+                    <th>Bloqueig</th>
+                </tr>
+                <tr>
+                    <td>Pujar avatar</td>
+                    <td>Equip disseny</td>
+                    <td>Dia 4 mati</td>
+                    <td><span class="badge badge-revisar">Parcial</span></td>
+                </tr>
+                <tr>
+                    <td>Pujar banner</td>
+                    <td>Equip disseny</td>
+                    <td>Dia 4 mati</td>
+                    <td><span class="badge badge-revisar">Parcial</span></td>
+                </tr>
+                <tr>
+                    <td>Canviar nom canal</td>
+                    <td>Decisio naming</td>
+                    <td>Dia 4</td>
+                    <td><span class="badge badge-revisar">Parcial</span></td>
+                </tr>
+                <tr>
+                    <td>Canviar @handle</td>
+                    <td>Decisio naming</td>
+                    <td>Dia 4</td>
+                    <td><span class="badge badge-revisar">Parcial</span></td>
+                </tr>
+                <tr>
+                    <td>Actualitzar titols amb marca</td>
+                    <td>Decisio naming</td>
+                    <td>Dia 3</td>
+                    <td><span class="badge badge-revisar">Parcial</span></td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box" style="margin-top: 25px;">
+                <h4>Pla de Contingencia</h4>
+                <p>Si els assets o el naming no estan llestos a temps:</p>
+                <ul>
+                    <li>Completar tota la feina que NO depen del naming/assets</li>
+                    <li>Deixar documentat que falta i com fer-ho</li>
+                    <li>El canvi de nom i assets es pot fer en 30-45 min quan estiguin llestos</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-logo">ZOOPA NETWORK</div>
+            <p>Professional YouTube MCN Services</p>
+            <p style="margin-top: 20px; font-size: 11px;">Document confidencial preparat per True Crime Factory</p>
+            <p style="font-size: 11px;">&copy; 2025 Zoopa Network. Tots els drets reservats.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full d'Encarrec | Auditoria True Crime Porta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600&family=Special+Elite&family=JetBrains+Mono&display=swap');
+        
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --accent-red: #8b0000;
+            --accent-red-light: #c41e3a;
+            --text-light: #e5e5e5;
+            --text-muted: #888;
+            --border-color: #333;
+            --highlight: #d4af37;
+            --success: #22c55e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 30px;
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        
+        .header-left {
+            flex: 1;
+        }
+        
+        .header-right {
+            text-align: right;
+        }
+        
+        .doc-type {
+            font-family: 'Special Elite', cursive;
+            font-size: 12px;
+            color: var(--accent-red);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .doc-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .doc-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        .doc-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+        
+        .doc-date {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-box {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+        }
+        
+        .info-box h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-red);
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            font-size: 16px;
+        }
+        
+        /* Assignee Box */
+        .assignee-box {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.4) 0%, var(--secondary-dark) 100%);
+            border: 2px solid var(--accent-red);
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .assignee-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        
+        .assignee-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--highlight);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3) 0%, var(--secondary-dark) 100%);
+            border: 2px solid var(--accent-red);
+            padding: 30px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .summary-item h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 36px;
+            color: var(--highlight);
+            margin-bottom: 5px;
+        }
+        
+        .summary-item p {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        
+        /* Task Table */
+        .task-section {
+            margin-bottom: 30px;
+        }
+        
+        .task-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--accent-red);
+            padding: 15px 20px;
+        }
+        
+        .task-section-header h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .task-section-header .hours {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            color: var(--highlight);
+        }
+        
+        .task-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--secondary-dark);
+        }
+        
+        .task-table th {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 11px;
+            background: #252525;
+            padding: 12px 15px;
+            text-align: left;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .task-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+        
+        .task-table tr:hover {
+            background: rgba(139, 0, 0, 0.1);
+        }
+        
+        .task-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        .task-time {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--highlight);
+            text-align: right;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .checkbox:hover {
+            border-color: var(--accent-red);
+        }
+        
+        .task-note {
+            padding: 10px 15px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: #151515;
+            border-left: 3px solid var(--accent-red);
+        }
+        
+        /* Deliverables */
+        .deliverables {
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .deliverables h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .deliverable-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .deliverable-item:last-child {
+            border-bottom: none;
+        }
+        
+        .deliverable-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border-color);
+            margin-right: 15px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        
+        .deliverable-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            color: var(--accent-red);
+            width: 50px;
+            flex-shrink: 0;
+        }
+        
+        .deliverable-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .deliverable-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        /* Signatures */
+        .signatures {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .signature-box {
+            text-align: center;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid var(--text-muted);
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        
+        .signature-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        
+        /* Total summary */
+        .total-row {
+            background: rgba(139, 0, 0, 0.3) !important;
+            font-weight: bold;
+        }
+        
+        .total-row td {
+            border-bottom: none;
+        }
+        
+        /* Print */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .task-section {
+                break-inside: avoid;
+            }
+            .checkbox {
+                border-color: #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="doc-type">Full d'Encarrec i Treball</div>
+                <h1 class="doc-title">Auditoria Canal YouTube</h1>
+                <p class="doc-subtitle">@CarlesPortaCrims &rarr; True Crime Porta</p>
+            </div>
+            <div class="header-right">
+                <div class="doc-number">#TCF-2025-001</div>
+                <p class="doc-date">Desembre 2025</p>
+            </div>
+        </header>
+
+        <!-- Assignee -->
+        <div class="assignee-box">
+            <div class="assignee-label">Persona Assignada</div>
+            <div class="assignee-name">Bep Moll</div>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="info-grid">
+            <div class="info-box">
+                <h4>Client</h4>
+                <p><strong>True Crime Factory</strong></p>
+            </div>
+            <div class="info-box">
+                <h4>Provei&#271;or</h4>
+                <p><strong>Zoopa Network MCN</strong></p>
+            </div>
+            <div class="info-box">
+                <h4>Durada del Projecte</h4>
+                <p><strong>1 setmana</strong> (5 dies laborables)</p>
+            </div>
+            <div class="info-box">
+                <h4>Canal Objectiu</h4>
+                <p><strong>youtube.com/@CarlesPortaCrims</strong></p>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <div class="summary-item">
+                <h3>20h</h3>
+                <p>Hores Totals</p>
+            </div>
+            <div class="summary-item">
+                <h3>5</h3>
+                <p>Dies d'Execucio</p>
+            </div>
+            <div class="summary-item">
+                <h3>33</h3>
+                <p>Tasques</p>
+            </div>
+            <div class="summary-item">
+                <h3>6</h3>
+                <p>Entregables</p>
+            </div>
+        </div>
+
+        <!-- DIA 1 -->
+        <div class="task-section">
+            <div class="task-section-header">
+                <h3>DIA 1 — Dilluns | Auditoria</h3>
+                <span class="hours">4h 00min</span>
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th width="5%">&#10003;</th>
+                        <th width="10%">ID</th>
+                        <th>Tasca</th>
+                        <th width="12%">Temps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">1.1</td>
+                        <td>Exportar dades historiques YouTube Studio (24 mesos)</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">1.2</td>
+                        <td>Crear spreadsheet inventari dels 8 videos</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">1.3</td>
+                        <td>Aplicar matriu de decisio a cada video</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">1.4</td>
+                        <td>Analisi de retencio i drop-offs per video</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">1.5</td>
+                        <td>Revisio fonts de trafic</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">1.6</td>
+                        <td>Auditoria SEO (keywords, tags, descripcions)</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">1.7</td>
+                        <td>Documentar estat monetitzacio i MCN</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- DIA 2 -->
+        <div class="task-section">
+            <div class="task-section-header">
+                <h3>DIA 2 — Dimarts | Decisions i Planificacio</h3>
+                <span class="hours">4h 00min</span>
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th width="5%">&#10003;</th>
+                        <th width="10%">ID</th>
+                        <th>Tasca</th>
+                        <th width="12%">Temps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">2.1</td>
+                        <td>Revisar resultats auditoria amb equip</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">2.2</td>
+                        <td>Finalitzar classificacio videos (mantenir/privatitzar)</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">2.3</td>
+                        <td>Definir actualitzacions per videos que es mantenen</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">2.4</td>
+                        <td>Planificar nova estructura de playlists</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">2.5</td>
+                        <td>Documentar requisits per assets visuals (brief disseny)</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">2.6</td>
+                        <td>Preparar checklist de configuracio tecnica</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- DIA 3 -->
+        <div class="task-section">
+            <div class="task-section-header">
+                <h3>DIA 3 — Dimecres | Execucio Contingut</h3>
+                <span class="hours">4h 00min</span>
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th width="5%">&#10003;</th>
+                        <th width="10%">ID</th>
+                        <th>Tasca</th>
+                        <th width="12%">Temps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">3.1</td>
+                        <td>Privatitzar videos segons decisio</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">3.2</td>
+                        <td>Netejar comentaris spam/hate dels videos que es mantenen</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">3.3</td>
+                        <td>Actualitzar titols dels videos que es mantenen*</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">3.4</td>
+                        <td>Actualitzar descripcions (plantilla nova)*</td>
+                        <td class="task-time">60 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">3.5</td>
+                        <td>Configurar/actualitzar end screens i cards*</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">3.6</td>
+                        <td>Eliminar/reorganitzar playlists</td>
+                        <td class="task-time">15 min</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="task-note">* Tasques que depenen de la decisio de naming. Si no esta confirmat, es completen sense marca especifica.</p>
+        </div>
+
+        <!-- DIA 4 -->
+        <div class="task-section">
+            <div class="task-section-header">
+                <h3>DIA 4 — Dijous | Configuracio Tecnica</h3>
+                <span class="hours">4h 00min</span>
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th width="5%">&#10003;</th>
+                        <th width="10%">ID</th>
+                        <th>Tasca</th>
+                        <th width="12%">Temps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.1</td>
+                        <td>Actualitzar descripcio del canal (SEO)*</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.2</td>
+                        <td>Configurar enllaqos (web, xarxes)*</td>
+                        <td class="task-time">20 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.3</td>
+                        <td>Pujar avatar i banner*</td>
+                        <td class="task-time">20 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.4</td>
+                        <td>Configurar watermark*</td>
+                        <td class="task-time">15 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.5</td>
+                        <td>Setup filtres de comentaris (keywords, spam)</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.6</td>
+                        <td>Verificar integracio MCN Zoopa</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.7</td>
+                        <td>Configurar Content ID (fingerprints)</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.8</td>
+                        <td>Verificar settings monetitzacio</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.9</td>
+                        <td>Configurar seccions destacades del canal*</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">4.10</td>
+                        <td>Crear noves playlists (estructura)</td>
+                        <td class="task-time">25 min</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="task-note">* Tasques que depenen dels assets visuals i/o naming. Es poden completar posteriorment si no estan disponibles.</p>
+        </div>
+
+        <!-- DIA 5 -->
+        <div class="task-section">
+            <div class="task-section-header">
+                <h3>DIA 5 — Divendres | Verificacio i Documentacio</h3>
+                <span class="hours">4h 00min</span>
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th width="5%">&#10003;</th>
+                        <th width="10%">ID</th>
+                        <th>Tasca</th>
+                        <th width="12%">Temps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.1</td>
+                        <td>QA complet: verificar tots els canvis</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.2</td>
+                        <td>Test visualitzacio mobile i desktop</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.3</td>
+                        <td>Verificar reproduccio videos (end screens, cards)</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.4</td>
+                        <td>Comprovar monetitzacio activa</td>
+                        <td class="task-time">20 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.5</td>
+                        <td>Crear informe d'auditoria final (abans/despres)</td>
+                        <td class="task-time">45 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.6</td>
+                        <td>Documentar accions pendents per fase llancament</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.7</td>
+                        <td>Crear checklist de publicacio per nous videos</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.8</td>
+                        <td>Preparar post de Comunitat (draft)</td>
+                        <td class="task-time">25 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.9</td>
+                        <td>Reunio de handover amb equip</td>
+                        <td class="task-time">30 min</td>
+                    </tr>
+                    <tr>
+                        <td><span class="checkbox"></span></td>
+                        <td class="task-id">5.10</td>
+                        <td>Buffer per imprevistos</td>
+                        <td class="task-time">15 min</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="task-section">
+            <table class="task-table">
+                <tbody>
+                    <tr class="total-row">
+                        <td colspan="3" style="text-align: right; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px;">
+                            TOTAL HORES PROJECTE
+                        </td>
+                        <td class="task-time" style="font-size: 24px; color: var(--highlight);">
+                            20h 00min
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Deliverables -->
+        <div class="deliverables">
+            <h3>&#9673; Entregables del Projecte</h3>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-check"></div>
+                <div class="deliverable-number">01</div>
+                <div class="deliverable-content">
+                    <h4>Informe d'Auditoria Inicial</h4>
+                    <p>Metriques de cada video, puntuacio segons matriu de decisio, recomanacio mantenir/privatitzar amb justificacio</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-check"></div>
+                <div class="deliverable-number">02</div>
+                <div class="deliverable-content">
+                    <h4>Document de Decisions</h4>
+                    <p>Llista de videos privatitzats i mantinguts amb justificacio, nova estructura de playlists, accions realitzades</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-check"></div>
+                <div class="deliverable-number">03</div>
+                <div class="deliverable-content">
+                    <h4>Brief per Equip de Disseny</h4>
+                    <p>Mides requerides (avatar 800x800, banner 2560x1440, watermark, thumbnails), requisits tecnics, especificacions</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-check"></div>
+                <div class="deliverable-number">04</div>
+                <div class="deliverable-content">
+                    <h4>Checklist de Configuracio</h4>
+                    <p>Tasques completades i pendents, dependencies identificades, estat del canal</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-check"></div>
+                <div class="deliverable-number">05</div>
+                <div class="deliverable-content">
+                    <h4>Guia de Publicacio</h4>
+                    <p>Template de descripcions, checklist pre/post publicacio, bones practiques SEO per nous videos</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-check"></div>
+                <div class="deliverable-number">06</div>
+                <div class="deliverable-content">
+                    <h4>Informe Final</h4>
+                    <p>Comparativa estat abans/despres, KPIs base per seguiment, recomanacions per fase de llancament</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signatures -->
+        <div class="signatures">
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <div class="signature-label">True Crime Factory</div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Client</p>
+            </div>
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <div class="signature-label">Zoopa Network</div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Provei&#271;or MCN</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-logo">ZOOPA NETWORK</div>
+            <p style="font-size: 12px; color: var(--text-muted);">Professional YouTube MCN Services</p>
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 15px;">&copy; 2025 Zoopa Network. Tots els drets reservats.</p>
+        </footer>
+    </div>
+</body>
+</html>

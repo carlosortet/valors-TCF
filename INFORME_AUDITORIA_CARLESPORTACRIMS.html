@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Auditoría Técnica | Canal Carles Porta - Crims</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        @page {
+            size: A4;
+            margin: 1.8cm;
+        }
+        
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #2d5a87;
+            --accent-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --pale-blue: #eff6ff;
+            --dark-blue: #0f172a;
+            --navy: #1e293b;
+            
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-subtle: #f1f5f9;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            --success: #059669;
+            --success-light: #d1fae5;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 9pt;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-white);
+        }
+        
+        /* COVER */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(145deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50pt;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(59,130,246,0.08) 0%, transparent 100%);
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            max-width: 550pt;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: var(--accent-blue);
+            padding: 5pt 12pt;
+            font-size: 7pt;
+            font-weight: 600;
+            letter-spacing: 2pt;
+            text-transform: uppercase;
+            margin-bottom: 20pt;
+            border-radius: 2pt;
+        }
+        
+        .cover-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 32pt;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 8pt;
+        }
+        
+        .cover-channel {
+            font-size: 14pt;
+            font-weight: 400;
+            color: var(--accent-blue);
+            margin-bottom: 25pt;
+        }
+        
+        .cover-subtitle {
+            font-size: 10pt;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 30pt;
+            line-height: 1.7;
+            max-width: 450pt;
+        }
+        
+        .cover-divider {
+            width: 50pt;
+            height: 2pt;
+            background: var(--accent-blue);
+            margin-bottom: 25pt;
+        }
+        
+        .cover-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15pt;
+            margin-bottom: 30pt;
+        }
+        
+        .cover-metric {
+            background: rgba(255,255,255,0.08);
+            border: 1pt solid rgba(255,255,255,0.15);
+            padding: 12pt;
+            border-radius: 4pt;
+            text-align: center;
+        }
+        
+        .cover-metric-value {
+            font-size: 18pt;
+            font-weight: 700;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .cover-metric-label {
+            font-size: 7pt;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-top: 4pt;
+        }
+        
+        .cover-nav {
+            display: flex;
+            gap: 8pt;
+            flex-wrap: wrap;
+            margin-bottom: 30pt;
+        }
+        
+        .cover-nav-item {
+            background: rgba(255,255,255,0.1);
+            border: 1pt solid rgba(255,255,255,0.2);
+            padding: 6pt 12pt;
+            font-size: 8pt;
+            font-weight: 500;
+            border-radius: 3pt;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .cover-nav-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+        
+        .cover-meta {
+            font-size: 8pt;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .cover-meta strong {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* CONTENT */
+        .content {
+            padding: 30pt 40pt;
+            max-width: 100%;
+        }
+        
+        /* SECTION */
+        .section {
+            margin-bottom: 25pt;
+            page-break-inside: avoid;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10pt;
+            margin-bottom: 15pt;
+            padding-bottom: 8pt;
+            border-bottom: 2pt solid var(--primary-blue);
+            cursor: pointer;
+        }
+        
+        .section-number {
+            background: var(--primary-blue);
+            color: white;
+            min-width: 28pt;
+            height: 28pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10pt;
+            font-weight: 700;
+            border-radius: 3pt;
+            flex-shrink: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .section-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        
+        .toggle-icon {
+            font-size: 12pt;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+        }
+        
+        .section.collapsed .section-content {
+            max-height: 0;
+            opacity: 0;
+        }
+        
+        /* SUBSECTION */
+        .subsection {
+            margin-bottom: 18pt;
+        }
+        
+        .subsection-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 10pt;
+            padding-bottom: 5pt;
+            border-bottom: 1pt solid var(--border-light);
+        }
+        
+        .subsection-subtitle {
+            font-size: 9pt;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 8pt;
+            margin-top: 12pt;
+        }
+        
+        /* TYPOGRAPHY */
+        p {
+            margin-bottom: 10pt;
+            color: var(--text-secondary);
+            font-size: 9pt;
+        }
+        
+        p.lead {
+            font-size: 10pt;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+        
+        strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* TABLES */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin-bottom: 15pt;
+        }
+        
+        .data-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 8pt 10pt;
+            text-align: left;
+            font-weight: 600;
+            font-size: 7pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+        }
+        
+        .data-table td {
+            padding: 8pt 10pt;
+            border-bottom: 1pt solid var(--border-light);
+            vertical-align: top;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+        
+        .data-table tr:hover {
+            background: var(--pale-blue);
+        }
+        
+        .data-table .highlight {
+            background: var(--pale-blue);
+            font-weight: 600;
+        }
+        
+        /* COMPACT TABLE */
+        .compact-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin-bottom: 12pt;
+        }
+        
+        .compact-table td {
+            padding: 6pt 10pt;
+            border-bottom: 1pt solid var(--border-light);
+        }
+        
+        .compact-table td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+            width: 40%;
+        }
+        
+        .compact-table td:last-child {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+        }
+        
+        /* INFO BOXES */
+        .info-box {
+            background: var(--bg-subtle);
+            border-left: 3pt solid var(--primary-blue);
+            padding: 12pt 15pt;
+            margin-bottom: 15pt;
+            font-size: 8.5pt;
+        }
+        
+        .info-box.highlight {
+            background: var(--pale-blue);
+            border-left-color: var(--accent-blue);
+        }
+        
+        .info-box.success {
+            background: var(--success-light);
+            border-left-color: var(--success);
+        }
+        
+        .info-box.warning {
+            background: var(--warning-light);
+            border-left-color: var(--warning);
+        }
+        
+        .info-box.critical {
+            background: var(--error-light);
+            border-left-color: var(--error);
+        }
+        
+        .info-box-title {
+            font-size: 8pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-bottom: 6pt;
+        }
+        
+        .info-box.success .info-box-title { color: var(--success); }
+        .info-box.warning .info-box-title { color: var(--warning); }
+        .info-box.critical .info-box-title { color: var(--error); }
+        
+        .info-box ul {
+            margin: 6pt 0 0 15pt;
+            font-size: 8pt;
+        }
+        
+        .info-box li {
+            margin-bottom: 3pt;
+        }
+        
+        /* METRIC CARDS */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10pt;
+            margin-bottom: 15pt;
+        }
+        
+        .metric-card {
+            background: var(--bg-light);
+            border: 1pt solid var(--border-light);
+            padding: 12pt;
+            text-align: center;
+            border-radius: 4pt;
+        }
+        
+        .metric-card.highlight {
+            background: var(--pale-blue);
+            border-color: var(--accent-blue);
+        }
+        
+        .metric-value {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .metric-card.highlight .metric-value {
+            color: var(--accent-blue);
+        }
+        
+        .metric-label {
+            font-size: 7pt;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-top: 4pt;
+        }
+        
+        /* STATUS BADGES */
+        .status {
+            display: inline-block;
+            padding: 2pt 8pt;
+            font-size: 7pt;
+            font-weight: 600;
+            border-radius: 2pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+        }
+        
+        .status.active {
+            background: var(--success-light);
+            color: var(--success);
+        }
+        
+        .status.limited {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+        
+        .status.inactive {
+            background: var(--error-light);
+            color: var(--error);
+        }
+        
+        .status.pending {
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+        }
+        
+        /* CHECK ICONS */
+        .check-yes {
+            color: var(--success);
+            font-weight: 700;
+        }
+        
+        .check-no {
+            color: var(--error);
+            font-weight: 700;
+        }
+        
+        .check-warn {
+            color: var(--warning);
+            font-weight: 700;
+        }
+        
+        /* CATEGORY BLOCKS */
+        .category-block {
+            background: var(--bg-white);
+            border: 1pt solid var(--border-medium);
+            margin-bottom: 12pt;
+            border-radius: 4pt;
+            overflow: hidden;
+        }
+        
+        .category-header {
+            background: var(--bg-subtle);
+            padding: 10pt 15pt;
+            border-bottom: 1pt solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .category-title {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .category-stats {
+            font-size: 8pt;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .category-content {
+            padding: 12pt 15pt;
+        }
+        
+        /* TREE STRUCTURE */
+        .tree-structure {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8pt;
+            background: var(--bg-subtle);
+            padding: 15pt;
+            border-radius: 4pt;
+            white-space: pre;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            overflow-x: auto;
+        }
+        
+        /* FINDINGS */
+        .findings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12pt;
+            margin-bottom: 15pt;
+        }
+        
+        .finding-card {
+            padding: 12pt 15pt;
+            border-radius: 4pt;
+        }
+        
+        .finding-card.positive {
+            background: var(--success-light);
+            border-left: 3pt solid var(--success);
+        }
+        
+        .finding-card.negative {
+            background: var(--error-light);
+            border-left: 3pt solid var(--error);
+        }
+        
+        .finding-title {
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-bottom: 8pt;
+        }
+        
+        .finding-card.positive .finding-title { color: var(--success); }
+        .finding-card.negative .finding-title { color: var(--error); }
+        
+        .finding-list {
+            font-size: 8pt;
+            margin: 0;
+            padding-left: 15pt;
+        }
+        
+        .finding-list li {
+            margin-bottom: 4pt;
+            color: var(--text-secondary);
+        }
+        
+        /* NEXT STEPS */
+        .steps-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .steps-list li {
+            counter-increment: step;
+            padding: 10pt 0 10pt 40pt;
+            border-bottom: 1pt solid var(--border-light);
+            position: relative;
+            font-size: 9pt;
+        }
+        
+        .steps-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 8pt;
+            width: 24pt;
+            height: 24pt;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10pt;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 20pt;
+            border-top: 2pt solid var(--primary-blue);
+            margin-top: 25pt;
+        }
+        
+        .footer-logo {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: 2pt;
+            text-transform: uppercase;
+        }
+        
+        .footer-meta {
+            font-size: 7pt;
+            color: var(--text-muted);
+            margin-top: 6pt;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* ANIMATIONS */
+        .section-header {
+            transition: all 0.2s ease;
+        }
+        
+        .section-header:hover {
+            background: var(--bg-light);
+            margin-left: -5pt;
+            padding-left: 5pt;
+        }
+        
+        .metric-card {
+            transition: all 0.2s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30,58,95,0.1);
+        }
+        
+        .data-table tbody tr {
+            transition: all 0.15s ease;
+        }
+        
+        .cover-nav-item {
+            transition: all 0.2s ease;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-break { page-break-after: always; }
+            .toggle-icon { display: none; }
+            .section.collapsed .section-content { max-height: none; opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for nav items
+            document.querySelectorAll('.cover-nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Expand if collapsed
+                        if (targetElement.classList.contains('collapsed')) {
+                            targetElement.classList.remove('collapsed');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- COVER -->
+    <div class="cover">
+        <div class="cover-content">
+            <div class="cover-badge">Informe Tecnico</div>
+            <h1 class="cover-title">Auditoria Tecnica<br>de Canal YouTube</h1>
+            <p class="cover-channel">@CarlesPortaCrims</p>
+            <p class="cover-subtitle">Analisis completo del estado actual del canal, inventario de contenidos, metricas de rendimiento y recomendaciones estrategicas para el relanzamiento.</p>
+            <div class="cover-divider"></div>
+            
+            <div class="cover-metrics">
+                <div class="cover-metric">
+                    <div class="cover-metric-value">24.275</div>
+                    <div class="cover-metric-label">Suscriptores</div>
+                </div>
+                <div class="cover-metric">
+                    <div class="cover-metric-value">880K</div>
+                    <div class="cover-metric-label">Visualizaciones</div>
+                </div>
+                <div class="cover-metric">
+                    <div class="cover-metric-value">142K</div>
+                    <div class="cover-metric-label">Horas Watch Time</div>
+                </div>
+                <div class="cover-metric">
+                    <div class="cover-metric-value">7</div>
+                    <div class="cover-metric-label">Videos</div>
+                </div>
+            </div>
+            
+            <div class="cover-nav">
+                <a href="#resumen" class="cover-nav-item">Resumen Ejecutivo</a>
+                <a href="#inventario" class="cover-nav-item">Inventario</a>
+                <a href="#datos" class="cover-nav-item">Datos del Canal</a>
+                <a href="#checklist" class="cover-nav-item">Checklist</a>
+                <a href="#hallazgos" class="cover-nav-item">Hallazgos</a>
+                <a href="#pasos" class="cover-nav-item">Proximos Pasos</a>
+            </div>
+            
+            <p class="cover-meta">
+                <strong>Cliente:</strong> True Crime Factory | <strong>MCN:</strong> Zoopa Network<br>
+                Diciembre 2025
+            </p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- 1. RESUMEN EJECUTIVO -->
+        <div class="section" id="resumen">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Resumen Ejecutivo</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p class="lead">El canal <strong>Carles Porta – Crims</strong> es un canal de YouTube especializado en contenido de <strong>true crime</strong> en espanol/catalan, vinculado a la marca personal del periodista Carles Porta, conocido por el programa "Crims" de TV3.</p>
+
+                <div class="metrics-grid">
+                    <div class="metric-card highlight">
+                        <div class="metric-value">24.275</div>
+                        <div class="metric-label">Suscriptores</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">880.289</div>
+                        <div class="metric-label">Visualizaciones</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">142.400</div>
+                        <div class="metric-label">Horas Watch Time</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">7</div>
+                        <div class="metric-label">Videos Publicados</div>
+                    </div>
+                </div>
+
+                <table class="compact-table">
+                    <tr>
+                        <td>Fecha creacion</td>
+                        <td>19/03/2020</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimo video</td>
+                        <td>19/05/2022</td>
+                    </tr>
+                    <tr>
+                        <td>Estado monetizacion</td>
+                        <td><span class="status active">YPP Activo</span></td>
+                    </tr>
+                    <tr>
+                        <td>MCN</td>
+                        <td>Zoopa Network (desde 16/12/2025)</td>
+                    </tr>
+                </table>
+
+                <div class="info-box warning">
+                    <div class="info-box-title">Diagnostico Inicial</div>
+                    <p><strong>Canal con alto potencial dormido.</strong> Audiencia consolidada pero inactivo desde mayo 2022 (mas de 2 anos sin publicar). El contenido existente sigue generando visualizaciones organicas significativas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. INVENTARIO Y CATEGORIZACION -->
+        <div class="section" id="inventario">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Inventario y Categorizacion de Contenidos</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <div class="subsection-title">2.1 Descripcion General</div>
+                    
+                    <p><strong>Tipo de contenido:</strong> Canal especializado en true crime (crimenes reales), con enfoque en casos espanoles/catalanes de alto impacto mediatico.</p>
+                    
+                    <div class="info-box">
+                        <div class="info-box-title">Enfoque Editorial</div>
+                        <ul>
+                            <li>Narrativa periodistica de investigacion</li>
+                            <li>Analisis en profundidad de casos criminales</li>
+                            <li>Contenido en espanol y catalan</li>
+                            <li>Conexion con el programa televisivo "Crims"</li>
+                        </ul>
+                    </div>
+
+                    <table class="compact-table">
+                        <tr>
+                            <td>Videos publicados</td>
+                            <td>7 videos</td>
+                        </tr>
+                        <tr>
+                            <td>Periodo de actividad</td>
+                            <td>Marzo 2020 - Mayo 2022</td>
+                        </tr>
+                        <tr>
+                            <td>Frecuencia historica</td>
+                            <td>~0.25 videos/mes (muy baja)</td>
+                        </tr>
+                        <tr>
+                            <td>Estado actual</td>
+                            <td><span class="status inactive">Inactivo desde Mayo 2022</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">2.2 Inventario Completo</div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Titulo</th>
+                                <th>Fecha</th>
+                                <th>Duracion</th>
+                                <th>Views</th>
+                                <th>Likes</th>
+                                <th>Monetiz.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight">
+                                <td>1</td>
+                                <td>El crimen de la Guardia Urbana (Parte 1)</td>
+                                <td>08/04/2020</td>
+                                <td>25:28</td>
+                                <td>518.785</td>
+                                <td>7.956</td>
+                                <td><span class="status active">Activa</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>El crimen de la Guardia Urbana (Parte 2)</td>
+                                <td>12/04/2020</td>
+                                <td>21:18</td>
+                                <td>227.197</td>
+                                <td>5.750</td>
+                                <td><span class="status limited">Limitada</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Crim de la Guardia Urbana</td>
+                                <td>04/04/2020</td>
+                                <td>18:06</td>
+                                <td>61.455</td>
+                                <td>1.773</td>
+                                <td><span class="status limited">Limitada</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>La versio dels acusats</td>
+                                <td>07/04/2020</td>
+                                <td>16:05</td>
+                                <td>25.847</td>
+                                <td>851</td>
+                                <td><span class="status limited">Limitada</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Crimenes, 10 casos reales</td>
+                                <td>19/05/2022</td>
+                                <td>3:50</td>
+                                <td>17.300</td>
+                                <td>436</td>
+                                <td><span class="status active">Activa</span></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Jubany Trailer</td>
+                                <td>22/03/2020</td>
+                                <td>0:34</td>
+                                <td>5.401</td>
+                                <td>95</td>
+                                <td><span class="status active">Activa</span></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Anunci Youtube Live</td>
+                                <td>25/05/2020</td>
+                                <td>0:48</td>
+                                <td>1.054</td>
+                                <td>102</td>
+                                <td><span class="status active">Activa</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p style="text-align: right; font-size: 8pt; color: var(--text-muted);"><strong>Total:</strong> 857.039 visualizaciones en 7 videos</p>
+                </div>
+
+                <div class="page-break"></div>
+
+                <div class="subsection">
+                    <div class="subsection-title">2.3 Categorizacion Estrategica</div>
+                    
+                    <!-- BLOQUE A -->
+                    <div class="category-block">
+                        <div class="category-header">
+                            <div class="category-title">Bloque A: Casos Completos</div>
+                            <div class="category-stats">4 videos | 833.284 views (97.2%)</div>
+                        </div>
+                        <div class="category-content">
+                            <table class="data-table" style="margin-bottom: 0;">
+                                <thead>
+                                    <tr>
+                                        <th>Video</th>
+                                        <th>Tipo</th>
+                                        <th>Rol Estrategico</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>El crimen de la Guardia Urbana (Parte 1)</td>
+                                        <td>Caso completo - Parte 1</td>
+                                        <td><strong>CAPTACION</strong> - Puerta de entrada</td>
+                                    </tr>
+                                    <tr>
+                                        <td>El crimen de la Guardia Urbana (Parte 2)</td>
+                                        <td>Caso completo - Parte 2</td>
+                                        <td><strong>FIDELIZACION</strong> - Retencion</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Crim de la Guardia Urbana</td>
+                                        <td>Caso completo - Veredicto</td>
+                                        <td><strong>AUTORIDAD</strong> - Cierre informativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La versio dels acusats</td>
+                                        <td>Caso completo - Perspectiva</td>
+                                        <td><strong>PROFUNDIDAD</strong> - Complementario</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE B -->
+                    <div class="category-block">
+                        <div class="category-header">
+                            <div class="category-title">Bloque B: Promocional / Marca Personal</div>
+                            <div class="category-stats">2 videos | 22.701 views (2.6%)</div>
+                        </div>
+                        <div class="category-content">
+                            <table class="data-table" style="margin-bottom: 0;">
+                                <thead>
+                                    <tr>
+                                        <th>Video</th>
+                                        <th>Tipo</th>
+                                        <th>Rol Estrategico</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Crimenes, 10 casos reales</td>
+                                        <td>Entrevista / Promocion libro</td>
+                                        <td><strong>AUTORIDAD</strong> - Marca personal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jubany Trailer</td>
+                                        <td>Trailer documental</td>
+                                        <td><strong>CAPTACION</strong> - Promocion TV3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE C -->
+                    <div class="category-block">
+                        <div class="category-header">
+                            <div class="category-title">Bloque C: Contenido Efimero</div>
+                            <div class="category-stats">1 video | 1.054 views (0.1%)</div>
+                        </div>
+                        <div class="category-content">
+                            <p style="margin: 0; font-size: 8pt;">Video de anuncio de directo. Estado: <span class="status pending">Oculto</span> (correctamente gestionado)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">2.4 Distribucion por Duracion</div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Videos</th>
+                                <th>% Catalogo</th>
+                                <th>Views Totales</th>
+                                <th>% Views</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight">
+                                <td><strong>Largo (+15 min)</strong></td>
+                                <td>4</td>
+                                <td>57%</td>
+                                <td>833.284</td>
+                                <td>97.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Medio (3-15 min)</td>
+                                <td>1</td>
+                                <td>14%</td>
+                                <td>17.300</td>
+                                <td>2.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Corto (-3 min)</td>
+                                <td>2</td>
+                                <td>29%</td>
+                                <td>6.455</td>
+                                <td>0.8%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box success">
+                        <div class="info-box-title">Conclusion</div>
+                        <p>El contenido largo es claramente el formato dominante y el que mejor funciona. La audiencia busca contenido en profundidad, no clips cortos.</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">2.5 Estructura del Canal</div>
+                    
+                    <div class="tree-structure">CARLES PORTA - CRIMS
+├── CASOS COMPLETOS (97% del trafico)
+│   └── Caso Guardia Urbana / Rosa Peral
+│       ├── Parte 1 (captacion)
+│       ├── Parte 2 (fidelizacion)
+│       ├── Veredicto (autoridad)
+│       └── Version acusados (profundidad)
+│
+├── PROMOCIONAL (2.6% del trafico)
+│   ├── Entrevista libro (autoridad)
+│   └── Trailer Jubany (captacion cruzada)
+│
+└── EFIMERO (0.1% del trafico)
+    └── Anuncio directo (oculto)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 3. DATOS DEL CANAL -->
+        <div class="section" id="datos">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Datos del Canal</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <div class="subsection-title">3.1 Datos Identificativos</div>
+                    
+                    <table class="compact-table">
+                        <tr>
+                            <td>URL del canal</td>
+                            <td>youtube.com/@CarlesPortaCrims</td>
+                        </tr>
+                        <tr>
+                            <td>Handle</td>
+                            <td>@CarlesPortaCrims</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Carles Porta - Crims</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha creacion</td>
+                            <td>19/03/2020</td>
+                        </tr>
+                        <tr>
+                            <td>Pais/Region</td>
+                            <td>Espana / Catalunya</td>
+                        </tr>
+                        <tr>
+                            <td>MCN</td>
+                            <td>Zoopa Network</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha vinculacion MCN</td>
+                            <td>16/12/2025</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">3.2 Metricas Generales</div>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-card highlight">
+                            <div class="metric-value">24.275</div>
+                            <div class="metric-label">Suscriptores</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">880.289</div>
+                            <div class="metric-label">Visualizaciones</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">8:54</div>
+                            <div class="metric-label">Duracion Media</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">5,8%</div>
+                            <div class="metric-label">CTR Medio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">3.3 Demografia</div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15pt;">
+                        <div>
+                            <div class="subsection-subtitle">Por Genero</div>
+                            <table class="compact-table">
+                                <tr>
+                                    <td>Hombres</td>
+                                    <td>57,8%</td>
+                                </tr>
+                                <tr>
+                                    <td>Mujeres</td>
+                                    <td>42,2%</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <div class="subsection-subtitle">Por Geografia</div>
+                            <table class="compact-table">
+                                <tr>
+                                    <td>Espana</td>
+                                    <td>63,8%</td>
+                                </tr>
+                                <tr>
+                                    <td>Estados Unidos</td>
+                                    <td>0,9%</td>
+                                </tr>
+                                <tr>
+                                    <td>Mexico</td>
+                                    <td>0,4%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="subsection-subtitle">Por Edad</div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Rango</th>
+                                <th>13-17</th>
+                                <th>18-24</th>
+                                <th>25-34</th>
+                                <th>35-44</th>
+                                <th>45-54</th>
+                                <th>55-64</th>
+                                <th>65+</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>%</strong></td>
+                                <td>0%</td>
+                                <td>6,4%</td>
+                                <td>25,7%</td>
+                                <td class="highlight"><strong>32,9%</strong></td>
+                                <td>24,1%</td>
+                                <td>8,6%</td>
+                                <td>2,3%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <div class="info-box-title">Audiencia Principal</div>
+                        <p><strong>Adultos 35-54 anos (57%)</strong>, ligeramente mas hombres. Audiencia casi exclusivamente espanola (>95% incluyendo LATAM hispano).</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">3.4 Fuentes de Trafico</div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Fuente</th>
+                                <th>%</th>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight">
+                                <td><strong>Videos sugeridos</strong></td>
+                                <td>37,0%</td>
+                                <td>Recomendaciones de YouTube</td>
+                            </tr>
+                            <tr>
+                                <td>Busqueda YouTube</td>
+                                <td>28,8%</td>
+                                <td>Trafico organico de busqueda</td>
+                            </tr>
+                            <tr>
+                                <td>Paginas de canal</td>
+                                <td>13,0%</td>
+                                <td>Visitas directas al canal</td>
+                            </tr>
+                            <tr>
+                                <td>Funciones exploracion</td>
+                                <td>10,7%</td>
+                                <td>Homepage, Trending, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>Fuentes externas</td>
+                                <td>4,2%</td>
+                                <td>Webs, redes sociales</td>
+                            </tr>
+                            <tr>
+                                <td>Directo/Desconocido</td>
+                                <td>2,4%</td>
+                                <td>URL directa</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">3.5 Keywords Principales</div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Keyword</th>
+                                <th>Views</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight">
+                                <td>1</td>
+                                <td><strong>crims tv3</strong></td>
+                                <td>34.968</td>
+                                <td>11,4%</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>crims</td>
+                                <td>29.407</td>
+                                <td>9,6%</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>crims guardia urbana</td>
+                                <td>24.455</td>
+                                <td>8,0%</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>carles porta</td>
+                                <td>15.599</td>
+                                <td>5,1%</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>crims tv3 guardia urbana</td>
+                                <td>14.274</td>
+                                <td>4,7%</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>el crimen de la guardia urbana</td>
+                                <td>12.572</td>
+                                <td>4,1%</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>rosa peral</td>
+                                <td>7.836</td>
+                                <td>2,6%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 4. CHECKLIST -->
+        <div class="section" id="checklist">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Checklist de Estado del Canal</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <div class="subsection-title">4.1 Estado de la Cuenta</div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Verificacion</th>
+                                <th>Estado</th>
+                                <th>Notas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Strikes Copyright</td>
+                                <td><span class="check-yes">0</span></td>
+                                <td>Sin problemas</td>
+                            </tr>
+                            <tr>
+                                <td>Strikes Comunidad</td>
+                                <td><span class="check-yes">0</span></td>
+                                <td>Sin problemas</td>
+                            </tr>
+                            <tr>
+                                <td>Advertencias</td>
+                                <td><span class="check-yes">0</span></td>
+                                <td>Sin problemas</td>
+                            </tr>
+                            <tr>
+                                <td>Restricciones</td>
+                                <td><span class="check-yes">Ninguna</span></td>
+                                <td>Canal en buen estado</td>
+                            </tr>
+                            <tr>
+                                <td>Canal verificado</td>
+                                <td><span class="check-no">No</span></td>
+                                <td>Pendiente de solicitar</td>
+                            </tr>
+                            <tr>
+                                <td>Verificacion telefono</td>
+                                <td><span class="check-yes">Si</span></td>
+                                <td>Completado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box success">
+                        <div class="info-box-title">Estado General</div>
+                        <p><strong>EN BUEN ESTADO</strong> - El canal no tiene strikes ni restricciones. Base solida para relanzamiento.</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">4.2 Monetizacion</div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Funcion</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>YouTube Partner Program</td>
+                                <td><span class="check-yes">Activo</span></td>
+                            </tr>
+                            <tr>
+                                <td>AdSense vinculado</td>
+                                <td><span class="check-yes">Si (via MCN)</span></td>
+                            </tr>
+                            <tr>
+                                <td>Anuncios visualizacion</td>
+                                <td><span class="check-yes">Activado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Anuncios Shorts</td>
+                                <td><span class="check-yes">Activado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Super Chat/Thanks</td>
+                                <td><span class="check-no">No activado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Membresias canal</td>
+                                <td><span class="check-no">No activado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Shopping</td>
+                                <td><span class="check-no">No activado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">4.3 Funcionalidades</div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Funcion</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Funciones estandar</td>
+                                <td><span class="check-yes">Habilitadas</span></td>
+                            </tr>
+                            <tr>
+                                <td>Funciones intermedias</td>
+                                <td><span class="check-yes">Habilitadas</span></td>
+                            </tr>
+                            <tr>
+                                <td>Funciones avanzadas</td>
+                                <td><span class="check-yes">Habilitadas</span></td>
+                            </tr>
+                            <tr>
+                                <td>Videos +15 min</td>
+                                <td><span class="check-yes">Habilitado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Livestreaming</td>
+                                <td><span class="check-yes">Habilitado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Thumbnails personalizados</td>
+                                <td><span class="check-yes">Habilitado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Shorts</td>
+                                <td><span class="check-yes">Habilitado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">4.4 Configuracion Pendiente</div>
+                    
+                    <div class="info-box warning">
+                        <div class="info-box-title">Acciones Requeridas</div>
+                        <ul>
+                            <li><span class="check-warn">Pais de residencia:</span> No configurado</li>
+                            <li><span class="check-warn">Palabras clave del canal:</span> No configuradas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. HALLAZGOS -->
+        <div class="section" id="hallazgos">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Hallazgos Clave</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                
+                <div class="findings-grid">
+                    <div class="finding-card positive">
+                        <div class="finding-title">Hallazgos Positivos</div>
+                        <ol class="finding-list">
+                            <li><strong>Canal monetizado y sin strikes</strong> - Base solida para relanzamiento</li>
+                            <li><strong>Audiencia cualificada</strong> - 24K suscriptores, demografia adulta con poder adquisitivo</li>
+                            <li><strong>Contenido evergreen</strong> - Sigue generando trafico despues de anos</li>
+                            <li><strong>Alto engagement</strong> - >97% ratio de likes en todos los videos</li>
+                            <li><strong>Posicionamiento SEO</strong> - Domina busquedas de "crims" y casos relacionados</li>
+                            <li><strong>Vinculacion MCN reciente</strong> - Zoopa Network puede aportar recursos</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="finding-card negative">
+                        <div class="finding-title">Hallazgos Criticos</div>
+                        <ol class="finding-list">
+                            <li><strong>Inactividad extrema</strong> - 2.5+ anos sin publicar</li>
+                            <li><strong>Catalogo minimo</strong> - Solo 7 videos</li>
+                            <li><strong>Concentracion tematica</strong> - Dependencia de un solo caso</li>
+                            <li><strong>Monetizacion limitada</strong> - 43% del catalogo con restricciones</li>
+                            <li><strong>Configuracion incompleta</strong> - Falta pais y keywords del canal</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">Lectura Tecnica</div>
+                    
+                    <div class="info-box highlight">
+                        <div class="info-box-title">Fortalezas Detectadas</div>
+                        <ul>
+                            <li><strong>Alto rendimiento por video:</strong> Media de 122.434 views por video</li>
+                            <li><strong>El video principal</strong> (Parte 1) concentra el 59% de todas las visualizaciones</li>
+                            <li><strong>Contenido evergreen:</strong> 172 visualizaciones en las ultimas 48 horas (sin promocion activa)</li>
+                            <li><strong>Keywords dominantes:</strong> "crims tv3", "carles porta", "guardia urbana"</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box warning">
+                        <div class="info-box-title">Desequilibrios Identificados</div>
+                        <ul>
+                            <li><strong>Concentracion excesiva:</strong> 4 de 7 videos (57%) tratan el mismo caso</li>
+                            <li><strong>Inactividad prolongada:</strong> Riesgo de perdida de relevancia algoritmica</li>
+                            <li><strong>Catalogo muy reducido:</strong> Insuficiente para construir un canal sostenible</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">Oportunidades</div>
+                    
+                    <div class="info-box success">
+                        <div class="info-box-title">Oportunidades desde el Inventario</div>
+                        <ul>
+                            <li><strong>Expansion tematica:</strong> Cubrir otros casos de "Crims" (programa TV3)</li>
+                            <li><strong>Serializacion:</strong> El formato de partes funciona bien - aplicar a otros casos</li>
+                            <li><strong>Contenido complementario:</strong> Behind the scenes, entrevistas con expertos</li>
+                            <li><strong>Shorts:</strong> No hay ningun Short en el canal - oportunidad de clips impactantes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 6. PROXIMOS PASOS -->
+        <div class="section" id="pasos">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Proximos Pasos Recomendados</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                
+                <div class="info-box">
+                    <div class="info-box-title">Nota</div>
+                    <p>Las recomendaciones estrategicas detalladas se desarrollaran en secciones posteriores del informe de auditoria.</p>
+                </div>
+
+                <ol class="steps-list">
+                    <li><strong>Completar configuracion del canal</strong> - Configurar pais de residencia y palabras clave del canal en YouTube Studio</li>
+                    <li><strong>Definir estrategia de contenidos</strong> - Establecer plan editorial para el relanzamiento con nuevos casos</li>
+                    <li><strong>Activar funciones de monetizacion</strong> - Habilitar Super Chat, Super Thanks y Membresias del canal</li>
+                    <li><strong>Crear calendario editorial</strong> - Planificar frecuencia de publicacion sostenible (minimo 1 video/semana)</li>
+                    <li><strong>Desarrollar estrategia Shorts</strong> - Crear clips impactantes del archivo existente y nuevo contenido</li>
+                </ol>
+
+                <div class="info-box success" style="margin-top: 20pt;">
+                    <div class="info-box-title">Conclusion</div>
+                    <p>El canal tiene una <strong>base solida para el relanzamiento</strong>: audiencia cualificada, monetizacion activa, y posicionamiento SEO fuerte. La prioridad es reactivar la publicacion de contenido y diversificar la oferta tematica.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-logo">ZoopaNetwork</div>
+            <p class="footer-meta">
+                Informe de Auditoria Tecnica — Canal @CarlesPortaCrims<br>
+                Diciembre 2025
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
