@@ -1,0 +1,2443 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Guia de Valors de Marca | True Crime Factory</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #2d5a87;
+            --accent-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --pale-blue: #eff6ff;
+            --dark-blue: #0f172a;
+            --navy: #1e293b;
+            /* Cover - Much darker gradient */
+            --cover-deep: #030712;
+            --cover-dark: #0a1628;
+            --cover-mid: #0c1a2e;
+            --gradient-start: #0a1628;
+            --gradient-end: #030712;
+            
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-subtle: #f1f5f9;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            --success: #059669;
+            --success-light: #d1fae5;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --error: #dc2626;
+            --error-light: #fee2e2;
+            
+            --gold: #d4a574;
+            --gold-light: #f5e6d3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-white);
+            overflow-x: hidden;
+        }
+        
+        /* ============================================
+           COVER - CINEMATIC DARK WITH LENS FLARES
+           ============================================ */
+        .cover {
+            min-height: 100vh;
+            background: 
+                radial-gradient(ellipse 120% 80% at 80% 20%, rgba(20, 50, 90, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse 100% 60% at 10% 90%, rgba(15, 35, 65, 0.3) 0%, transparent 40%),
+                linear-gradient(165deg, var(--cover-mid) 0%, var(--cover-dark) 40%, var(--cover-deep) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60pt;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle noise texture overlay */
+        .cover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        
+        /* Vignette effect */
+        .cover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, rgba(3,7,18,0.7) 100%);
+            pointer-events: none;
+        }
+        
+        /* ============================================
+           CINEMATIC LENS FLARE SYSTEM
+           ============================================ */
+        .flare-layer {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        /* === PRIMARY LIGHT SOURCE (Hero flare) === */
+        .flare-source {
+            position: absolute;
+            top: 12%;
+            right: 18%;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 2px 1px #fff,
+                0 0 8px 4px rgba(255,255,255,0.9),
+                0 0 20px 10px rgba(147,197,253,0.8),
+                0 0 40px 20px rgba(59,130,246,0.6),
+                0 0 80px 40px rgba(59,130,246,0.4),
+                0 0 120px 60px rgba(30,64,120,0.3);
+            animation: source-pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes source-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 0 2px 1px #fff,
+                    0 0 8px 4px rgba(255,255,255,0.9),
+                    0 0 20px 10px rgba(147,197,253,0.8),
+                    0 0 40px 20px rgba(59,130,246,0.6),
+                    0 0 80px 40px rgba(59,130,246,0.4),
+                    0 0 120px 60px rgba(30,64,120,0.3);
+            }
+            50% { 
+                transform: scale(1.3);
+                box-shadow: 
+                    0 0 4px 2px #fff,
+                    0 0 15px 8px rgba(255,255,255,1),
+                    0 0 35px 18px rgba(147,197,253,0.9),
+                    0 0 70px 35px rgba(59,130,246,0.7),
+                    0 0 140px 70px rgba(59,130,246,0.5),
+                    0 0 200px 100px rgba(30,64,120,0.4);
+            }
+        }
+        
+        /* === ANAMORPHIC HORIZONTAL STREAK === */
+        .flare-anamorphic {
+            position: absolute;
+            top: calc(12% + 3px);
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                transparent 30%,
+                rgba(59,130,246,0.05) 45%,
+                rgba(147,197,253,0.3) 60%,
+                rgba(255,255,255,0.7) 75%,
+                rgba(147,197,253,0.3) 85%,
+                rgba(59,130,246,0.05) 92%,
+                transparent 100%
+            );
+            filter: blur(1px);
+            animation: anamorphic-breathe 4s ease-in-out infinite;
+        }
+        
+        .flare-anamorphic::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                transparent 55%,
+                rgba(255,255,255,0.4) 72%,
+                rgba(255,255,255,0.8) 78%,
+                rgba(255,255,255,0.4) 84%,
+                transparent 95%,
+                transparent 100%
+            );
+            filter: blur(0.5px);
+        }
+        
+        @keyframes anamorphic-breathe {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scaleX(0.85);
+            }
+            50% { 
+                opacity: 1;
+                transform: scaleX(1.15);
+            }
+        }
+        
+        /* === SECONDARY FLARE ELEMENTS (Ghosting) === */
+        .flare-ghost {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(59,130,246,0.15);
+            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+        }
+        
+        .flare-ghost:nth-child(1) {
+            width: 120px; height: 120px;
+            top: 25%; right: 35%;
+            animation: ghost-pulse-1 5s ease-in-out infinite;
+        }
+        
+        .flare-ghost:nth-child(2) {
+            width: 80px; height: 80px;
+            top: 35%; right: 50%;
+            border-color: rgba(96,165,250,0.12);
+            background: radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 70%);
+            animation: ghost-pulse-2 6s ease-in-out infinite 1s;
+        }
+        
+        .flare-ghost:nth-child(3) {
+            width: 50px; height: 50px;
+            top: 50%; right: 60%;
+            animation: ghost-pulse-1 7s ease-in-out infinite 2s;
+        }
+        
+        @keyframes ghost-pulse-1 {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        
+        @keyframes ghost-pulse-2 {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.15); }
+        }
+        
+        /* === HEXAGONAL FLARE ARTIFACTS === */
+        .flare-hex {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: conic-gradient(
+                from 0deg,
+                rgba(59,130,246,0.15) 0deg,
+                transparent 60deg,
+                rgba(59,130,246,0.15) 120deg,
+                transparent 180deg,
+                rgba(59,130,246,0.15) 240deg,
+                transparent 300deg,
+                rgba(59,130,246,0.15) 360deg
+            );
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: hex-rotate 20s linear infinite;
+        }
+        
+        .flare-hex:nth-child(4) {
+            top: 40%; right: 25%;
+            animation-delay: 0s;
+        }
+        
+        .flare-hex:nth-child(5) {
+            width: 25px; height: 25px;
+            top: 55%; right: 40%;
+            animation-delay: -5s;
+            opacity: 0.7;
+        }
+        
+        @keyframes hex-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* === STARBURST RAYS === */
+        .flare-starburst {
+            position: absolute;
+            top: 12%;
+            right: 18%;
+            width: 300px;
+            height: 300px;
+            transform: translate(50%, -50%);
+            background: 
+                conic-gradient(
+                    from 0deg at 50% 50%,
+                    transparent 0deg, rgba(147,197,253,0.1) 2deg, transparent 4deg,
+                    transparent 30deg, rgba(147,197,253,0.08) 32deg, transparent 34deg,
+                    transparent 60deg, rgba(147,197,253,0.1) 62deg, transparent 64deg,
+                    transparent 90deg, rgba(147,197,253,0.08) 92deg, transparent 94deg,
+                    transparent 120deg, rgba(147,197,253,0.1) 122deg, transparent 124deg,
+                    transparent 150deg, rgba(147,197,253,0.08) 152deg, transparent 154deg,
+                    transparent 180deg, rgba(147,197,253,0.1) 182deg, transparent 184deg,
+                    transparent 210deg, rgba(147,197,253,0.08) 212deg, transparent 214deg,
+                    transparent 240deg, rgba(147,197,253,0.1) 242deg, transparent 244deg,
+                    transparent 270deg, rgba(147,197,253,0.08) 272deg, transparent 274deg,
+                    transparent 300deg, rgba(147,197,253,0.1) 302deg, transparent 304deg,
+                    transparent 330deg, rgba(147,197,253,0.08) 332deg, transparent 334deg,
+                    transparent 360deg
+                );
+            animation: starburst-pulse 4s ease-in-out infinite;
+            filter: blur(2px);
+        }
+        
+        @keyframes starburst-pulse {
+            0%, 100% { 
+                opacity: 0.4;
+                transform: translate(50%, -50%) scale(0.9) rotate(0deg);
+            }
+            50% { 
+                opacity: 0.9;
+                transform: translate(50%, -50%) scale(1.2) rotate(5deg);
+            }
+        }
+        
+        /* === FLOATING LIGHT PARTICLES === */
+        .flare-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(147,197,253,0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 6px 3px rgba(59,130,246,0.4);
+        }
+        
+        .flare-particle:nth-child(6) {
+            top: 20%; right: 30%;
+            animation: particle-drift-1 8s ease-in-out infinite;
+        }
+        .flare-particle:nth-child(7) {
+            top: 60%; right: 15%;
+            width: 2px; height: 2px;
+            animation: particle-drift-2 10s ease-in-out infinite 2s;
+        }
+        .flare-particle:nth-child(8) {
+            top: 75%; right: 45%;
+            animation: particle-drift-1 12s ease-in-out infinite 4s;
+        }
+        .flare-particle:nth-child(9) {
+            top: 30%; right: 55%;
+            width: 2px; height: 2px;
+            animation: particle-drift-2 9s ease-in-out infinite 1s;
+        }
+        
+        @keyframes particle-drift-1 {
+            0%, 100% { 
+                opacity: 0;
+                transform: translate(0, 0) scale(0.5);
+            }
+            20% { opacity: 1; transform: translate(-10px, 5px) scale(1); }
+            80% { opacity: 1; transform: translate(10px, -15px) scale(1); }
+        }
+        
+        @keyframes particle-drift-2 {
+            0%, 100% { 
+                opacity: 0;
+                transform: translate(0, 0) scale(0.5);
+            }
+            25% { opacity: 0.8; transform: translate(8px, -8px) scale(1.2); }
+            75% { opacity: 0.8; transform: translate(-12px, 10px) scale(0.8); }
+        }
+        
+        /* === SECONDARY LIGHT SOURCE === */
+        .flare-secondary {
+            position: absolute;
+            top: 65%;
+            right: 8%;
+            width: 4px;
+            height: 4px;
+            background: rgba(212,165,116,0.9);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 4px 2px rgba(212,165,116,0.8),
+                0 0 15px 8px rgba(212,165,116,0.4),
+                0 0 40px 20px rgba(212,165,116,0.2);
+            animation: secondary-pulse 6s ease-in-out infinite 2s;
+        }
+        
+        @keyframes secondary-pulse {
+            0%, 100% { 
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+        
+        /* === AMBIENT GLOW POOLS === */
+        .flare-ambient {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+        
+        .flare-ambient:nth-child(10) {
+            width: 400px; height: 400px;
+            top: -15%; right: -10%;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+            animation: ambient-breathe 10s ease-in-out infinite;
+        }
+        
+        .flare-ambient:nth-child(11) {
+            width: 300px; height: 300px;
+            bottom: -10%; left: 10%;
+            background: radial-gradient(circle, rgba(30,58,95,0.2) 0%, transparent 70%);
+            animation: ambient-breathe 12s ease-in-out infinite 3s;
+        }
+        
+        @keyframes ambient-breathe {
+            0%, 100% { 
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: scale(1.15);
+            }
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600pt;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #60a5fa 100%);
+            padding: 8pt 18pt;
+            font-size: 8pt;
+            font-weight: 700;
+            letter-spacing: 3pt;
+            text-transform: uppercase;
+            margin-bottom: 25pt;
+            border-radius: 3pt;
+            box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+            animation: badge-glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes badge-glow {
+            from { box-shadow: 0 4px 20px rgba(59,130,246,0.4); }
+            to { box-shadow: 0 4px 30px rgba(59,130,246,0.6); }
+        }
+        
+        .cover-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 42pt;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 15pt;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: title-reveal 1s ease-out;
+        }
+        
+        @keyframes title-reveal {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cover-subtitle {
+            font-size: 12pt;
+            font-weight: 400;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 35pt;
+            line-height: 1.8;
+            max-width: 480pt;
+            animation: subtitle-reveal 1s ease-out 0.3s both;
+        }
+        
+        @keyframes subtitle-reveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cover-divider {
+            width: 80pt;
+            height: 4pt;
+            background: linear-gradient(90deg, var(--accent-blue), var(--gold));
+            margin-bottom: 35pt;
+            border-radius: 2pt;
+            animation: divider-expand 1s ease-out 0.5s both;
+        }
+        
+        @keyframes divider-expand {
+            from { width: 0; opacity: 0; }
+            to { width: 80pt; opacity: 1; }
+        }
+        
+        .cover-values {
+            display: flex;
+            gap: 12pt;
+            flex-wrap: wrap;
+            margin-bottom: 50pt;
+            animation: values-reveal 1s ease-out 0.7s both;
+        }
+        
+        @keyframes values-reveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cover-value-tag {
+            background: rgba(255,255,255,0.08);
+            border: 1pt solid rgba(255,255,255,0.2);
+            padding: 10pt 18pt;
+            font-size: 9pt;
+            font-weight: 600;
+            letter-spacing: 0.5pt;
+            border-radius: 30pt;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover-value-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .cover-value-tag:hover::before {
+            left: 100%;
+        }
+        
+        .cover-value-tag:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--accent-blue);
+        }
+        
+        .cover-meta {
+            font-size: 9pt;
+            color: rgba(255,255,255,0.5);
+            animation: meta-reveal 1s ease-out 1s both;
+        }
+        
+        .cover-meta strong {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        @keyframes meta-reveal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* ============================================
+           CONTENT AREA
+           ============================================ */
+        .content {
+            padding: 40pt 50pt;
+            max-width: 100%;
+            background: var(--bg-white);
+        }
+        
+        /* ============================================
+           SECTIONS - COLLAPSIBLE WITH ANIMATIONS
+           ============================================ */
+        .section {
+            margin-bottom: 35pt;
+            border-radius: 8pt;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(30,58,95,0.06);
+            transition: all 0.4s ease;
+            background: var(--bg-white);
+            border: 1pt solid var(--border-light);
+        }
+        
+        .section:hover {
+            box-shadow: 0 8px 40px rgba(30,58,95,0.12);
+            transform: translateY(-2px);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15pt;
+            padding: 18pt 22pt;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            border-bottom: 2pt solid var(--primary-blue);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2pt;
+            background: var(--accent-blue);
+            transition: width 0.4s ease;
+        }
+        
+        .section-header:hover::after {
+            width: 100%;
+        }
+        
+        .section-header:hover {
+            background: linear-gradient(135deg, var(--pale-blue) 0%, var(--bg-light) 100%);
+        }
+        
+        .section-number {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            width: 36pt;
+            height: 36pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13pt;
+            font-weight: 800;
+            border-radius: 8pt;
+            flex-shrink: 0;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 15px rgba(30,58,95,0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .section-header:hover .section-number {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 6px 20px rgba(30,58,95,0.4);
+        }
+        
+        .section-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 17pt;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        
+        .toggle-icon {
+            font-size: 18pt;
+            color: var(--primary-blue);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            width: 30pt;
+            height: 30pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--pale-blue);
+            border-radius: 50%;
+        }
+        
+        .section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+            background: var(--bg-subtle);
+        }
+        
+        .section-content {
+            padding: 25pt;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 5000px;
+            opacity: 1;
+        }
+        
+        .section.collapsed .section-content {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+        }
+        
+        /* ============================================
+           VALUE CARDS - ENHANCED
+           ============================================ */
+        .value-card {
+            background: var(--bg-white);
+            border: 1pt solid var(--border-medium);
+            margin-bottom: 30pt;
+            border-radius: 12pt;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(30,58,95,0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .value-card:hover {
+            box-shadow: 0 15px 50px rgba(30,58,95,0.15);
+            transform: translateY(-5px);
+        }
+        
+        .value-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 20pt 25pt;
+            display: flex;
+            align-items: center;
+            gap: 18pt;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+            animation: header-shimmer 5s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes header-shimmer {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .value-number-badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            width: 50pt;
+            height: 50pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20pt;
+            font-weight: 800;
+            border-radius: 12pt;
+            flex-shrink: 0;
+            font-family: 'Inter', sans-serif;
+            border: 2pt solid rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .value-card:hover .value-number-badge {
+            transform: rotate(10deg) scale(1.1);
+            background: rgba(255,255,255,0.25);
+        }
+        
+        .value-title-block {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .value-name {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 17pt;
+            font-weight: 700;
+            margin-bottom: 4pt;
+        }
+        
+        .value-tagline {
+            font-size: 10pt;
+            opacity: 0.85;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+        }
+        
+        .value-header .toggle-icon {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .value-card.collapsed .value-header .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .value-content {
+            padding: 25pt;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 5000px;
+            opacity: 1;
+        }
+        
+        .value-card.collapsed .value-content {
+            max-height: 0;
+            padding: 0 25pt;
+            opacity: 0;
+        }
+        
+        .value-definition {
+            font-size: 11pt;
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin-bottom: 20pt;
+            padding-bottom: 20pt;
+            border-bottom: 1pt solid var(--border-light);
+            position: relative;
+        }
+        
+        .value-definition::after {
+            content: '';
+            position: absolute;
+            bottom: -1pt;
+            left: 0;
+            width: 60pt;
+            height: 3pt;
+            background: linear-gradient(90deg, var(--accent-blue), transparent);
+            border-radius: 2pt;
+        }
+        
+        .value-section-label {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 2pt;
+            margin-bottom: 12pt;
+            margin-top: 22pt;
+            display: flex;
+            align-items: center;
+            gap: 10pt;
+        }
+        
+        .value-section-label::before {
+            content: '';
+            width: 20pt;
+            height: 3pt;
+            background: var(--accent-blue);
+            border-radius: 2pt;
+        }
+        
+        .value-list {
+            margin: 0 0 0 20pt;
+            font-size: 9.5pt;
+        }
+        
+        .value-list li {
+            margin-bottom: 8pt;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 5pt;
+        }
+        
+        .value-list li::marker {
+            color: var(--accent-blue);
+        }
+        
+        /* ============================================
+           EXAMPLES GRID - ENHANCED
+           ============================================ */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15pt;
+            margin-top: 20pt;
+        }
+        
+        .example-box {
+            padding: 18pt;
+            border-radius: 10pt;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .example-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4pt;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .example-box:hover::before {
+            width: 6pt;
+        }
+        
+        .example-box.correct {
+            background: linear-gradient(135deg, var(--success-light) 0%, #ecfdf5 100%);
+            border: 1pt solid #a7f3d0;
+        }
+        
+        .example-box.correct::before {
+            background: var(--success);
+        }
+        
+        .example-box.incorrect {
+            background: linear-gradient(135deg, var(--bg-subtle) 0%, var(--bg-light) 100%);
+            border: 1pt solid var(--border-light);
+        }
+        
+        .example-box.incorrect::before {
+            background: var(--text-muted);
+        }
+        
+        .example-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .example-label {
+            font-size: 9pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            margin-bottom: 12pt;
+            display: flex;
+            align-items: center;
+            gap: 8pt;
+        }
+        
+        .example-label::before {
+            content: '';
+            width: 8pt;
+            height: 8pt;
+            border-radius: 50%;
+        }
+        
+        .example-box.correct .example-label { color: var(--success); }
+        .example-box.correct .example-label::before { background: var(--success); }
+        .example-box.incorrect .example-label { color: var(--text-muted); }
+        .example-box.incorrect .example-label::before { background: var(--text-muted); }
+        
+        .example-item {
+            font-size: 9pt;
+            margin-bottom: 10pt;
+            padding-left: 18pt;
+            position: relative;
+            color: var(--text-secondary);
+            transition: transform 0.2s ease;
+        }
+        
+        .example-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .example-item::before {
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            font-size: 12pt;
+        }
+        
+        .example-box.correct .example-item::before { 
+            content: '+'; 
+            color: var(--success); 
+        }
+        
+        .example-box.incorrect .example-item::before { 
+            content: '-'; 
+            color: var(--text-muted); 
+        }
+        
+        /* ============================================
+           INFO BOXES - ENHANCED
+           ============================================ */
+        .info-box {
+            background: var(--bg-subtle);
+            border-left: 4pt solid var(--primary-blue);
+            padding: 18pt 22pt;
+            margin-bottom: 20pt;
+            border-radius: 0 8pt 8pt 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100pt;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.03));
+            pointer-events: none;
+        }
+        
+        .info-box:hover {
+            transform: translateX(5pt);
+            box-shadow: 0 4px 20px rgba(30,58,95,0.1);
+        }
+        
+        .info-box.highlight {
+            background: linear-gradient(135deg, var(--pale-blue) 0%, #f0f9ff 100%);
+            border-left-color: var(--accent-blue);
+        }
+        
+        .info-box.success {
+            background: linear-gradient(135deg, var(--success-light) 0%, #ecfdf5 100%);
+            border-left-color: var(--success);
+        }
+        
+        .info-box.warning {
+            background: linear-gradient(135deg, var(--warning-light) 0%, #fffbeb 100%);
+            border-left-color: var(--warning);
+        }
+        
+        .info-box.critical {
+            background: linear-gradient(135deg, var(--error-light) 0%, #fef2f2 100%);
+            border-left-color: var(--error);
+        }
+        
+        .info-box-title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            margin-bottom: 10pt;
+        }
+        
+        .info-box.success .info-box-title { color: var(--success); }
+        .info-box.warning .info-box-title { color: var(--warning); }
+        .info-box.critical .info-box-title { color: var(--error); }
+        
+        .info-box ul {
+            margin: 10pt 0 0 20pt;
+            font-size: 9.5pt;
+        }
+        
+        .info-box li {
+            margin-bottom: 6pt;
+        }
+        
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        p {
+            margin-bottom: 14pt;
+            color: var(--text-secondary);
+            font-size: 10pt;
+            line-height: 1.7;
+        }
+        
+        p.lead {
+            font-size: 11pt;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        
+        strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* ============================================
+           TABLES - ENHANCED
+           ============================================ */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-bottom: 20pt;
+            border-radius: 8pt;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(30,58,95,0.06);
+        }
+        
+        .data-table th {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 14pt 16pt;
+            text-align: left;
+            font-weight: 600;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+        }
+        
+        .data-table td {
+            padding: 14pt 16pt;
+            border-bottom: 1pt solid var(--border-light);
+            vertical-align: top;
+            transition: all 0.2s ease;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+        
+        .data-table tr {
+            transition: all 0.3s ease;
+        }
+        
+        .data-table tr:hover {
+            background: var(--pale-blue) !important;
+            transform: scale(1.01);
+        }
+        
+        /* ============================================
+           QUOTE BLOCK - ENHANCED
+           ============================================ */
+        .quote-block {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 30pt 35pt;
+            margin: 25pt 0;
+            position: relative;
+            border-left: 5pt solid var(--accent-blue);
+            border-radius: 0 12pt 12pt 0;
+            overflow: hidden;
+        }
+        
+        .quote-block::before {
+            content: '"';
+            position: absolute;
+            top: 10pt;
+            left: 20pt;
+            font-size: 80pt;
+            font-family: 'Source Serif Pro', serif;
+            color: rgba(59,130,246,0.15);
+            line-height: 1;
+        }
+        
+        .quote-block::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200pt;
+            height: 100%;
+            background: radial-gradient(ellipse at right, rgba(59,130,246,0.1) 0%, transparent 70%);
+        }
+        
+        .quote-text {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 14pt;
+            font-style: italic;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-source {
+            margin-top: 15pt;
+            font-size: 9pt;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 2pt;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ============================================
+           COMPACT VALUES
+           ============================================ */
+        .compact-value {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            border-left: 4pt solid var(--primary-blue);
+            padding: 18pt 22pt;
+            margin-bottom: 16pt;
+            border-radius: 0 8pt 8pt 0;
+            transition: all 0.3s ease;
+        }
+        
+        .compact-value:hover {
+            background: linear-gradient(135deg, var(--pale-blue) 0%, var(--bg-light) 100%);
+            border-left-width: 6pt;
+            padding-left: 20pt;
+            transform: translateX(3pt);
+        }
+        
+        .compact-value-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 13pt;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 8pt;
+        }
+        
+        .compact-value-definition {
+            font-size: 9.5pt;
+            color: var(--text-secondary);
+            margin-bottom: 8pt;
+        }
+        
+        .compact-value-practice {
+            font-size: 9pt;
+            color: var(--text-muted);
+        }
+        
+        /* ============================================
+           SUMMARY GRID - ENHANCED
+           ============================================ */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12pt;
+            margin: 25pt 0;
+        }
+        
+        .summary-item {
+            background: linear-gradient(145deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 18pt 12pt;
+            text-align: center;
+            border-radius: 10pt;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .summary-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(59,130,246,0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .summary-item:hover::before {
+            opacity: 1;
+        }
+        
+        .summary-item:hover {
+            transform: translateY(-8pt) scale(1.05);
+            box-shadow: 0 15px 40px rgba(30,58,95,0.4);
+        }
+        
+        .summary-item-number {
+            font-size: 20pt;
+            font-weight: 800;
+            opacity: 0.5;
+            margin-bottom: 6pt;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .summary-item:hover .summary-item-number {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .summary-item-name {
+            font-size: 10pt;
+            font-weight: 700;
+            margin-bottom: 6pt;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .summary-item-desc {
+            font-size: 7.5pt;
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ============================================
+           DECISION FLOW - ENHANCED
+           ============================================ */
+        .decision-flow-container {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            border: 1pt solid var(--border-light);
+            padding: 25pt;
+            margin: 25pt 0;
+            border-radius: 12pt;
+            box-shadow: 0 4px 20px rgba(30,58,95,0.06);
+        }
+        
+        .decision-flow-title {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 13pt;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 25pt;
+        }
+        
+        .decision-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12pt;
+            flex-wrap: wrap;
+        }
+        
+        .decision-step {
+            background: var(--bg-white);
+            border: 1pt solid var(--border-medium);
+            padding: 14pt 20pt;
+            text-align: center;
+            font-size: 9pt;
+            font-weight: 500;
+            min-width: 110pt;
+            border-radius: 8pt;
+            transition: all 0.3s ease;
+        }
+        
+        .decision-step:hover {
+            transform: translateY(-3pt);
+            box-shadow: 0 6px 20px rgba(30,58,95,0.15);
+        }
+        
+        .decision-step.highlight {
+            border: 2pt solid var(--primary-blue);
+            background: var(--pale-blue);
+        }
+        
+        .decision-arrow {
+            font-size: 20pt;
+            color: var(--primary-blue);
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+        
+        .decision-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15pt;
+            margin-top: 20pt;
+        }
+        
+        .decision-result {
+            padding: 16pt;
+            text-align: center;
+            font-size: 9.5pt;
+            font-weight: 600;
+            border-radius: 8pt;
+            transition: all 0.3s ease;
+        }
+        
+        .decision-result:hover {
+            transform: scale(1.02);
+        }
+        
+        .decision-result.approved {
+            background: linear-gradient(135deg, var(--success-light) 0%, #ecfdf5 100%);
+            color: var(--success);
+            border: 1pt solid #a7f3d0;
+        }
+        
+        .decision-result.rejected {
+            background: linear-gradient(135deg, var(--error-light) 0%, #fef2f2 100%);
+            color: var(--error);
+            border: 1pt solid #fecaca;
+        }
+        
+        /* ============================================
+           CASE STUDY - ENHANCED
+           ============================================ */
+        .case-study {
+            background: var(--bg-white);
+            border: 1pt solid var(--border-medium);
+            margin-bottom: 20pt;
+            border-radius: 10pt;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(30,58,95,0.06);
+            transition: all 0.4s ease;
+        }
+        
+        .case-study:hover {
+            box-shadow: 0 10px 35px rgba(30,58,95,0.12);
+            transform: translateY(-3pt);
+        }
+        
+        .case-study-header {
+            background: linear-gradient(135deg, var(--bg-subtle) 0%, var(--bg-light) 100%);
+            padding: 14pt 18pt;
+            border-bottom: 1pt solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 12pt;
+        }
+        
+        .case-study-number {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            width: 28pt;
+            height: 28pt;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11pt;
+            font-weight: 700;
+            border-radius: 6pt;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .case-study:hover .case-study-number {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .case-study-title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .case-study-content {
+            padding: 18pt;
+        }
+        
+        .case-study-situation {
+            font-size: 9.5pt;
+            color: var(--text-secondary);
+            margin-bottom: 16pt;
+            padding-bottom: 16pt;
+            border-bottom: 1pt solid var(--border-light);
+        }
+        
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16pt;
+        }
+        
+        .case-study-analysis {
+            font-size: 9pt;
+        }
+        
+        .case-study-analysis-title {
+            font-size: 8pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin-bottom: 10pt;
+        }
+        
+        .case-study-decision {
+            padding: 16pt;
+            border-radius: 8pt;
+        }
+        
+        .case-study-decision.approve {
+            background: linear-gradient(135deg, var(--success-light) 0%, #ecfdf5 100%);
+        }
+        
+        .case-study-decision.reject {
+            background: linear-gradient(135deg, var(--error-light) 0%, #fef2f2 100%);
+        }
+        
+        .case-study-decision.modify {
+            background: linear-gradient(135deg, var(--warning-light) 0%, #fffbeb 100%);
+        }
+        
+        .case-study-decision-label {
+            font-size: 10pt;
+            font-weight: 700;
+            margin-bottom: 8pt;
+        }
+        
+        .case-study-decision.approve .case-study-decision-label { color: var(--success); }
+        .case-study-decision.reject .case-study-decision-label { color: var(--error); }
+        .case-study-decision.modify .case-study-decision-label { color: var(--warning); }
+        
+        .case-study-decision p {
+            font-size: 9pt;
+            margin: 0;
+        }
+        
+        /* ============================================
+           PE REFERENCE
+           ============================================ */
+        .pe-reference {
+            background: linear-gradient(135deg, var(--pale-blue) 0%, #f0f9ff 100%);
+            border: 1pt solid var(--light-blue);
+            padding: 14pt 18pt;
+            margin-top: 18pt;
+            border-radius: 8pt;
+            font-size: 9pt;
+            transition: all 0.3s ease;
+        }
+        
+        .pe-reference:hover {
+            transform: translateX(3pt);
+            box-shadow: 0 4px 15px rgba(59,130,246,0.1);
+        }
+        
+        .pe-reference-label {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            margin-bottom: 8pt;
+        }
+        
+        .pe-reference p {
+            margin-bottom: 4pt;
+            color: var(--text-secondary);
+            font-size: 9pt;
+        }
+        
+        /* ============================================
+           CHECKLIST - INTERACTIVE
+           ============================================ */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .checklist li {
+            padding: 12pt 0 12pt 35pt;
+            border-bottom: 1pt solid var(--border-light);
+            position: relative;
+            font-size: 9.5pt;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist li:hover {
+            background: var(--bg-light);
+            padding-left: 40pt;
+        }
+        
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12pt;
+            width: 18pt;
+            height: 18pt;
+            border: 2pt solid var(--primary-blue);
+            border-radius: 4pt;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist li:hover::before {
+            border-color: var(--accent-blue);
+            background: var(--pale-blue);
+        }
+        
+        .checklist li.checked::before {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        
+        .checklist li.checked::after {
+            content: '✓';
+            position: absolute;
+            left: 4pt;
+            top: 12pt;
+            color: white;
+            font-size: 12pt;
+            font-weight: 700;
+        }
+        
+        /* ============================================
+           APPLICATION BOX
+           ============================================ */
+        .application-box {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            border: 1pt solid var(--border-light);
+            padding: 20pt;
+            margin-top: 20pt;
+            border-radius: 10pt;
+            transition: all 0.3s ease;
+        }
+        
+        .application-box:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 6px 25px rgba(30,58,95,0.1);
+        }
+        
+        .application-title {
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15pt;
+            display: flex;
+            align-items: center;
+            gap: 12pt;
+        }
+        
+        .application-badge {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 5pt 12pt;
+            font-size: 7pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            border-radius: 4pt;
+            transition: all 0.3s ease;
+        }
+        
+        .application-box:hover .application-badge {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #60a5fa 100%);
+        }
+        
+        .application-list {
+            font-size: 9.5pt;
+            margin-left: 20pt;
+        }
+        
+        .application-list li {
+            margin-bottom: 6pt;
+            color: var(--text-secondary);
+        }
+        
+        /* ============================================
+           CARLES PORTA SIGNATURE SECTION
+           ============================================ */
+        .signature-section {
+            background: linear-gradient(145deg, var(--navy) 0%, var(--dark-blue) 100%);
+            padding: 40pt;
+            margin-top: 40pt;
+            border-radius: 16pt;
+            display: flex;
+            align-items: center;
+            gap: 35pt;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .signature-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300pt;
+            height: 100%;
+            background: radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.15) 0%, transparent 70%);
+        }
+        
+        .signature-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50pt;
+            left: -50pt;
+            width: 200pt;
+            height: 200pt;
+            background: radial-gradient(circle, rgba(212,165,116,0.1) 0%, transparent 70%);
+        }
+        
+        .signature-photo {
+            width: 120pt;
+            height: 120pt;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4pt solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            overflow: hidden;
+        }
+        
+        .signature-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        
+        .signature-photo-placeholder {
+            width: 120pt;
+            height: 120pt;
+            border-radius: 50%;
+            border: 4pt solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Source Serif Pro', serif;
+            font-size: 36pt;
+            font-weight: 700;
+        }
+        
+        .signature-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .signature-quote {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 28pt;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15pt;
+            line-height: 1.2;
+            position: relative;
+        }
+        
+        .signature-quote::before {
+            content: '"';
+            position: absolute;
+            top: -15pt;
+            left: -20pt;
+            font-size: 60pt;
+            color: rgba(59,130,246,0.3);
+            font-family: 'Source Serif Pro', serif;
+        }
+        
+        .signature-author {
+            font-size: 11pt;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 1pt;
+            margin-bottom: 6pt;
+        }
+        
+        .signature-role {
+            font-size: 9pt;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* ============================================
+           FOOTER - ENHANCED
+           ============================================ */
+        .footer {
+            text-align: center;
+            padding: 30pt;
+            border-top: 3pt solid var(--primary-blue);
+            margin-top: 40pt;
+            background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%);
+        }
+        
+        .footer-logo {
+            font-size: 13pt;
+            font-weight: 800;
+            color: var(--primary-blue);
+            letter-spacing: 3pt;
+            text-transform: uppercase;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            transform: scale(1.05);
+            color: var(--accent-blue);
+        }
+        
+        .footer-meta {
+            font-size: 8pt;
+            color: var(--text-muted);
+            margin-top: 10pt;
+        }
+        
+        .footer-tagline {
+            font-size: 9pt;
+            color: var(--text-light);
+            margin-top: 12pt;
+            font-style: italic;
+            letter-spacing: 0.5pt;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* ============================================
+           PRINT STYLES
+           ============================================ */
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+            }
+            .page-break { page-break-after: always; }
+            .toggle-icon { display: none; }
+            .section.collapsed .section-content,
+            .value-card.collapsed .value-content { 
+                max-height: none; 
+                opacity: 1;
+                padding: 25pt;
+            }
+            .flare-layer { display: none; }
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
+        /* ============================================
+           REDUCED MOTION
+           ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // Toggle sections
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+        
+        // Toggle value cards
+        function toggleValueCard(header) {
+            const card = header.closest('.value-card');
+            card.classList.toggle('collapsed');
+        }
+        
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Interactive checklist
+            document.querySelectorAll('.checklist li').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                });
+            });
+            
+            // Smooth scroll for cover value tags
+            document.querySelectorAll('.cover-value-tag').forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Expand if collapsed
+                        if (targetElement.classList.contains('collapsed')) {
+                            targetElement.classList.remove('collapsed');
+                        }
+                    }
+                });
+            });
+            
+            // Expand all / Collapse all keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'e' && e.altKey) {
+                    // Alt+E: Expand all
+                    document.querySelectorAll('.section.collapsed, .value-card.collapsed').forEach(el => {
+                        el.classList.remove('collapsed');
+                    });
+                }
+                if (e.key === 'c' && e.altKey) {
+                    // Alt+C: Collapse all
+                    document.querySelectorAll('.section:not(.collapsed), .value-card:not(.collapsed)').forEach(el => {
+                        el.classList.add('collapsed');
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- COVER -->
+    <div class="cover">
+        <!-- CINEMATIC LENS FLARE SYSTEM -->
+        <div class="flare-layer">
+            <!-- Ambient glow pools (background) -->
+            <div class="flare-ambient"></div>
+            <div class="flare-ambient"></div>
+            
+            <!-- Starburst rays from main source -->
+            <div class="flare-starburst"></div>
+            
+            <!-- Ghost rings (lens artifacts) -->
+            <div class="flare-ghost"></div>
+            <div class="flare-ghost"></div>
+            <div class="flare-ghost"></div>
+            
+            <!-- Hexagonal aperture flares -->
+            <div class="flare-hex"></div>
+            <div class="flare-hex"></div>
+            
+            <!-- Floating light particles -->
+            <div class="flare-particle"></div>
+            <div class="flare-particle"></div>
+            <div class="flare-particle"></div>
+            <div class="flare-particle"></div>
+            
+            <!-- Anamorphic horizontal streak -->
+            <div class="flare-anamorphic"></div>
+            
+            <!-- Primary light source -->
+            <div class="flare-source"></div>
+            
+            <!-- Secondary warm light -->
+            <div class="flare-secondary"></div>
+        </div>
+        <div class="cover-content">
+            <div class="cover-badge">Document Fundacional</div>
+            <h1 class="cover-title">Guia de Valors<br>de Marca</h1>
+            <p class="cover-subtitle">Els principis que defineixen qui som, com actuem i què representa True Crime Factory en cada decisió, contingut i interacció.</p>
+            <div class="cover-divider"></div>
+            
+            <div class="cover-values">
+                <a href="#integritat" class="cover-value-tag">Integritat</a>
+                <a href="#rigor" class="cover-value-tag">Rigor</a>
+                <a href="#respecte" class="cover-value-tag">Respecte</a>
+                <a href="#credibilitat" class="cover-value-tag">Credibilitat</a>
+                <a href="#excellencia" class="cover-value-tag">Excel·lència</a>
+            </div>
+            
+            <p class="cover-meta">
+                <strong>True Crime Factory</strong><br>
+                Versió 2.0 — Desembre 2025
+            </p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- PROPOSIT -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">00</div>
+                <h2 class="section-title">Propòsit d'Aquesta Guia</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p class="lead">Aquesta guia defineix els valors fonamentals que han de guiar totes les decisions, accions i comunicacions de True Crime Factory. És el filtre obligatori pel qual ha de passar qualsevol iniciativa abans de ser aprovada.</p>
+
+                <div class="quote-block">
+                    <p class="quote-text">Si una acció no compleix aquests cinc valors, no és per nosaltres.</p>
+                    <p class="quote-source">Principi rector True Crime Factory</p>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">Qui ha d'utilitzar aquesta guia</div>
+                    <ul>
+                        <li><strong>Equip creatiu:</strong> Validació de guions, thumbnails, títols i enfocaments editorials</li>
+                        <li><strong>Equip comercial:</strong> Avaluació de patrocinadors, col·laboracions i oportunitats de negoci</li>
+                        <li><strong>Equip de producció:</strong> Decisions sobre tractament de casos i material sensible</li>
+                        <li><strong>Direcció:</strong> Validació de noves línies de negoci i expansions estratègiques</li>
+                        <li><strong>Col·laboradors externs:</strong> Comprensió de l'ADN de la marca</li>
+                    </ul>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referència Plan Estratègic</div>
+                    <p>Aquesta guia desenvolupa els "Valores Troncales" del Plan Estratégico True Crime Factory (PE, línies 18-26): Integridad, Rigor, Respeto, Credibilidad i Excelencia.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARQUITECTURA -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Arquitectura de Valors</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p>Els valors s'organitzen en tres nivells jeràrquics:</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nivell</th>
+                            <th>Tipus</th>
+                            <th>Funció</th>
+                            <th>Valors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nivell 1</strong></td>
+                            <td>Valors Troncals</td>
+                            <td>Principis irrenunciables. Compliment obligatori.</td>
+                            <td>Integritat, Rigor, Respecte, Credibilitat, Excel·lència</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nivell 2</strong></td>
+                            <td>Valors Operatius</td>
+                            <td>Guien l'execució diària i decisions tàctiques.</td>
+                            <td>Claredat, Humanitat, Sobrietat, Profunditat, Cura del detall</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nivell 3</strong></td>
+                            <td>Valors d'Expressió</td>
+                            <td>Defineixen com es comunica i percep la marca.</td>
+                            <td>Coherència, Autenticitat, Narrativitat, Calma, Responsabilitat social</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box critical">
+                    <div class="info-box-title">Regla fonamental</div>
+                    <p>Els valors de Nivell 1 són de compliment obligatori. Cap decisió comercial, creativa o operativa pot vulnerar-los. Els valors de Nivell 2 i 3 són aspiracionals però admeten certa flexibilitat tàctica.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALOR 1: INTEGRITAT -->
+        <div class="value-card" id="integritat">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">01</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Integritat</h3>
+                    <p class="value-tagline">Actuar amb coherència, honestedat i responsabilitat</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">La integritat és el compromís amb la veritat i la transparència en tot el que fem. Significa dir el que pensem, fer el que diem, i assumir les conseqüències de les nostres accions. És un valor que protegeix la reputació independentment del format de negoci.</p>
+
+                <div class="value-section-label">Com es manifesta</div>
+                <ul class="value-list">
+                    <li>No manipulem fets ni dades per fer més atractiu un contingut</li>
+                    <li>Reconeixem errors públicament quan ens equivoquem</li>
+                    <li>No acceptem patrocinis que comprometin la independència editorial</li>
+                    <li>Som transparents amb l'audiència sobre el model de negoci</li>
+                    <li>Complim els compromisos amb col·laboradors i audiència</li>
+                </ul>
+
+                <div class="examples-grid">
+                    <div class="example-box correct">
+                        <div class="example-label">Aplicació correcta</div>
+                        <div class="example-item">Publicar rectificació quan es detecta un error</div>
+                        <div class="example-item">Rebutjar patrocini d'empresa amb pràctiques dubtoses</div>
+                        <div class="example-item">Indicar clarament "contingut patrocinat"</div>
+                    </div>
+                    <div class="example-box incorrect">
+                        <div class="example-label">A evitar</div>
+                        <div class="example-item">Esborrar vídeo amb errors sense reconèixer-los</div>
+                        <div class="example-item">Acceptar diners per parlar bé d'una marca en un cas</div>
+                        <div class="example-item">Amagar patrocinis com recomanacions genuïnes</div>
+                    </div>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referència PE</div>
+                    <p><strong>Línia 22:</strong> "INTEGRIDAD: Compromiso con la verdad y la transparencia"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALOR 2: RIGOR -->
+        <div class="value-card" id="rigor">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">02</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Rigor</h3>
+                    <p class="value-tagline">Fer les coses bé, amb precisió i criteri professional</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">El rigor és l'exigència màxima en la qualitat, la precisió i l'ofici. Significa investigació profunda, verificació de fonts, i cura en cada detall. Tot el que porta el nostre nom ha d'estar ben fet. No publiquem fins que estem segurs.</p>
+
+                <div class="value-section-label">Com es manifesta</div>
+                <ul class="value-list">
+                    <li>Cada cas s'investiga a fons abans de produir-lo</li>
+                    <li>Les fonts es verifiquen i contrasten</li>
+                    <li>Les dates, noms i fets es comproven múltiples vegades</li>
+                    <li>Els experts consultats són professionals reconeguts</li>
+                    <li>La producció tècnica compleix estàndards professionals</li>
+                </ul>
+
+                <div class="examples-grid">
+                    <div class="example-box correct">
+                        <div class="example-label">Aplicació correcta</div>
+                        <div class="example-item">Consultar la sentència judicial original</div>
+                        <div class="example-item">Entrevistar criminòleg per validar hipòtesis</div>
+                        <div class="example-item">Revisar àudio 3 vegades per eliminar sorolls</div>
+                    </div>
+                    <div class="example-box incorrect">
+                        <div class="example-label">A evitar</div>
+                        <div class="example-item">Copiar informació sense verificar fonts</div>
+                        <div class="example-item">Publicar vídeo amb dates contradictòries</div>
+                        <div class="example-item">Publicar amb àudio deficient per arribar a temps</div>
+                    </div>
+                </div>
+
+                <div class="application-box">
+                    <div class="application-title">
+                        <span class="application-badge">Checklist</span>
+                        Abans de publicar qualsevol contingut
+                    </div>
+                    <ul class="checklist">
+                        <li>Tots els fets estan verificats amb mínim 2 fonts?</li>
+                        <li>Les dates, noms i llocs són correctes?</li>
+                        <li>Les cites són literals i atribuïdes correctament?</li>
+                        <li>S'ha consultat documentació primària?</li>
+                        <li>La qualitat tècnica compleix els estàndards?</li>
+                    </ul>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referència PE</div>
+                    <p><strong>Línia 23:</strong> "RIGOR: Investigación profunda y verificación de fuentes"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALOR 3: RESPECTE -->
+        <div class="value-card" id="respecte">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">03</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Respecte</h3>
+                    <p class="value-tagline">Tractar persones, històries i audiències amb dignitat</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">El respecte significa tractar les víctimes, famílies, audiència i l'impacte social del que fem amb la màxima sensibilitat. No hi ha espai per l'explotació ni el sensacionalisme. Les persones de les nostres històries són persones reals amb famílies que potser veuran el contingut.</p>
+
+                <div class="value-section-label">Respecte cap a les víctimes</div>
+                <ul class="value-list">
+                    <li>Mai mostrar imatges gràfiques sense necessitat editorial clara</li>
+                    <li>Evitar descripcions morboses o innecessàriament explícites</li>
+                    <li>Donar veu a les víctimes, no només als perpetradors</li>
+                    <li>Respectar la voluntat de les famílies</li>
+                </ul>
+
+                <div class="value-section-label">Respecte cap a l'audiència</div>
+                <ul class="value-list">
+                    <li>Advertir sobre contingut potencialment pertorbador</li>
+                    <li>No manipular emocionalment per generar clicks</li>
+                    <li>Oferir context i perspectiva, no només impacte</li>
+                </ul>
+
+                <div class="info-box critical">
+                    <div class="info-box-title">Línia vermella absoluta</div>
+                    <p>Mai produirem contingut que:</p>
+                    <ul>
+                        <li>Glorifiqui o romantitzi als perpetradors</li>
+                        <li>Revictimitzi a les víctimes o famílies</li>
+                        <li>Utilitzi el dolor humà com a entreteniment morbós</li>
+                        <li>Difongui informació que perjudiqui investigacions en curs</li>
+                    </ul>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referència PE</div>
+                    <p><strong>Línia 24:</strong> "RESPETO: Dignidad hacia víctimas y familias"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALOR 4: CREDIBILITAT -->
+        <div class="value-card" id="credibilitat">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">04</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Credibilitat</h3>
+                    <p class="value-tagline">Generar confiança i mantenir-la amb professionalitat</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">La credibilitat és l'autoritat narrativa i l'expertise professional que ens guanyem episodi a episodi. És el resultat acumulat d'actuar amb integritat i rigor de forma consistent. Una marca creïble és fiable, sòlida i transparent.</p>
+
+                <div class="value-section-label">Com es construeix</div>
+                <ul class="value-list">
+                    <li><strong>Consistència:</strong> Mantenir el mateix nivell de qualitat sempre</li>
+                    <li><strong>Fonts:</strong> Citar sempre i ser transparent sobre limitacions</li>
+                    <li><strong>Experts:</strong> Col·laborar amb professionals reconeguts</li>
+                    <li><strong>Autocrítica:</strong> Reconèixer errors i corregir-los públicament</li>
+                </ul>
+
+                <div class="examples-grid">
+                    <div class="example-box correct">
+                        <div class="example-label">Construeix credibilitat</div>
+                        <div class="example-item">"Segons la sentència del Tribunal Suprem de 2018..."</div>
+                        <div class="example-item">"No hem pogut verificar aquest extrem"</div>
+                        <div class="example-item">Publicar rectificació quan es detecta error</div>
+                    </div>
+                    <div class="example-box incorrect">
+                        <div class="example-label">Destrueix credibilitat</div>
+                        <div class="example-item">"Segons fonts properes al cas..." (sense especificar)</div>
+                        <div class="example-item">Presentar opinions com a fets establerts</div>
+                        <div class="example-item">Ignorar errors assenyalats per l'audiència</div>
+                    </div>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referència PE</div>
+                    <p><strong>Línia 25:</strong> "CREDIBILIDAD: Autoridad narrativa y expertise profesional"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALOR 5: EXCEL·LÈNCIA -->
+        <div class="value-card" id="excellencia">
+            <div class="value-header" onclick="toggleValueCard(this)">
+                <div class="value-number-badge">05</div>
+                <div class="value-title-block">
+                    <h3 class="value-name">Excel·lència</h3>
+                    <p class="value-tagline">Buscar sempre la màxima qualitat possible</p>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="value-content">
+                <p class="value-definition">L'excel·lència és la qualitat audiovisual i editorial sobresortint en tot el que fem. Apostem per fer les coses amb cura, detall i ambiciosament bé. Aquest és el nostre estàndard en qualsevol format: sigui una sèrie de 10 episodis, un Short de 60 segons, o un email.</p>
+
+                <div class="value-section-label">Dimensions de l'excel·lència</div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Dimensió</th>
+                            <th>Què implica</th>
+                            <th>Estàndard</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Narrativa</strong></td>
+                            <td>Guions estructurats, ritme adequat, hooks efectius</td>
+                            <td>Retenció superior 50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Visual</strong></td>
+                            <td>Thumbnails professionals, gràfics clars</td>
+                            <td>CTR superior 6%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Àudio</strong></td>
+                            <td>So net, veu clara, mix equilibrat</td>
+                            <td>Zero queixes d'àudio</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Editorial</strong></td>
+                            <td>Investigació profunda, context ric</td>
+                            <td>100% fets verificables</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box success">
+                    <div class="info-box-title">Test de l'excel·lència</div>
+                    <p>Abans de publicar qualsevol contingut: "Estaria orgullós de mostrar això a un professional del sector?" Si la resposta és no, no està llest.</p>
+                </div>
+
+                <div class="pe-reference">
+                    <div class="pe-reference-label">Referència PE</div>
+                    <p><strong>Línia 26:</strong> "EXCELENCIA: Calidad audiovisual y editorial sobresaliente"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALORS OPERATIUS -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">02</div>
+                <h2 class="section-title">Valors Operatius — Nivell 2</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p>Aquests valors guien l'execució diària. Són el "com" fem les coses.</p>
+
+                <div class="compact-value">
+                    <div class="compact-value-title">6. Claredat</div>
+                    <div class="compact-value-definition"><strong>Definició:</strong> Comunicar amb transparència i senzillesa, eliminant soroll i confusió.</div>
+                    <div class="compact-value-practice"><strong>Pràctica:</strong> Títols que expliquen el contingut. Narracions sense circumloquis. Estructures lògiques.</div>
+                </div>
+
+                <div class="compact-value">
+                    <div class="compact-value-title">7. Humanitat</div>
+                    <div class="compact-value-definition"><strong>Definició:</strong> Col·locar les persones al centre: escoltar, comprendre, cuidar la mirada.</div>
+                    <div class="compact-value-practice"><strong>Pràctica:</strong> Víctimes amb nom i dignitat. Perpetradors com persones, no "monstres". Audiència tractada com adults.</div>
+                </div>
+
+                <div class="compact-value">
+                    <div class="compact-value-title">8. Sobrietat</div>
+                    <div class="compact-value-definition"><strong>Definició:</strong> Estètica i narrativa ajustada, sense exageracions ni efectismes.</div>
+                    <div class="compact-value-practice"><strong>Pràctica:</strong> Música dramàtica només quan es justifica. Narració calmada. Gràfics elegants, no cridaners.</div>
+                </div>
+
+                <div class="compact-value">
+                    <div class="compact-value-title">9. Profunditat</div>
+                    <div class="compact-value-definition"><strong>Definició:</strong> Aportar context, sentit i perspectiva. No quedar-se a la superfície.</div>
+                    <div class="compact-value-practice"><strong>Pràctica:</strong> Explicar el "per què", no només el "què". Contextualitzar històricament. Oferir anàlisi.</div>
+                </div>
+
+                <div class="compact-value">
+                    <div class="compact-value-title">10. Cura del detall</div>
+                    <div class="compact-value-definition"><strong>Definició:</strong> Cada peça, paraula i decisió és una oportunitat per sumar qualitat.</div>
+                    <div class="compact-value-practice"><strong>Pràctica:</strong> Revisar ortografia. Comprovar timestamps. Verificar links. Subtítols precisos.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- VALORS D'EXPRESSIO -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Valors d'Expressió — Nivell 3</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p>Defineixen com es comunica i percep la marca.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 18%;">Valor</th>
+                            <th style="width: 40%;">Definició</th>
+                            <th style="width: 42%;">Aplicació</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>11. Coherència</strong></td>
+                            <td>Identitat estable en qualsevol plataforma</td>
+                            <td>Mateix to a YouTube i TikTok. Colors i tipografies consistents.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12. Autenticitat</strong></td>
+                            <td>Construir des d'allò genuí i propi</td>
+                            <td>No copiar formats. Estil narratiu propi. Veu única.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13. Narrativitat</strong></td>
+                            <td>Donar sentit, construir relats sòlids</td>
+                            <td>Arc narratiu clar. Plantejament, nus, desenllaç.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>14. Calma</strong></td>
+                            <td>Actitud que transmet solidesa i control</td>
+                            <td>No reaccionar impulsivement. Respondre amb serenitat.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15. Responsabilitat</strong></td>
+                            <td>Assumir l'impacte cultural i emocional</td>
+                            <td>Oferir recursos de suport. No trivialitzar el crim.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box highlight">
+                    <div class="info-box-title">Exemple d'aplicació multiplataforma</div>
+                    <p>Un mateix cas en diferents formats:</p>
+                    <ul>
+                        <li><strong>YouTube (30 min):</strong> Narrativa completa, profunda. To calm i sobri.</li>
+                        <li><strong>TikTok (60 seg):</strong> Hook impactant però no sensacionalista. Mateixa estètica.</li>
+                        <li><strong>Newsletter:</strong> Anàlisi escrit, context addicional, to reflexiu.</li>
+                    </ul>
+                    <p style="margin-top: 8pt;"><strong>En tots els formats:</strong> Mateixa integritat, rigor i respecte.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUM EXECUTIU -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">04</div>
+                <h2 class="section-title">Resum Executiu</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="quote-block">
+                    <p class="quote-text">Aquests valors són el denominador comú que ha d'unificar totes les línies de negoci. Ens serveixen per prendre decisions, avaluar iniciatives i preservar la identitat de la marca.</p>
+                </div>
+
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-item-number">01</div>
+                        <div class="summary-item-name">Integritat</div>
+                        <div class="summary-item-desc">Veritat i transparència</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-number">02</div>
+                        <div class="summary-item-name">Rigor</div>
+                        <div class="summary-item-desc">Precisió i verificació</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-number">03</div>
+                        <div class="summary-item-name">Respecte</div>
+                        <div class="summary-item-desc">Dignitat i sensibilitat</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-number">04</div>
+                        <div class="summary-item-name">Credibilitat</div>
+                        <div class="summary-item-desc">Autoritat i confiança</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-item-number">05</div>
+                        <div class="summary-item-name">Excel·lència</div>
+                        <div class="summary-item-desc">Qualitat sobresortint</div>
+                    </div>
+                </div>
+
+                <div class="info-box critical">
+                    <div class="info-box-title">La regla final</div>
+                    <p style="font-size: 10pt; font-weight: 600;">Si una acció no compleix aquests cinc valors, no és per nosaltres.</p>
+                    <p style="margin-top: 8pt;">No hi ha excepcions. No hi ha "aquest cop sí". Si vulnera un valor troncal, la resposta és NO.</p>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="signature-content">
+                <p class="signature-quote">Sentit comú!</p>
+                <p class="signature-author">Carles Porta</p>
+                <p class="signature-role">Periodista · Creador de Crims · Director Editorial</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-logo">ZoopaNetwork</div>
+            <p class="footer-meta">
+                Guia de Valors de Marca — True Crime Factory<br>
+                Versió 2.0 — Desembre 2025
+            </p>
+            <p class="footer-tagline">
+                Integritat — Rigor — Respecte — Credibilitat — Excel·lència
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
